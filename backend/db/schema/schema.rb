@@ -38,4 +38,8 @@ create_table :users, collate: "utf8_bin" do |t|
 end
 
 
-
+create_table :ships, collate: "utf8_bin" do |t|
+  t.int :id, primary_key: true, extra: :auto_increment
+  t.varchar :ship_type
+  t.varchar :ship_name
+end

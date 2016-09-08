@@ -12,6 +12,11 @@
 
 ActiveRecord::Schema.define(version: 0) do
 
+  create_table "ships", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin ROW_FORMAT=COMPACT" do |t|
+    t.string "ship_type", null: false
+    t.string "ship_name", null: false
+  end
+
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin ROW_FORMAT=COMPACT" do |t|
     t.string   "uid",                                                         null: false
     t.string   "provider",                             default: "eve_online", null: false
