@@ -259,6 +259,7 @@ GEM
       capistrano (~> 3.0)
       sshkit (>= 1.2)
     safe_yaml (1.0.4)
+    settingslogic (2.0.9)
     simplecov (0.12.0)
       docile (~> 1.1.0)
       json (>= 1.8, < 3)
@@ -335,6 +336,7 @@ DEPENDENCIES
   rspec-rails
   rubocop
   rvm1-capistrano3
+  settingslogic
   simplecov
   spring
   unicorn

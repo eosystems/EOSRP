@@ -15,7 +15,7 @@ gem 'unicorn'
 gem 'activerecord-import'
 
 # 環境設定
-gem 'dotenv-rails'
+gem 'settingslogic'
 # クロスドメイン
 gem 'rack-cors', require: 'rack/cors'
 # Rails5.0.0.beta3必須?
