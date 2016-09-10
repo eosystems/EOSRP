@@ -3,5 +3,8 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: { format: :json } do
     resources :ship_types, only: [:index]
+    resources :guarantee_types
+    resources :guarantees, only: [:index]
+    put '/guarantees/update_all' => 'guarantees#update_all'
   end
 end

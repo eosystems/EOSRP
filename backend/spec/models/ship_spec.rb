@@ -1,3 +1,12 @@
+# == Schema Information
+#
+# Table name: ships
+#
+#  id        :integer          not null, primary key
+#  ship_type :string(255)      not null
+#  ship_name :string(255)      not null
+#
+
 require 'rails_helper'
 
 RSpec.describe Ship, type: :model do
