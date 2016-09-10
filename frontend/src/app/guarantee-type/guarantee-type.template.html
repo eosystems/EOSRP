@@ -1,8 +1,29 @@
 <h2>保証種別設定</h2>
 
-<search-table #searchTable [tableClass]="'table table-condensed'"
-              [columns]="headerComponents" [config]="searchTableConfig">
-  <tr *ngFor="let row of searchTable.dataRows">
-    <td>{{row.id}}</td>
-  </tr>
-</search-table>
+<div class="col-xs-6">
+  <a class="btn btn-sm btn-normal" (click)="reloadSearchTable(searchTable)">
+    Reload
+  </a>
+</div>
+<div class="col-xs-6 text-right">
+  <button class="btn btn-sm btn-default">
+    新規作成
+  </button>
+</div>
+
+<div class="col-xs-12 mt-10">
+  <search-table #searchTable [tableClass]="'table table-condensed'"
+                [columns]="headerComponents" [config]="searchTableConfig">
+    <tr *ngFor="let row of searchTable.dataRows">
+      <td>{{row.id}}</td>
+      <td>{{row.name}}</td>
+      <td>{{row.description}}</td>
+      <td>{{row.created_at}}</td>
+      <td>{{row.updated_at}}</td>
+      <td>
+        <button class="btn btn-default btn-sm">編集</button>
+        <button class="btn btn-default btn-sm">削除</button>
+      </td>
+    </tr>
+  </search-table>
+</div>
