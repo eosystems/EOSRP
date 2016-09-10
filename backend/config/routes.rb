@@ -3,5 +3,6 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: { format: :json } do
     resources :ship_types, only: [:index]
+    resources :guarantee_types
   end
 end
