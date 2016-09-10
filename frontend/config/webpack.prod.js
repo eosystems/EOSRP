@@ -16,7 +16,7 @@ const WebpackMd5Hash = require('webpack-md5-hash');
 /**
  * Webpack Constants
  */
-const API_URL = process.env.API_URL = 'http://localhost:3100';
+const API_URL = process.env.API_URL = 'http://localhost:3101';
 const ENV = process.env.NODE_ENV = process.env.ENV = 'production';
 const HOST = process.env.HOST || 'localhost';
 const PORT = process.env.PORT || 8080;
