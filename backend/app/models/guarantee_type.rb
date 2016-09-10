@@ -1,0 +1,2 @@
+class Guarantee < ApplicationRecord
+end
