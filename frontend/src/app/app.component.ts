@@ -14,7 +14,10 @@ import { AppState } from './app.service';
   encapsulation: ViewEncapsulation.None,
   template: `
     <main>
-      <router-outlet></router-outlet>
+      <navbar></navbar>
+      <div class="container-fluid">
+        <router-outlet></router-outlet>
+      </div>
     </main>
   `
 })

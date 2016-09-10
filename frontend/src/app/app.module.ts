@@ -16,6 +16,7 @@ import { APP_RESOLVER_PROVIDERS } from './app.resolver';
 import { AppState, InteralStateType } from './app.service';
 import { Dashboard } from './dashboard/dashboard.component';
 import { NoContent } from './no-content';
+import {NavBar} from './navbar/navbar.component';
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -36,6 +37,7 @@ type StoreType = {
   declarations: [
     App,
     NoContent,
+    NavBar,
     Dashboard
   ],
   imports: [ // import Angular's modules
