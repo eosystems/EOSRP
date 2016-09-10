@@ -17,6 +17,8 @@ import { AppState, InteralStateType } from './app.service';
 import { Dashboard } from './dashboard/dashboard.component';
 import { NoContent } from './no-content';
 import {NavBar} from './navbar/navbar.component';
+import {Guarantee} from './guarantee/guarantee.component';
+import {GuaranteeType} from './guarantee-type/guarantee-type.component';
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -38,7 +40,9 @@ type StoreType = {
     App,
     NoContent,
     NavBar,
-    Dashboard
+    Dashboard,
+    Guarantee,
+    GuaranteeType
   ],
   imports: [ // import Angular's modules
     BrowserModule,
