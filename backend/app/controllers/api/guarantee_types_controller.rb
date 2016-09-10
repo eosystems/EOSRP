@@ -13,6 +13,8 @@ class Api::GuaranteeTypesController < ApplicationController
     @guarantee_type = GuaranteeType.new(guarantee_type_params)
 
     if @guarantee_type.save
+      # 保証タイプ作成時に船保証リストを作成する
+      Guarantee.create_new_guarantee(@guarantee_type.id)
       render json: {result: "success", guarantee_type: @guarantee_type}
     else
       render json: {result: "error", message: @guarantee_type.errors.messages}
@@ -28,6 +30,7 @@ class Api::GuaranteeTypesController < ApplicationController
   end
 
   def destroy
+    Guarantee.delete_all(guarantee_type: @guarantee_type)
     if @guarantee_type.destroy
       render json: {result: "success"}
     else

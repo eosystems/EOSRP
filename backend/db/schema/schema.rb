@@ -45,6 +45,17 @@ create_table :guarantee_types, collate: "utf8_bin" do |t|
   t.datetime :updated_at
 end
 
+create_table :guarantees, collate: "utf8_bin" do |t|
+  t.int :id, primary_key: true, extra: :auto_increment
+  t.int :ship_id
+  t.int :guarantee_type_id
+  t.decimal :price, comment: "保証額", default: 0
+  t.varchar :description, null: true
+  t.datetime :created_at
+  t.datetime :updated_at
+end
+
+
 ## Master ##
 create_table :ships, collate: "utf8_bin" do |t|
   t.int :id, primary_key: true, extra: :auto_increment
