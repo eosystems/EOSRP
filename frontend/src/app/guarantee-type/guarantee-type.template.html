@@ -1,1 +1,8 @@
-保証種別設定
+<h2>保証種別設定</h2>
+
+<search-table #searchTable [tableClass]="'table table-condensed'"
+              [columns]="headerComponents" [config]="searchTableConfig">
+  <tr *ngFor="let row of searchTable.dataRows">
+    <td>{{row.id}}</td>
+  </tr>
+</search-table>

@@ -19,6 +19,7 @@ import { NoContent } from './no-content';
 import {NavBar} from './navbar/navbar.component';
 import {Guarantee} from './guarantee/guarantee.component';
 import {GuaranteeType} from './guarantee-type/guarantee-type.component';
+import {Ng2SearchTableModule} from 'ng2-search-table/ng2-search-table';
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -48,7 +49,8 @@ type StoreType = {
     BrowserModule,
     FormsModule,
     HttpModule,
-    RouterModule.forRoot(ROUTES, { useHash: true })
+    RouterModule.forRoot(ROUTES, { useHash: true }),
+    Ng2SearchTableModule.forRoot()
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
     ENV_PROVIDERS,
