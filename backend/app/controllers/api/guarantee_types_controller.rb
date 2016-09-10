@@ -1,8 +1,11 @@
 class Api::GuaranteeTypesController < ApplicationController
   before_action :set_guarantee_type, only: [:show, :edit, :update, :destroy]
   def index
-    @guarantee_types = GuaranteeType.all
-    render json: @guarantee_types
+    @page = params[:page] || 1
+    @per = params[:per] || 20
+    @guarantee_types = GuaranteeType
+      .search_with(params[:filter], params[:sort], @page, @per)
+    render json: ng2_search_table_response(@guarantee_types)
   end
 
   def show
