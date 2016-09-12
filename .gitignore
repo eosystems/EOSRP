@@ -28,4 +28,4 @@
 /backend/config/database.yml
 /backend/config/settings.yml
 
-
+.idea

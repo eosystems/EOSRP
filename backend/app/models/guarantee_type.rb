@@ -10,4 +10,29 @@
 #
 
 class GuaranteeType < ApplicationRecord
+  include Ng2SearchTableSearchable
+
+  # Constants
+  RANSACK_FILTER_ATTRIBUTES = {
+    id: :id_eq,
+    name: :name_cont,
+    description: :description_cont
+  }.with_indifferent_access.freeze
+
+  RANSACK_SORT_ATTRIBUTES = {
+    id: :id,
+    name: :name,
+    created_at: :created_at,
+    updated_at: :updated_at,
+  }.with_indifferent_access.freeze
+
+  # Relations
+
+  # Validations
+
+  # Hooks
+
+  # Scopes
+
+  # Methods
 end

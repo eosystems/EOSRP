@@ -25,7 +25,6 @@ import 'rxjs/add/operator/mergeMap';
 import 'jquery';
 import 'bootstrap/dist/js/bootstrap.js';
 
-
 if ('production' === ENV) {
   // Production
 

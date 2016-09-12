@@ -13,6 +13,7 @@ gem 'active_model_serializers'
 gem 'kaminari'
 gem 'unicorn'
 gem 'activerecord-import'
+gem 'ransack'
 
 # 環境設定
 gem 'settingslogic'
