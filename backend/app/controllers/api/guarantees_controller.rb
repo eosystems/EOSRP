@@ -5,21 +5,18 @@ class Api::GuaranteesController < ApplicationController
   end
 
   def update_all
-    binding.pry
     params[:guarantees].each do |params_guarantee|
       model_guarantee = Guarantee.where(id: params_guarantee[:id]).first
-      model_guarantee.update_attributes!(params_guarantee)
+      model_guarantee.update_attributes!(permit_params(params_guarantee))
     end
 
-    render json: {result: "success", guarantee_type: @guarantee_type}
+    render json: {result: "success"}
   end
 
   private
 
-  #def params_guarantee
-  #  params
-  #    .require(:guarantee)
-  #    .permit(:price, :description)
-  #end
+  def permit_params(p)
+    p.permit(:price, :description)
+  end
 
 end
