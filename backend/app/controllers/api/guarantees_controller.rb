@@ -1,25 +1,30 @@
-class Api::GuaranteesController < ApplicationController
-  def index
-    @guarantees = GuaranteeType.where(guarantee_type_id: params[:id])
-    render json: @guarantees
-  end
+module Api
+  class GuaranteesController < ApplicationController
+    include ActionController::Serialization
 
-  def update_all
-    binding.pry
-    params[:guarantees].each do |params_guarantee|
-      model_guarantee = Guarantee.where(id: params_guarantee[:id]).first
-      model_guarantee.update_attributes!(params_guarantee)
+    def index
+      @page = params[:page] || 1
+      @per = params[:per] || 100
+      @guarantees = Guarantee
+        .where(guarantee_type_id: params[:id])
+        .search_with(params[:filter], params[:sort] ,@page, @per)
+      render json: @guarantees
     end
 
-    render json: {result: "success", guarantee_type: @guarantee_type}
+    def update_all
+      params[:guarantees].each do |params_guarantee|
+        model_guarantee = Guarantee.where(id: params_guarantee[:id]).first
+        model_guarantee.update_attributes!(permit_params(params_guarantee))
+      end
+
+      render json: {result: "success"}
+    end
+
+    private
+
+    def permit_params(p)
+      p.permit(:price, :description)
+    end
+
   end
-
-  private
-
-  #def params_guarantee
-  #  params
-  #    .require(:guarantee)
-  #    .permit(:price, :description)
-  #end
-
 end
