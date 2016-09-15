@@ -11,10 +11,35 @@
 #  updated_at        :datetime         not null
 #
 
-class Guarantee < ApplicationRecord
+class Guarantee < ActiveRecord::Base
+  include Ng2SearchTableSearchable
+
+  # Constants
+  RANSACK_FILTER_ATTRIBUTES = {
+    id: :id_eq,
+    description: :description_cont,
+    guarantee_ship_type: :ship_ship_type_cont_any,
+    guarantee_ship_name: :ship_ship_name_cont_any
+  }.with_indifferent_access.freeze
+
+  RANSACK_SORT_ATTRIBUTES = {
+    id: :id,
+    price: :price,
+    guarantee_ship_type: :ship_ship_type,
+    guarantee_ship_name: :ship_ship_name,
+    created_at: :created_at,
+    updated_at: :updated_at,
+  }.with_indifferent_access.freeze
+
+  # Relations
   belongs_to :ship
   belongs_to :guarantee_type
 
+  # Delegate
+  delegate :ship_type, to: :ship, allow_nil: true, prefix: :guarantee
+  delegate :ship_name, to: :ship, allow_nil: true, prefix: :guarantee
+
+  # Methods
   def self.create_new_guarantee(guarantee_type_id)
     ships = Ship.all
     ships.each do |ship|
