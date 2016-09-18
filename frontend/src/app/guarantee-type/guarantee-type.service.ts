@@ -9,9 +9,9 @@ export class GuaranteeTypeService {
 
   create(guaranteeType: GuaranteeTypeForm) : any {
     let body = JSON.stringify({
-      "guarantee_type": {
-        "name": guaranteeType.name,
-        "description": guaranteeType.description
+      guarantee_type: {
+        name: guaranteeType.name,
+        description: guaranteeType.description
       }
     });
     return this
