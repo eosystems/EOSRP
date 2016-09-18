@@ -13,6 +13,7 @@ import {Router} from '@angular/router';
 export class NewGuaranteeType {
   typeForm: FormGroup;
   guaranteeTypeForm: GuaranteeTypeForm;
+  submitLocked: boolean = false;
 
   constructor(
     private guaranteeTypeService: GuaranteeTypeService,
@@ -24,19 +25,23 @@ export class NewGuaranteeType {
   }
 
   formSubmit() {
-    this.toastr.info("保存しています。", "Post");
+    if (!this.submitLocked) {
+      this.submitLocked = true;
+      this.toastr.info("保存しています。", "Post");
 
-    this
-      .guaranteeTypeService
-      .create(this.guaranteeTypeForm)
-      .subscribe(
-        r => {
-          this.toastr.success("保存に成功しました。", "Success");
-          this.router.navigate(['guarantee-types']);
-        },
-        e => {
-          this.toastr.error("エラーが発生しました。", "Error");
-        }
-      )
+      this
+        .guaranteeTypeService
+        .create(this.guaranteeTypeForm)
+        .subscribe(
+          r => {
+            this.toastr.success("保存に成功しました。", "Success");
+            this.router.navigate(['guarantee-types']);
+          },
+          e => {
+            this.toastr.error("エラーが発生しました。", "Error");
+            this.submitLocked = false;
+          }
+        );
+    }
   }
 }
