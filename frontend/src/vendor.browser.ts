@@ -24,6 +24,7 @@ import 'rxjs/add/operator/mergeMap';
 // vendor
 import 'jquery';
 import 'bootstrap/dist/js/bootstrap.js';
+import 'ng2-toastr/ng2-toastr.js';
 
 if ('production' === ENV) {
   // Production

@@ -22,6 +22,7 @@ import {GuaranteeType} from './guarantee-type/guarantee-type.component';
 import {Ng2SearchTableModule} from 'ng2-search-table/ng2-search-table';
 import {NewGuaranteeType} from './guarantee-type/new-guarantee-type/new-guarantee-type.component';
 import {GuaranteeTypeService} from './guarantee-type/guarantee-type.service';
+import {ToastModule} from 'ng2-toastr';
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -54,7 +55,8 @@ type StoreType = {
     ReactiveFormsModule,
     HttpModule,
     RouterModule.forRoot(ROUTES, { useHash: true }),
-    Ng2SearchTableModule.forRoot()
+    Ng2SearchTableModule.forRoot(),
+    ToastModule
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
     ENV_PROVIDERS,
