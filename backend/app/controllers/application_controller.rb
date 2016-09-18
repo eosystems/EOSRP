@@ -9,4 +9,12 @@ class ApplicationController < ActionController::API
       results: records
     }
   end
+
+  def body
+    @_body ||= request.body.read
+  end
+
+  def json_body
+    @_json_body ||= JSON.parse(body).with_indifferent_access
+  end
 end
