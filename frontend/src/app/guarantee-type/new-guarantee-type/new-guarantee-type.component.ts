@@ -1,5 +1,4 @@
 import {Component} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {GuaranteeTypeForm} from '../../models/guarantee-type-form';
 import {GuaranteeTypeService} from '../guarantee-type.service';
 import {ToastsManager} from 'ng2-toastr';
@@ -11,7 +10,6 @@ import {Router} from '@angular/router';
 })
 
 export class NewGuaranteeType {
-  typeForm: FormGroup;
   guaranteeTypeForm: GuaranteeTypeForm;
   submitLocked: boolean = false;
 
@@ -21,7 +19,6 @@ export class NewGuaranteeType {
     private router: Router
   ) {
     this.guaranteeTypeForm = new GuaranteeTypeForm();
-    this.typeForm = this.guaranteeTypeForm.toFormGroup();
   }
 
   formSubmit() {
