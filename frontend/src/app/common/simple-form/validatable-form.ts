@@ -1,4 +1,4 @@
-import {Validators, FormBuilder, FormGroup} from '@angular/forms';
+import {Validators, FormBuilder, FormGroup, FormControl, AbstractControl} from '@angular/forms';
 
 export function FormValidation(first?: any): any {
   let validation = first;
@@ -17,6 +17,7 @@ export function FormVariable(target?: any, key?: any): any {
 export class ValidatableForm {
   validatableFormVariables: string[];
   validatableFormValidators: any;
+  validatableFormMessages: any;
 
   addValidation(key: string, validation: any) {
     if (!this.validatableFormValidators) {
@@ -41,6 +42,10 @@ export class ValidatableForm {
 
   getFormVariables(): string[] {
     return this.validatableFormVariables;
+  }
+
+  getValidationMessage(key: string, validation: any) {
+    return this.validatableFormMessages[key][validation];
   }
 
   // FormGroupに直接渡すことができるHashを生成します。
