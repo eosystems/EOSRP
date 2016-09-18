@@ -15,7 +15,7 @@ import { AppState } from './app.service';
   template: `
     <main>
       <navbar></navbar>
-      <div class="container-fluid">
+      <div class="container-fluid main-container">
         <router-outlet></router-outlet>
       </div>
     </main>
