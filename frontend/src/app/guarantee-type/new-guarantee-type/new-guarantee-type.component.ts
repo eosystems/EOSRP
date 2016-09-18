@@ -11,12 +11,13 @@ export class NewGuaranteeType {
   typeForm: FormGroup;
   guaranteeTypeForm: GuaranteeTypeForm;
 
-  constructor(fb: FormBuilder) {
-    this.typeForm = fb.group({
-      'name': ['', Validators.compose([Validators.required, Validators.maxLength(255)])],
-      'description': ['']
-    });
-
+  constructor() {
     this.guaranteeTypeForm = new GuaranteeTypeForm();
+    this.typeForm = this.guaranteeTypeForm.toFormGroup();
+  }
+
+  debug() {
+    this.guaranteeTypeForm.name = "HELLO";
+    console.log(this.guaranteeTypeForm);
   }
 }

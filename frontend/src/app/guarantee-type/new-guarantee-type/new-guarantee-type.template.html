@@ -13,7 +13,7 @@
 <form [formGroup]="typeForm">
   <div class="col-xs-12 text-right">
     <label *ngIf="typeForm.dirty" class="label label-warning mr-10">Unsaved</label>
-    <button type="submit" class="btn btn-primary">Save</button>
+    <button type="submit" class="btn btn-primary" [disabled]="!typeForm.valid">Save</button>
   </div>
 
   <div class="col-xs-12">
@@ -22,14 +22,17 @@
       <input name="name" type="text"
              placeholder="保証種別名を入力してください"
              class="form-control"
+             [(ngModel)]="guaranteeTypeForm.name"
              [formControl]="typeForm.controls['name']">
     </div>
     <div class="form-group">
       <label>Description</label>
       <input name="description" type="text"
              class="form-control"
+             [(ngModel)]="guaranteeTypeForm.description"
              [formControl]="typeForm.controls['description']">
     </div>
   </div>
+  <a (click)="debug()">Debug</a>
 </form>
 </div>
