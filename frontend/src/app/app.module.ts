@@ -1,6 +1,6 @@
 import { NgModule, ApplicationRef } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { removeNgStyles, createNewHosts } from '@angularclass/hmr';
@@ -20,6 +20,7 @@ import {NavBar} from './navbar/navbar.component';
 import {Guarantee} from './guarantee/guarantee.component';
 import {GuaranteeType} from './guarantee-type/guarantee-type.component';
 import {Ng2SearchTableModule} from 'ng2-search-table/ng2-search-table';
+import {NewGuaranteeType} from './guarantee-type/new-guarantee-type/new-guarantee-type.component';
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -43,11 +44,13 @@ type StoreType = {
     NavBar,
     Dashboard,
     Guarantee,
-    GuaranteeType
+    GuaranteeType,
+    NewGuaranteeType
   ],
   imports: [ // import Angular's modules
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpModule,
     RouterModule.forRoot(ROUTES, { useHash: true }),
     Ng2SearchTableModule.forRoot()
