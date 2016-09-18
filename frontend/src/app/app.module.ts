@@ -21,6 +21,7 @@ import {Guarantee} from './guarantee/guarantee.component';
 import {GuaranteeType} from './guarantee-type/guarantee-type.component';
 import {Ng2SearchTableModule} from 'ng2-search-table/ng2-search-table';
 import {NewGuaranteeType} from './guarantee-type/new-guarantee-type/new-guarantee-type.component';
+import {GuaranteeTypeService} from './guarantee-type/guarantee-type.service';
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -57,7 +58,8 @@ type StoreType = {
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
     ENV_PROVIDERS,
-    APP_PROVIDERS
+    APP_PROVIDERS,
+    GuaranteeTypeService
   ]
 })
 export class AppModule {
