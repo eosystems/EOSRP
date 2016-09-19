@@ -6,13 +6,7 @@ class CrawlMarketJob < ActiveJob::Base
     region = "10000002"
     is_success, items = fetch_market_orders(region)
     if is_success
-      # 暫定対応
-      System.delete_all
-      s = System.new
-      s.flag = false
-      s.save!
       save_market_orders(items, region)
-      System.delete_all
     end
     Rails.logger.info("end crawl market orders")
   end
@@ -20,10 +14,10 @@ class CrawlMarketJob < ActiveJob::Base
   # リポジトリの結果結果を保存
   def save_market_orders(results, region)
     save_results = []
-    MarketOrder.delete_all
+    TempMarketOrder.delete_all
     count = 0
     results.each do |result|
-      r = MarketOrder.new
+      r = TempMarketOrder.new
       r.attributes = {
         buy: result.buy,
         issued: result.issued,
@@ -39,12 +33,12 @@ class CrawlMarketJob < ActiveJob::Base
       }
       save_results << r
       if count % 1000 == 0
-        MarketOrder.import save_results
+        TempMarketOrder.import save_results
         save_results = []
       end
       count = count + 1
     end
-    MarketOrder.import save_results
+    TempMarketOrder.import save_results
   end
 
   def fetch_market_orders(region_id)
