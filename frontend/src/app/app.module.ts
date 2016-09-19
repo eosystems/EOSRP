@@ -25,6 +25,7 @@ import {GuaranteeTypeService} from './guarantee-type/guarantee-type.service';
 import {ToastModule} from 'ng2-toastr';
 import {SimpleForm} from './common/simple-form/simple-form.component';
 import {SimpleFormInput} from './common/simple-form/simple-form-input.component';
+import {EditGuaranteeType} from './guarantee-type/edit-guarantee-type/edit-guarantee-type.component';
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -50,6 +51,7 @@ type StoreType = {
     Guarantee,
     GuaranteeType,
     NewGuaranteeType,
+    EditGuaranteeType,
     SimpleForm,
     SimpleFormInput
   ],
