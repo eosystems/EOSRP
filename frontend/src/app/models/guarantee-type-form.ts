@@ -15,7 +15,7 @@ export class GuaranteeTypeForm extends ValidatableForm {
   @JsonProperty()
   @FormVariable
   @FormValidation(Validators.maxLength(255))
-  description: number;
+  description: string;
 
   constructor(obj?: any) {
     super();
