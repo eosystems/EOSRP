@@ -23,6 +23,8 @@ import {Ng2SearchTableModule} from 'ng2-search-table/ng2-search-table';
 import {NewGuaranteeType} from './guarantee-type/new-guarantee-type/new-guarantee-type.component';
 import {GuaranteeTypeService} from './guarantee-type/guarantee-type.service';
 import {ToastModule} from 'ng2-toastr';
+import {SimpleForm} from './common/simple-form/simple-form.component';
+import {SimpleFormInput} from './common/simple-form/simple-form-input.component';
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -47,7 +49,9 @@ type StoreType = {
     Dashboard,
     Guarantee,
     GuaranteeType,
-    NewGuaranteeType
+    NewGuaranteeType,
+    SimpleForm,
+    SimpleFormInput
   ],
   imports: [ // import Angular's modules
     BrowserModule,

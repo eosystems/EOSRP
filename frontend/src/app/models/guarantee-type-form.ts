@@ -1,5 +1,5 @@
 import {Validators} from '@angular/forms';
-import {FormVariable, FormValidation, ValidatableForm} from './validatable-form';
+import {FormVariable, FormValidation, ValidatableForm} from '../common/simple-form/validatable-form';
 
 export class GuaranteeTypeForm extends ValidatableForm {
   id: number;
