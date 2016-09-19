@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {GuaranteeTypeForm} from '../../models/guarantee-type-form';
 import {GuaranteeTypeService} from '../guarantee-type.service';
 import {ToastsManager} from 'ng2-toastr';
-import {Router} from '@angular/router';
+import {Router, ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'edit-guarantee-type',
@@ -10,14 +10,17 @@ import {Router} from '@angular/router';
 })
 
 export class EditGuaranteeType {
+  formId: string;
   guaranteeTypeForm: GuaranteeTypeForm;
   submitLocked: boolean = false;
 
   constructor(
     private guaranteeTypeService: GuaranteeTypeService,
     private toastr: ToastsManager,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) {
+    this.route.params.subscribe(p => this.formId = p['id']);
     this.guaranteeTypeForm = new GuaranteeTypeForm();
   }
 

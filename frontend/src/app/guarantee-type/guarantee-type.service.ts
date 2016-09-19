@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Http} from '@angular/http';
 import {GuaranteeTypeForm} from '../models/guarantee-type-form';
+import {Observable} from 'rxjs';
 
 @Injectable()
 export class GuaranteeTypeService {
@@ -17,5 +18,15 @@ export class GuaranteeTypeService {
     return this
       ._http
       .post(process.env.API_URL + "/api/guarantee_types", body);
+  }
+
+  get(id: string): Observable<GuaranteeTypeForm> {
+    return this
+      ._http
+      .get(process.env.API_URL + "/api/guarantee_types/" + id)
+      .map(r => r.json())
+      .map(r => {
+        return null;
+      });
   }
 }
