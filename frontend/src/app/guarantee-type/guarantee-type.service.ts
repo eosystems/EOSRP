@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {Http} from '@angular/http';
 import {GuaranteeTypeForm} from '../models/guarantee-type-form';
 import {Observable} from 'rxjs';
+import {JsonObjectMapper} from '../common/json-property/json-object-mapper';
 
 @Injectable()
 export class GuaranteeTypeService {
@@ -26,7 +27,9 @@ export class GuaranteeTypeService {
       .get(process.env.API_URL + "/api/guarantee_types/" + id)
       .map(r => r.json())
       .map(r => {
-        return null;
+        let form = new GuaranteeTypeForm();
+        (<JsonObjectMapper><any>form).setJsonAttributes(r);
+        return form;
       });
   }
 }

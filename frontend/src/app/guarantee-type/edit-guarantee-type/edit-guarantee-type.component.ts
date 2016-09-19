@@ -21,7 +21,20 @@ export class EditGuaranteeType {
     private route: ActivatedRoute
   ) {
     this.route.params.subscribe(p => this.formId = p['id']);
-    this.guaranteeTypeForm = new GuaranteeTypeForm();
+  }
+
+  ngOnInit() {
+    this
+      .guaranteeTypeService
+      .get(this.formId)
+      .subscribe(
+        r => {
+          this.guaranteeTypeForm = r;
+        },
+        e => {
+          this.toastr.error("データが取得できませんでした。", "Error");
+        }
+      );
   }
 
   formSubmit() {

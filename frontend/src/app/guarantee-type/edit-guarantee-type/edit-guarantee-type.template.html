@@ -9,7 +9,7 @@
 
 <h2>保証種別 編集 / ID: {{formId}}</h2>
 
-<div class="row">
+<div class="row" *ngIf="guaranteeTypeForm">
   <simple-form [form]="guaranteeTypeForm" (submit)="formSubmit()" #form>
     <div class="col-xs-12 text-right">
       <label *ngIf="form.dirty()" class="label label-warning mr-10">Unsaved</label>
