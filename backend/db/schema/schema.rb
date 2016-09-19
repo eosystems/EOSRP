@@ -55,6 +55,45 @@ create_table :guarantees, collate: "utf8_bin" do |t|
   t.datetime :updated_at
 end
 
+create_table :temp_market_orders, collate: "utf8_bin" do |t|
+  t.int :id, primary_key: true, extra: :auto_increment
+  t.bigint :order_id
+  t.int :type_id
+  t.boolean :buy, null: true
+  t.datetime :issued, null: true
+  t.decimal :price, null: true, precision: 20, scale: 4
+  t.int :volume_entered, null: true
+  t.bigint :station_id, null: true
+  t.int :volume, null: true
+  t.varchar :range, null: true
+  t.int :min_volume, null: true
+  t.int :duration, null: true
+  t.datetime :created_at, null: true
+  t.datetime :updated_at, null: true
+
+
+  t.index [:type_id, :buy, :station_id], name: "index_type_id_and_buy_and_station_id"
+end
+
+create_table :market_orders, collate: "utf8_bin" do |t|
+  t.int :id, primary_key: true, extra: :auto_increment
+  t.bigint :order_id
+  t.int :type_id
+  t.boolean :buy, null: true
+  t.datetime :issued, null: true
+  t.decimal :price, null: true, precision: 20, scale: 4
+  t.int :volume_entered, null: true
+  t.bigint :station_id, null: true
+  t.int :volume, null: true
+  t.varchar :range, null: true
+  t.int :min_volume, null: true
+  t.int :duration, null: true
+  t.datetime :created_at, null: true
+  t.datetime :updated_at, null: true
+
+
+  t.index [:type_id, :buy, :station_id], name: "index_type_id_and_buy_and_station_id"
+end
 
 ## Master ##
 create_table :ships, collate: "utf8_bin" do |t|
@@ -63,4 +102,13 @@ create_table :ships, collate: "utf8_bin" do |t|
   t.varchar :ship_name
 end
 
+create_table :sta_stations, collate: "utf8_bin" do |t|
+  t.int :id, primary_key: true, extra: :auto_increment
+  t.bigint :station_id
+  t.int :region_id
+  t.int :solar_system_id
+  t.varchar :station_name
 
+  t.index ["station_id"], name: "index_station_id"
+  t.index ["solar_system_id"], name: "index_solar_system_id"
+end

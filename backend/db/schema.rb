@@ -28,9 +28,52 @@ ActiveRecord::Schema.define(version: 0) do
     t.datetime "updated_at",                                   null: false
   end
 
+  create_table "market_orders", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin ROW_FORMAT=COMPACT" do |t|
+    t.bigint   "order_id",                                null: false
+    t.integer  "type_id",                                 null: false
+    t.boolean  "buy"
+    t.datetime "issued"
+    t.decimal  "price",          precision: 20, scale: 4
+    t.integer  "volume_entered"
+    t.bigint   "station_id"
+    t.integer  "volume"
+    t.string   "range"
+    t.integer  "min_volume"
+    t.integer  "duration"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["type_id", "buy", "station_id"], name: "index_type_id_and_buy_and_station_id", using: :btree
+  end
+
   create_table "ships", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin ROW_FORMAT=COMPACT" do |t|
     t.string "ship_type", null: false
     t.string "ship_name", null: false
+  end
+
+  create_table "sta_stations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin ROW_FORMAT=COMPACT" do |t|
+    t.bigint  "station_id",      null: false
+    t.integer "region_id",       null: false
+    t.integer "solar_system_id", null: false
+    t.string  "station_name",    null: false
+    t.index ["solar_system_id"], name: "index_solar_system_id", using: :btree
+    t.index ["station_id"], name: "index_station_id", using: :btree
+  end
+
+  create_table "temp_market_orders", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin ROW_FORMAT=COMPACT" do |t|
+    t.bigint   "order_id",                                null: false
+    t.integer  "type_id",                                 null: false
+    t.boolean  "buy"
+    t.datetime "issued"
+    t.decimal  "price",          precision: 20, scale: 4
+    t.integer  "volume_entered"
+    t.bigint   "station_id"
+    t.integer  "volume"
+    t.string   "range"
+    t.integer  "min_volume"
+    t.integer  "duration"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["type_id", "buy", "station_id"], name: "index_type_id_and_buy_and_station_id", using: :btree
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin ROW_FORMAT=COMPACT" do |t|
