@@ -31,4 +31,16 @@ export class GuaranteeTypeService {
         return form;
       });
   }
+
+  update(id: string, guaranteeType: GuaranteeTypeForm): any {
+    let body = JSON.stringify({
+      guarantee_type: {
+        name: guaranteeType.name,
+        description: guaranteeType.description,
+      }
+    });
+    return this
+      ._http
+      .put(process.env.API_URL + "/api/guarantee_types/" + id, body);
+  }
 }

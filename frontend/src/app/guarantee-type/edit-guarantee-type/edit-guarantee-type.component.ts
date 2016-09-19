@@ -17,13 +17,16 @@ export class EditGuaranteeType {
   constructor(
     private guaranteeTypeService: GuaranteeTypeService,
     private toastr: ToastsManager,
-    private router: Router,
     private route: ActivatedRoute
   ) {
     this.route.params.subscribe(p => this.formId = p['id']);
   }
 
   ngOnInit() {
+    this.reload();
+  }
+
+  reload() {
     this
       .guaranteeTypeService
       .get(this.formId)
@@ -44,11 +47,10 @@ export class EditGuaranteeType {
 
       this
         .guaranteeTypeService
-        .create(this.guaranteeTypeForm)
+        .update(this.formId, this.guaranteeTypeForm)
         .subscribe(
           r => {
-            this.toastr.success("保存に成功しました。", "Success");
-            this.router.navigate(['guarantee-types']);
+            this.toastr.success("更新に成功しました。", "Success");
           },
           e => {
             this.toastr.error("エラーが発生しました。", "Error");
