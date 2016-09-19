@@ -1,0 +1,45 @@
+<div class="row mb-15 breadcrumb">
+  <div class="col-xs-12">
+    <a [routerLink]="['/guarantee-types']">
+      <i class="fa fa-angle-double-left"></i>
+      保証種別一覧に戻る
+    </a>
+  </div>
+</div>
+
+<h2>保証種別 新規追加</h2>
+
+<div class="row">
+<form [formGroup]="typeForm" (submit)="formSubmit()">
+  <div class="col-xs-12 text-right">
+    <label *ngIf="typeForm.dirty" class="label label-warning mr-10">Unsaved</label>
+    <button type="submit" class="btn btn-primary"
+            [disabled]="!typeForm.valid || submitLocked">Save</button>
+  </div>
+
+  <div class="col-xs-12">
+    <div class="form-group" [ngClass]="{ 'has-error': !typeForm.controls['name'].valid }">
+      <label class="control-label">Name</label>
+      <input name="name" type="text"
+             placeholder="保証種別名を入力してください"
+             class="form-control"
+             [(ngModel)]="guaranteeTypeForm.name"
+             [formControl]="typeForm.controls['name']">
+
+      <span *ngIf="typeForm.controls['name'].hasError('required')" class="help-block">
+        必須項目です。
+      </span>
+      <span *ngIf="typeForm.controls['name'].hasError('maxlength')" class="help-block">
+        255文字まで入力可能です。
+      </span>
+    </div>
+    <div class="form-group" [ngClass]="{ 'has-error': !typeForm.controls['description'].valid }">
+      <label class="control-label">Description</label>
+      <input name="description" type="text"
+             class="form-control"
+             [(ngModel)]="guaranteeTypeForm.description"
+             [formControl]="typeForm.controls['description']">
+    </div>
+  </div>
+</form>
+</div>
