@@ -1,8 +1,9 @@
-import {Component} from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
 import {GuaranteeTypeForm} from '../../models/guarantee-type-form';
 import {GuaranteeTypeService} from '../guarantee-type.service';
 import {ToastsManager} from 'ng2-toastr';
-import {Router, ActivatedRoute} from '@angular/router';
+import {ActivatedRoute} from '@angular/router';
+import {SimpleForm} from '../../common/simple-form/simple-form.component';
 
 @Component({
   selector: 'edit-guarantee-type',
@@ -13,6 +14,8 @@ export class EditGuaranteeType {
   formId: string;
   guaranteeTypeForm: GuaranteeTypeForm;
   submitLocked: boolean = false;
+
+  @ViewChild('form') form: SimpleForm;
 
   constructor(
     private guaranteeTypeService: GuaranteeTypeService,
@@ -49,11 +52,15 @@ export class EditGuaranteeType {
         .guaranteeTypeService
         .update(this.formId, this.guaranteeTypeForm)
         .subscribe(
-          r => {
+          _ => {
             this.toastr.success("更新に成功しました。", "Success");
+            this.form.markAsPristine();
           },
-          e => {
+          _ => {
             this.toastr.error("エラーが発生しました。", "Error");
+            this.submitLocked = false;
+          },
+          _ => {
             this.submitLocked = false;
           }
         );

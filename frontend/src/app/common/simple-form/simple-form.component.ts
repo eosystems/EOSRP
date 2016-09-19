@@ -63,6 +63,12 @@ export class SimpleForm implements AfterContentInit {
     return !this.valid();
   }
 
+  markAsPristine(): void {
+    this
+      .simpleFormInputs
+      .forEach((v: SimpleFormInput) => v.markAsPristine());
+  }
+
   formSubmit(): void {
     this.submit.emit();
   }

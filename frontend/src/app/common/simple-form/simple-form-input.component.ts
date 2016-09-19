@@ -62,4 +62,8 @@ export class SimpleFormInput implements AfterViewInit {
   valid(): boolean {
     return this.simpleInput.valid;
   }
+
+  markAsPristine(): void {
+    this.simpleInput.control.markAsPristine();
+  }
 }
