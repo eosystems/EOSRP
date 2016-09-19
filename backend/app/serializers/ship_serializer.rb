@@ -11,10 +11,12 @@
 #  updated_at        :datetime         not null
 #
 
-class GuaranteeSerializer < ActiveModel::Serializer
-  attributes(*Guarantee.attribute_names.map(&:to_sym))
+class ShipSerializer < ActiveModel::Serializer
+  attributes(*Ship.attribute_names.map(&:to_sym))
 
-  belongs_to :ship
-  belongs_to :guarantee_type
+  attribute :jita_sell_min_price
 
+  def jita_sell_min_price
+    MarketOrder.jita_min_sell_price(object.id)
+  end
 end

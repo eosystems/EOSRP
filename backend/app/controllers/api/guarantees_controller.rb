@@ -1,6 +1,5 @@
 module Api
   class GuaranteesController < ApplicationController
-    include ActionController::Serialization
 
     def index
       @page = params[:page] || 1
@@ -8,7 +7,7 @@ module Api
       @guarantees = Guarantee
         .where(guarantee_type_id: params[:id])
         .search_with(params[:filter], params[:sort] ,@page, @per)
-      render json: @guarantees
+      ng2_search_table_response(@guarantees)
     end
 
     def update_all
