@@ -8,7 +8,7 @@ module Api
       @guarantees = Guarantee
         .where(guarantee_type_id: params[:id])
         .search_with(params[:filter], params[:sort] ,@page, @per)
-      render json: @guarantees
+      render json: ng2_search_table_response(@guarantees, page: @page, per: @per)
     end
 
     def update_all
