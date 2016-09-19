@@ -1,10 +1,11 @@
 class ApplicationController < ActionController::API
   include DeviseTokenAuth::Concerns::SetUserByToken
+  include ActionController::Serialization
 
   def ng2_search_table_response(records, page: 1, per: 20)
-    {
-      page: page,
-      per: per,
+    render json: {
+      page: @page,
+      per: @per,
       totalCount: records.total_count,
       results: records
     }

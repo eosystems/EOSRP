@@ -6,7 +6,7 @@ class Api::GuaranteeTypesController < ApplicationController
     @per = params[:per] || 20
     @guarantee_types = GuaranteeType
       .search_with(params[:filter], params[:sort], @page, @per)
-    render json: ng2_search_table_response(@guarantee_types)
+    ng2_search_table_response(@guarantee_types)
   end
 
   def show
