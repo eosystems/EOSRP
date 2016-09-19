@@ -25,17 +25,17 @@ class MarketOrder < ActiveRecord::Base
   def self.jita_sell_orders(item_id)
     self
       .all
-      .where(buy: true)
+      .where(buy: false)
       .where(station_id: StaStation.where(solar_system_id: JITA_SOLAR_SYSTEM_ID).map(&:station_id))
       .where(type_id: item_id)
   end
 
   def self.jita_min_sell_price(item_id)
-    orders = self.jita_buy_orders(item_id)
+    orders = self.jita_sell_orders(item_id)
     if orders.size == 0
       0.0
     else
-      orders.map(&:price).max
+      orders.map(&:price).min
     end
   end
 end
