@@ -27,8 +27,7 @@ export class GuaranteeTypeService {
       .get(process.env.API_URL + "/api/guarantee_types/" + id)
       .map(r => r.json())
       .map(r => {
-        let form = new GuaranteeTypeForm();
-        (<JsonObjectMapper><any>form).setJsonAttributes(r);
+        let form = JsonObjectMapper.deserialize(GuaranteeTypeForm, r);
         return form;
       });
   }

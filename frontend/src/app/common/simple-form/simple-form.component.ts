@@ -1,37 +1,29 @@
 import {
-  Component, Input, EventEmitter, Output, QueryList, ViewChildren, OnInit, AfterViewInit,
-  ContentChildren, AfterContentInit
+  Component, Input, EventEmitter, Output, QueryList,
+  ContentChildren, AfterContentInit, ViewChild
 } from '@angular/core';
 import {ValidatableForm} from './validatable-form';
-import {FormGroup, FormControl, AbstractControl} from '@angular/forms';
 import {SimpleFormInput} from './simple-form-input.component';
 
 @Component({
   selector: 'simple-form',
   template: `
-  <form [formGroup]="formGroup" (submit)="formSubmit()">
+  <form #simpleForm="ngForm" (submit)="formSubmit()">
     <ng-content></ng-content>
   </form>
   `
 })
 
-export class SimpleForm implements OnInit, AfterContentInit {
+export class SimpleForm implements AfterContentInit {
   @Input() form: ValidatableForm;
   @Output() submit: EventEmitter<any> = new EventEmitter<any>();
 
+  @ViewChild('simpleForm') simpleForm: any;
   @ContentChildren(SimpleFormInput) simpleFormInputs: QueryList<SimpleFormInput>;
-
-  myself: SimpleForm;
-  formGroup: FormGroup;
-
-  ngOnInit() {
-    this.myself = this;
-    this.formGroup = this.form.toFormGroup();
-  }
 
   ngAfterContentInit() {
     this.simpleFormInputs.forEach((input: SimpleFormInput) => {
-      input.form = this.myself;
+      input.form = this;
     });
   }
 
@@ -39,24 +31,36 @@ export class SimpleForm implements OnInit, AfterContentInit {
     return this.form;
   }
 
-  getForm(): FormGroup {
-    return this.formGroup;
+  getForm(): any {
+    return this.simpleForm.form;
   }
 
   dirty(): boolean {
+    if (this.simpleFormInputs) {
+      return this
+        .simpleFormInputs
+        .map((input: SimpleFormInput) => input.dirty())
+        .reduce((a, e) => a || e);
+    }
     return this.getForm().dirty;
   }
 
   pristine(): boolean {
-    return this.getForm().pristine;
+    return !this.dirty()
   }
 
   valid(): boolean {
+    if (this.simpleFormInputs) {
+      return this
+        .simpleFormInputs
+        .map((input: SimpleFormInput) => input.valid())
+        .reduce((a, e) => a && e);
+    }
     return this.getForm().valid;
   }
 
-  getControl(key: string): AbstractControl {
-    return this.formGroup.controls[key];
+  invalid(): boolean {
+    return !this.valid();
   }
 
   formSubmit(): void {

@@ -21,19 +21,6 @@ export function JsonProperty(mappingProperty?: any): any {
     }
 
     target._jsonMappingProperties[jsonMappingKey] = property;
-
-    target.getPropertyName = (jsonKey: string): string => {
-      return target._jsonMappingProperties[jsonKey];
-    };
-    target.setJsonAttributes = (json: any): void => {
-      for (let key in json) {
-        let propertyName: string = target.getPropertyName(key);
-        if (propertyName) {
-          let value: any = json[key];
-          target[propertyName] = value;
-        }
-      }
-    }
   }
 }
 
