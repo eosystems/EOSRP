@@ -42,11 +42,6 @@ export class GuaranteeType {
       name: 'updated_at',
       model: { displayName: 'UpdatedAt' },
       headerComponent: SortableHeaderComponent
-    },
-    {
-      name: "action",
-      model: { displayName: "Action" },
-      headerComponent: SimpleHeaderComponent
     }
   ]
 

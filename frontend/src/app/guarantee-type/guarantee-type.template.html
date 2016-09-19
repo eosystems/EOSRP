@@ -16,15 +16,11 @@
   <search-table #searchTable [tableClass]="'table table-condensed'"
                 [columns]="headerComponents" [config]="searchTableConfig">
     <tr *ngFor="let row of searchTable.dataRows">
-      <td>{{row.id}}</td>
-      <td>{{row.name}}</td>
+      <td><a [routerLink]="['/guarantee-types', row.id]">{{row.id}}</a></td>
+      <td><a [routerLink]="['/guarantee-types', row.id]">{{row.name}}</a></td>
       <td>{{row.description}}</td>
       <td>{{row.created_at}}</td>
       <td>{{row.updated_at}}</td>
-      <td>
-        <button class="btn btn-default btn-sm">編集</button>
-        <button class="btn btn-default btn-sm">削除</button>
-      </td>
     </tr>
   </search-table>
 </div>
