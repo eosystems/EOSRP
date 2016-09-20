@@ -26,7 +26,7 @@ import {ToastModule} from 'ng2-toastr';
 import {SimpleForm} from './common/simple-form/simple-form.component';
 import {SimpleFormInput} from './common/simple-form/simple-form-input.component';
 import {EditGuaranteeType} from './guarantee-type/edit-guarantee-type/edit-guarantee-type.component';
-import {ModalDirective} from 'ng2-bootstrap';
+import {ModalDirective, ModalModule} from 'ng2-bootstrap';
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -64,7 +64,7 @@ type StoreType = {
     RouterModule.forRoot(ROUTES, { useHash: true }),
     Ng2SearchTableModule.forRoot(),
     ToastModule,
-    ModalDirective
+    ModalModule
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
     ENV_PROVIDERS,

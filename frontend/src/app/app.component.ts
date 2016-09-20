@@ -1,7 +1,7 @@
 /*
  * Angular 2 decorators and services
  */
-import { Component, ViewEncapsulation } from '@angular/core';
+import {Component, ViewEncapsulation, ViewContainerRef} from '@angular/core';
 
 import { AppState } from './app.service';
 
@@ -22,4 +22,9 @@ import { AppState } from './app.service';
   `
 })
 export class App {
+  private viewContainerRef: ViewContainerRef;
+
+  public constructor(viewContainerRef: ViewContainerRef) {
+    this.viewContainerRef = viewContainerRef;
+  }
 }
