@@ -34,7 +34,6 @@ class Api::GuaranteeTypesController < ApplicationController
   end
 
   def destroy
-    Guarantee.delete_all(guarantee_type: @guarantee_type)
     if @guarantee_type.destroy
       render json: {result: "success"}
     else

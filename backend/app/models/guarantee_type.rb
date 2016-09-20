@@ -27,6 +27,7 @@ class GuaranteeType < ApplicationRecord
   }.with_indifferent_access.freeze
 
   # Relations
+  has_many :guarantees, dependent: :destroy
 
   # Validations
   validates :name, presence: true, length: { maximum: 255 }
