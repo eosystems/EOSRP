@@ -82,6 +82,7 @@
     "ie-shim": "^0.1.0",
     "jquery": "^1.9.1",
     "less": "^2.7.1",
+    "ng2-bootstrap": "^1.1.5",
     "ng2-search-table": "^1.0.0",
     "ng2-toastr": "^1.1.0",
     "object-assign": "^4.1.0",
