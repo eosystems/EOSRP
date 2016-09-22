@@ -3,7 +3,7 @@ class Api::GuaranteeTypesController < ApplicationController
 
   def index
     @page = params[:page] || 1
-    @per = params[:per] || 20
+    @per = params[:per] || 100
     @guarantee_types = GuaranteeType
       .search_with(params[:filter], params[:sort], @page, @per)
     ng2_search_table_response(@guarantee_types)
