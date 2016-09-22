@@ -1,6 +1,6 @@
 // https://github.com/valor-software/ng2-handsontable
 
-import {OnInit, OnDestroy, Directive, EventEmitter, ElementRef} from '@angular/core';
+import {OnInit, OnDestroy, Directive, EventEmitter, ElementRef, Input} from '@angular/core';
 import Handsontable = require('handsontable/dist/handsontable.full.js');
 
 let eventNames:Array<string> = ['afterCellMetaReset', 'afterChange',
@@ -19,25 +19,17 @@ let eventNames:Array<string> = ['afterCellMetaReset', 'afterChange',
   'persistentStateLoad', 'persistentStateReset', 'persistentStateSave'];
 
 @Directive({
-  selector: 'hot-table',
-  properties: [
-    'data',
-    'colHeaders',
-    'columns',
-    'colWidths',
-    'options'
-  ],
-  events: eventNames
+  selector: 'hot-table'
 })
 export class HotTable implements OnInit, OnDestroy {
   private inst:any;
   private view:any;
 
-  private data:Array<any> = [];
-  private colHeaders:Array<string>;
-  private columns:Array<any>;
-  private colWidths:Array<number>;
-  private options:any;
+  @Input() data: Array<any> = [];
+  @Input() colHeaders: Array<string>;
+  @Input() columns: Array<any>;
+  @Input() colWidths: Array<number>;
+  @Input() options: any;
 
   constructor(private element:ElementRef) {
     // fill events dynamically

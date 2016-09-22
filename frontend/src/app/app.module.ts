@@ -27,6 +27,7 @@ import {SimpleForm} from './common/simple-form/simple-form.component';
 import {SimpleFormInput} from './common/simple-form/simple-form-input.component';
 import {EditGuaranteeType} from './guarantee-type/edit-guarantee-type/edit-guarantee-type.component';
 import {ModalDirective, ModalModule} from 'ng2-bootstrap';
+import {HotTable} from './common/handsontable/handsontable';
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -47,6 +48,7 @@ type StoreType = {
   declarations: [
     App,
     NoContent,
+    HotTable,
     NavBar,
     Dashboard,
     Guarantee,
