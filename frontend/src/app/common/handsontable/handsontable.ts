@@ -19,11 +19,12 @@ let eventNames:Array<string> = ['afterCellMetaReset', 'afterChange',
   'persistentStateLoad', 'persistentStateReset', 'persistentStateSave'];
 
 @Directive({
-  selector: 'hot-table'
+  selector: 'hot-table',
+  outputs: eventNames
 })
 export class HotTable implements OnInit, OnDestroy {
-  private inst:any;
-  private view:any;
+  private inst: any;
+  private view: any;
 
   @Input() data: Array<any> = [];
   @Input() colHeaders: Array<string>;
