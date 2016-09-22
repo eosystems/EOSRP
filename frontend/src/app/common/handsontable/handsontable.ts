@@ -90,14 +90,14 @@ export class HotTable implements OnInit, OnDestroy {
     let additionalFields:Array<string> = ['colHeaders', 'colWidths', 'columns'];
     additionalFields.forEach(field => {
       if (this[field]) {
-        Object.assign(htOptions, {
+        (<any>Object).assign(htOptions, {
           [field]: this[field]
         });
       }
     });
 
     if (this.options) {
-      Object.assign(htOptions, this.options);
+      (<any>Object).assign(htOptions, this.options);
     }
 
     this.inst = Handsontable(this.view, htOptions);
