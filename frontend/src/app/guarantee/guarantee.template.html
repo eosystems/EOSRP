@@ -1,1 +1,61 @@
-補償額設定
+<h2>補償額設定</h2>
+
+<div *ngIf="searchTableConfig">
+
+<div *ngIf="!isEditingMode">
+
+<div class="col-xs-6">
+  <div class="form-inline">
+    <select class="form-control"
+            [ngModel]="initialGuaranteeTypeId"
+            (change)="changeGuaranteeType($event)">
+      <option *ngFor="let type of guaranteeTypes" [value]="type.id">
+        {{type.name}}
+      </option>
+    </select>
+    <a class="btn btn-sm btn-normal" (click)="reloadSearchTable()">
+      Reload
+    </a>
+  </div>
+</div>
+<div class="col-xs-6 text-right">
+  <button (click)="setEditingMode(true)" class="btn btn-sm btn-default">
+    表示している項目を一括編集
+  </button>
+</div>
+
+<div class="col-xs-12">
+  <pagination [totalItems]="searchTable.getTotalCount()"
+              [ngModel]="searchTable.getCurrentPage()"
+              (pageChanged)="setCurrentPage($event)"
+              [itemsPerPage]="searchTableConfig.defaultPagePer"
+              [maxSize]="5"
+              class="pagination-sm"
+              [boundaryLinks]="true">
+  </pagination>
+</div>
+
+<div class="col-xs-12">
+  <search-table #searchTable [tableClass]="'table table-condensed'"
+                [columns]="headerComponents" [config]="searchTableConfig">
+    <tr *ngFor="let row of searchTable.dataRows">
+      <td>{{row.id}}</td>
+      <td>{{row.ship_id}}</td>
+      <td>{{row.guarantee_ship_type}}</td>
+      <td>{{row.guarantee_ship_name}}</td>
+      <td>{{row.price}}</td>
+      <td>{{row.description}}</td>
+      <td>{{row.created_at}}</td>
+      <td>{{row.updated_at}}</td>
+    </tr>
+  </search-table>
+</div>
+
+</div> <!-- /listing mode -->
+
+<div *ngIf="isEditingMode">
+  <edit-guarantee [guarantees]="searchTable.dataRows">
+  </edit-guarantee>
+</div>
+
+</div>
