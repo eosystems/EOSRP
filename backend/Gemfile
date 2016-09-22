@@ -17,6 +17,7 @@ gem 'ransack'
 gem 'delayed_job'
 gem 'delayed_job_active_record'
 gem 'daemons'
+gem 'jbuilder'
 
 # 環境設定
 gem 'settingslogic'
