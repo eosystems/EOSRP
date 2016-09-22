@@ -17,6 +17,7 @@ class Guarantee < ActiveRecord::Base
   # Constants
   RANSACK_FILTER_ATTRIBUTES = {
     id: :id_eq,
+    ship_id: :ship_id_eq,
     description: :description_cont,
     guarantee_ship_type: :ship_ship_type_cont_any,
     guarantee_ship_name: :ship_ship_name_cont_any
@@ -24,6 +25,7 @@ class Guarantee < ActiveRecord::Base
 
   RANSACK_SORT_ATTRIBUTES = {
     id: :id,
+    ship_id: :ship_id,
     price: :price,
     guarantee_ship_type: :ship_ship_type,
     guarantee_ship_name: :ship_ship_name,
