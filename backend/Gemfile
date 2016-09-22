@@ -16,7 +16,6 @@ gem 'activerecord-import'
 gem 'ransack'
 gem 'delayed_job'
 gem 'delayed_job_active_record'
-gem 'activerecord-import'
 gem 'daemons'
 
 # 環境設定
@@ -33,7 +32,6 @@ gem 'devise'
 gem 'omniauth'
 gem 'devise_token_auth', :git => 'git://github.com/lynndylanhurley/devise_token_auth.git'
 gem 'dotenv-rails'
-gem 'rack-cors', :require => 'rack/cors'
 gem 'omniauth-eveonline'
 
 group :development, :test do
