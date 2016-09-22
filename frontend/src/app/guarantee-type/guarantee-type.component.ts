@@ -9,7 +9,7 @@ import {SearchTableComponent} from 'ng2-search-table/components/search-table.com
   templateUrl: './guarantee-type.template.html'
 })
 
-export class GuaranteeType {
+export class GuaranteeTypeComponent {
   searchTableConfig: any = {
     url: process.env.API_URL + '/api/guarantee_types',
     defaultPagePer: 20
