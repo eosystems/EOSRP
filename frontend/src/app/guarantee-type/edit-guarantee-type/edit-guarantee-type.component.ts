@@ -2,7 +2,7 @@ import {Component, ViewChild} from '@angular/core';
 import {GuaranteeTypeForm} from '../../models/guarantee-type-form';
 import {GuaranteeTypeService} from '../guarantee-type.service';
 import {ToastsManager} from 'ng2-toastr';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {SimpleForm} from '../../common/simple-form/simple-form.component';
 
 @Component({
@@ -20,7 +20,8 @@ export class EditGuaranteeType {
   constructor(
     private guaranteeTypeService: GuaranteeTypeService,
     private toastr: ToastsManager,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {
     this.route.params.subscribe(p => this.formId = p['id']);
   }
@@ -65,5 +66,22 @@ export class EditGuaranteeType {
           }
         );
     }
+  }
+
+  deleteGuaranteeType(modal: any): void {
+    modal.hide();
+
+    this
+      .guaranteeTypeService
+      .destroy(this.formId)
+      .subscribe(
+        _ => {
+          this.toastr.success("削除しました。", "Success");
+          this.router.navigate(['guarantee-types']);
+        },
+        _ => {
+          this.toastr.error("削除に失敗しました。", "Error");
+        }
+      );
   }
 }

@@ -43,4 +43,10 @@ export class GuaranteeTypeService {
       ._http
       .put(process.env.API_URL + "/api/guarantee_types/" + id, body);
   }
+
+  destroy(id: string): any {
+    return this
+      ._http
+      .delete(process.env.API_URL + '/api/guarantee_types/' + id);
+  }
 }
