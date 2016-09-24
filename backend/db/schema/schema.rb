@@ -49,7 +49,7 @@ create_table :guarantees, collate: "utf8_bin" do |t|
   t.int :id, primary_key: true, extra: :auto_increment
   t.int :ship_id
   t.int :guarantee_type_id
-  t.decimal :price, comment: "保証額", default: 0
+  t.decimal :price, precision: 20, scale: 4, comment: "保証額", default: '0.000'
   t.varchar :description, null: true
   t.datetime :created_at
   t.datetime :updated_at

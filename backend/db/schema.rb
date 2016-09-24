@@ -35,12 +35,12 @@ ActiveRecord::Schema.define(version: 0) do
   end
 
   create_table "guarantees", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin ROW_FORMAT=COMPACT" do |t|
-    t.integer  "ship_id",                                      null: false
-    t.integer  "guarantee_type_id",                            null: false
-    t.decimal  "price",             precision: 10, default: 0, null: false, comment: "保証額"
+    t.integer  "ship_id",                                                    null: false
+    t.integer  "guarantee_type_id",                                          null: false
+    t.decimal  "price",             precision: 20, scale: 4, default: "0.0", null: false, comment: "保証額"
     t.string   "description"
-    t.datetime "created_at",                                   null: false
-    t.datetime "updated_at",                                   null: false
+    t.datetime "created_at",                                                 null: false
+    t.datetime "updated_at",                                                 null: false
   end
 
   create_table "market_orders", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin ROW_FORMAT=COMPACT" do |t|
