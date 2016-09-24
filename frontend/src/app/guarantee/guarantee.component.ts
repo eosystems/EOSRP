@@ -29,10 +29,9 @@ export class GuaranteeComponent {
       filterComponent: TextFilterComponent
     },
     {
-      name: 'ship_id',
-      model: { displayName: 'ShipId' },
-      headerComponent: SortableHeaderComponent,
-      filterComponent: TextFilterComponent
+      name: '#',
+      model: { displayName: '#' },
+      headerComponent: SimpleHeaderComponent
     },
     {
       name: 'guarantee_ship_type',
@@ -51,6 +50,11 @@ export class GuaranteeComponent {
       model: { displayName: 'Price' },
       headerComponent: SortableHeaderComponent
     },
+    {
+      name: 'guarantee_jita_sell_min_price',
+      model: { displayName: 'Jita Sell Min' },
+      headerComponent: SimpleHeaderComponent
+    }
     {
       name: 'description',
       model: { displayName: 'Description' },

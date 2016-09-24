@@ -40,10 +40,11 @@
                 [columns]="headerComponents" [config]="searchTableConfig">
     <tr *ngFor="let row of searchTable.dataRows">
       <td>{{row.id}}</td>
-      <td>{{row.ship_id}}</td>
+      <td><img src="https://image.eveonline.com/Type/{{row.ship_id}}_32.png"></td>
       <td>{{row.guarantee_ship_type}}</td>
       <td>{{row.guarantee_ship_name}}</td>
       <td>{{row.price}}</td>
+      <td>{{row.guarantee_jita_sell_min_price}}</td>
       <td>{{row.description}}</td>
       <td>{{row.created_at}}</td>
       <td>{{row.updated_at}}</td>

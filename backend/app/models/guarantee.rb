@@ -40,6 +40,7 @@ class Guarantee < ActiveRecord::Base
   # Delegate
   delegate :ship_type, to: :ship, allow_nil: true, prefix: :guarantee
   delegate :ship_name, to: :ship, allow_nil: true, prefix: :guarantee
+  delegate :jita_sell_min_price, to: :ship, allow_nil: true, prefix: :guarantee
 
   # Methods
   def self.create_new_guarantee(guarantee_type_id)
