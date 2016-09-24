@@ -3,10 +3,23 @@ import {Http} from '@angular/http';
 import {GuaranteeTypeForm} from '../models/guarantee-type-form';
 import {Observable} from 'rxjs';
 import {JsonObjectMapper} from '../common/json-property/json-object-mapper';
+import {GuaranteeType} from '../models/guarantee-type';
 
 @Injectable()
 export class GuaranteeTypeService {
   constructor (private _http: Http) {
+  }
+
+  all(): Observable<Array<GuaranteeType>> {
+    return this
+      ._http
+      .get(process.env.API_URL + '/api/guarantee_types')
+      .map(r => r.json())
+      .map(r => {
+        let results = r['results']
+          .map(g => JsonObjectMapper.deserialize(GuaranteeType, g));
+        return results;
+      });
   }
 
   create(guaranteeType: GuaranteeTypeForm) : any {

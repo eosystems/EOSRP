@@ -9,7 +9,7 @@ import {Router} from '@angular/router';
   templateUrl: './new-guarantee-type.template.html'
 })
 
-export class NewGuaranteeType {
+export class NewGuaranteeTypeComponent {
   guaranteeTypeForm: GuaranteeTypeForm;
   submitLocked: boolean = false;
 

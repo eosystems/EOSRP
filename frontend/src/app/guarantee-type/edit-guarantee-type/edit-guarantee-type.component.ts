@@ -10,7 +10,7 @@ import {SimpleForm} from '../../common/simple-form/simple-form.component';
   templateUrl: './edit-guarantee-type.template.html'
 })
 
-export class EditGuaranteeType {
+export class EditGuaranteeTypeComponent {
   formId: string;
   guaranteeTypeForm: GuaranteeTypeForm;
   submitLocked: boolean = false;

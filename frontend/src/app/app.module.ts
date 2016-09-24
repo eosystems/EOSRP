@@ -1,9 +1,9 @@
-import { NgModule, ApplicationRef } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import {NgModule, ApplicationRef} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { HttpModule } from '@angular/http';
-import { RouterModule } from '@angular/router';
-import { removeNgStyles, createNewHosts } from '@angularclass/hmr';
+import {HttpModule} from '@angular/http';
+import {RouterModule} from '@angular/router';
+import {removeNgStyles, createNewHosts} from '@angularclass/hmr';
 
 /*
  * Platform and Environment providers/directives/pipes
@@ -17,16 +17,19 @@ import { AppState, InteralStateType } from './app.service';
 import { Dashboard } from './dashboard/dashboard.component';
 import { NoContent } from './no-content';
 import {NavBar} from './navbar/navbar.component';
-import {Guarantee} from './guarantee/guarantee.component';
-import {GuaranteeType} from './guarantee-type/guarantee-type.component';
+import {GuaranteeComponent} from './guarantee/guarantee.component';
+import {GuaranteeTypeComponent} from './guarantee-type/guarantee-type.component';
 import {Ng2SearchTableModule} from 'ng2-search-table/ng2-search-table';
-import {NewGuaranteeType} from './guarantee-type/new-guarantee-type/new-guarantee-type.component';
+import {NewGuaranteeTypeComponent} from './guarantee-type/new-guarantee-type/new-guarantee-type.component';
 import {GuaranteeTypeService} from './guarantee-type/guarantee-type.service';
 import {ToastModule} from 'ng2-toastr';
 import {SimpleForm} from './common/simple-form/simple-form.component';
 import {SimpleFormInput} from './common/simple-form/simple-form-input.component';
-import {EditGuaranteeType} from './guarantee-type/edit-guarantee-type/edit-guarantee-type.component';
-import {ModalDirective, ModalModule} from 'ng2-bootstrap';
+import {EditGuaranteeTypeComponent} from './guarantee-type/edit-guarantee-type/edit-guarantee-type.component';
+import {ModalDirective, ModalModule, PaginationModule} from 'ng2-bootstrap';
+import {HotTable} from './common/handsontable/handsontable';
+import {EditGuaranteeComponent} from './guarantee/edit-guarantee/edit-guarantee.component';
+import {GuaranteeService} from './guarantee/guarantee.service';
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -47,12 +50,14 @@ type StoreType = {
   declarations: [
     App,
     NoContent,
+    HotTable,
     NavBar,
     Dashboard,
-    Guarantee,
-    GuaranteeType,
-    NewGuaranteeType,
-    EditGuaranteeType,
+    GuaranteeComponent,
+    EditGuaranteeComponent,
+    GuaranteeTypeComponent,
+    NewGuaranteeTypeComponent,
+    EditGuaranteeTypeComponent,
     SimpleForm,
     SimpleFormInput
   ],
@@ -64,12 +69,14 @@ type StoreType = {
     RouterModule.forRoot(ROUTES, { useHash: true }),
     Ng2SearchTableModule.forRoot(),
     ToastModule,
-    ModalModule
+    ModalModule,
+    PaginationModule
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
     ENV_PROVIDERS,
     APP_PROVIDERS,
-    GuaranteeTypeService
+    GuaranteeTypeService,
+    GuaranteeService
   ]
 })
 export class AppModule {

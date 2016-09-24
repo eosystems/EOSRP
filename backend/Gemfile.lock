@@ -132,6 +132,9 @@ GEM
     hashdiff (0.3.0)
     hashie (3.4.4)
     i18n (0.7.0)
+    jbuilder (2.6.0)
+      activesupport (>= 3.0.0, < 5.1)
+      multi_json (~> 1.2)
     json (1.8.3)
     jsonapi (0.1.1.beta2)
       json (~> 1.8)
@@ -336,6 +339,7 @@ DEPENDENCIES
   factory_girl
   factory_girl_rails
   faraday
+  jbuilder
   kaminari
   listen
   mysql2 (= 0.3.19)

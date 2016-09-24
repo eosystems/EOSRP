@@ -1,14 +1,10 @@
 # == Schema Information
 #
-# Table name: guarantees
+# Table name: ships
 #
-#  id                :integer          not null, primary key
-#  ship_id           :integer          not null
-#  guarantee_type_id :integer          not null
-#  price             :decimal(10, )    default(0), not null
-#  description       :string(255)
-#  created_at        :datetime         not null
-#  updated_at        :datetime         not null
+#  id        :integer          not null, primary key
+#  ship_type :string(255)      not null
+#  ship_name :string(255)      not null
 #
 
 class ShipSerializer < ActiveModel::Serializer
