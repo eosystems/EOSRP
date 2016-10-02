@@ -7,8 +7,6 @@ import {Guarantee} from '../../models/guarantee';
 })
 
 export class EditGuaranteeComponent {
-  @Input() guarantees: Array<Guarantee>;
-
   colHeaders: Array<string> = [
     'Id', 'ShipType', 'ShipName', 'Price', 'Description'
   ];

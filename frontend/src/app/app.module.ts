@@ -76,7 +76,8 @@ type StoreType = {
     ENV_PROVIDERS,
     APP_PROVIDERS,
     GuaranteeTypeService,
-    GuaranteeService
+    GuaranteeService,
+    GuaranteeSharedService
   ]
 })
 export class AppModule {
