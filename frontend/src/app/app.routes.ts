@@ -5,11 +5,13 @@ import {GuaranteeComponent} from './guarantee/guarantee.component';
 import {GuaranteeTypeComponent} from './guarantee-type/guarantee-type.component';
 import {NewGuaranteeTypeComponent} from './guarantee-type/new-guarantee-type/new-guarantee-type.component';
 import {EditGuaranteeTypeComponent} from './guarantee-type/edit-guarantee-type/edit-guarantee-type.component';
+import {EditGuaranteeComponent} from './guarantee/edit-guarantee/edit-guarantee.component';
 
 export const ROUTES: Routes = [
   { path: '',                         component: Dashboard },
   { path: 'dashboard',                component: Dashboard },
   { path: 'guarantees',               component: GuaranteeComponent },
+  { path: 'guarantees/edit',          component: EditGuaranteeComponent },
   { path: 'guarantee-types',          component: GuaranteeTypeComponent },
   { path: 'guarantee-types/new',      component: NewGuaranteeTypeComponent },
   { path: 'guarantee-types/:id',      component: EditGuaranteeTypeComponent },

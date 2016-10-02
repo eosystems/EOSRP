@@ -38,6 +38,7 @@ export class EditGuaranteeComponent {
     stretchH: 'all',
     columnSorting: true
   };
+  dataRows: Array<Guarantee> = new Array<Guarantee>();
 
   onEditRecord(event: any) {
     console.log(event);

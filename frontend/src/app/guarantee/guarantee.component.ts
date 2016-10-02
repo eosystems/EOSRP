@@ -6,6 +6,7 @@ import {GuaranteeTypeService} from '../guarantee-type/guarantee-type.service';
 import {GuaranteeType} from '../models/guarantee-type';
 import {GuaranteeService} from './guarantee.service';
 import {ToastsManager} from 'ng2-toastr';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'guarantee',
@@ -19,7 +20,6 @@ export class GuaranteeComponent {
   initialGuaranteeTypeId: number;
   currentGuaranteeTypeId: number;
   searchTableConfig: any;
-  isEditingMode: boolean = false;
 
   headerComponents: any = [
     {
@@ -75,7 +75,8 @@ export class GuaranteeComponent {
   constructor(
     private guaranteeTypeService: GuaranteeTypeService,
     private guaranteeService: GuaranteeService,
-    private toastr: ToastsManager
+    private toastr: ToastsManager,
+    private router: Router
   ) {
   }
 
@@ -119,8 +120,8 @@ export class GuaranteeComponent {
     this.searchTable.setCurrentPage(event.page);
   }
 
-  setEditingMode(edit: boolean): void {
-    this.isEditingMode = edit;
+  goToEdit(): void {
+    this.router.navigate(['guarantees/edit']);
   }
 
   private updateSearchTableConfig() {

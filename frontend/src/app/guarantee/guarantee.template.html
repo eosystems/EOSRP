@@ -2,8 +2,6 @@
 
 <div *ngIf="searchTableConfig">
 
-<div *ngIf="!isEditingMode">
-
 <div class="col-xs-6">
   <div class="form-inline">
     <select class="form-control"
@@ -19,7 +17,7 @@
   </div>
 </div>
 <div class="col-xs-6 text-right">
-  <button (click)="setEditingMode(true)" class="btn btn-sm btn-default">
+  <button (click)="goToEdit()" class="btn btn-sm btn-default">
     表示している項目を一括編集
   </button>
 </div>
@@ -50,13 +48,6 @@
       <td>{{row.updated_at}}</td>
     </tr>
   </search-table>
-</div>
-
-</div> <!-- /listing mode -->
-
-<div *ngIf="isEditingMode">
-  <edit-guarantee [guarantees]="searchTable.dataRows">
-  </edit-guarantee>
 </div>
 
 </div>
