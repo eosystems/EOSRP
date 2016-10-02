@@ -9,16 +9,12 @@ import {Guarantee} from '../../models/guarantee';
 export class EditGuaranteeComponent {
   @Input() guarantees: Array<Guarantee>;
 
-  colHeaders:Array<string> = [
-    'Id', 'ShipId', 'ShipType', 'ShipName', 'Price', 'Description'
+  colHeaders: Array<string> = [
+    'Id', 'ShipType', 'ShipName', 'Price', 'Description'
   ];
-  columns:Array<any> = [
+  columns: Array<any> = [
     {
       data: 'id',
-      readOnly: true
-    },
-    {
-      data: 'ship_id',
       readOnly: true
     },
     {
