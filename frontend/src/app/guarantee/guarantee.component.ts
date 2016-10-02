@@ -96,7 +96,6 @@ export class GuaranteeComponent {
           this.toastr.error("保証種別一覧が取得できませんでした。", "Error");
         }
       )
-
   }
 
   changeGuaranteeType(event: any) {
