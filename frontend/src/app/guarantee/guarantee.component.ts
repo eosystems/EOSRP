@@ -54,7 +54,7 @@ export class GuaranteeComponent {
       name: 'guarantee_jita_sell_min_price',
       model: { displayName: 'Jita Sell Min' },
       headerComponent: SimpleHeaderComponent
-    }
+    },
     {
       name: 'description',
       model: { displayName: 'Description' },
