@@ -7,6 +7,7 @@ import {GuaranteeType} from '../models/guarantee-type';
 import {GuaranteeService} from './guarantee.service';
 import {ToastsManager} from 'ng2-toastr';
 import {ActivatedRoute, Router} from '@angular/router';
+import {GuaranteeSharedService} from './guarantee-shared.service';
 
 @Component({
   selector: 'guarantee',
@@ -76,7 +77,8 @@ export class GuaranteeComponent {
     private guaranteeTypeService: GuaranteeTypeService,
     private guaranteeService: GuaranteeService,
     private toastr: ToastsManager,
-    private router: Router
+    private router: Router,
+    private guaranteeSharedService: GuaranteeSharedService
   ) {
   }
 
@@ -121,6 +123,7 @@ export class GuaranteeComponent {
   }
 
   goToEdit(): void {
+    this.guaranteeSharedService.setGuarantees(this.searchTable.dataRows);
     this.router.navigate(['guarantees/edit']);
   }
 

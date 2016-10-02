@@ -1,5 +1,6 @@
 import {Component, Input} from '@angular/core';
 import {Guarantee} from '../../models/guarantee';
+import {GuaranteeSharedService} from '../guarantee-shared.service';
 
 @Component({
   selector: 'edit-guarantee',
@@ -37,6 +38,10 @@ export class EditGuaranteeComponent {
     columnSorting: true
   };
   dataRows: Array<Guarantee> = new Array<Guarantee>();
+
+  constructor(private guaranteeSharedService: GuaranteeSharedService) {
+    this.dataRows = this.guaranteeSharedService.getGuarantees();
+  }
 
   onEditRecord(event: any) {
     console.log(event);
