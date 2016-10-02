@@ -1,6 +1,8 @@
 import {Component, Input} from '@angular/core';
 import {Guarantee} from '../../models/guarantee';
 import {GuaranteeSharedService} from '../guarantee-shared.service';
+import {GuaranteeService} from '../guarantee.service';
+import {ToastsManager} from 'ng2-toastr';
 
 @Component({
   selector: 'edit-guarantee',
@@ -39,11 +41,27 @@ export class EditGuaranteeComponent {
   };
   dataRows: Array<Guarantee> = new Array<Guarantee>();
 
-  constructor(private guaranteeSharedService: GuaranteeSharedService) {
+  constructor(
+    private guaranteeSharedService: GuaranteeSharedService,
+    private guaranteeService: GuaranteeService,
+    private toastr: ToastsManager
+  ) {
     this.dataRows = this.guaranteeSharedService.getGuarantees();
   }
 
-  onEditRecord(event: any) {
-    console.log(event);
+  updateAll() {
+    this.toastr.info("更新を反映しています。", "Waiting");
+    this
+      .guaranteeService
+      .bulkUpdate(this.dataRows)
+      .subscribe(
+        _ => {
+          this.toastr.success("保存しました。", "Success");
+        },
+        _ => {
+          // TODO: エラーをHandsontableに反映する
+          this.toastr.error("保存に失敗しました。", "Error");
+        }
+      );
   }
 }
