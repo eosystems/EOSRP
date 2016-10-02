@@ -9,17 +9,27 @@ class Api::GuaranteesController < ApplicationController
   end
 
   def update_all
-    params[:guarantees].each do |params_guarantee|
-      model_guarantee = Guarantee.where(id: params_guarantee[:id]).first
-      model_guarantee.update_attributes!(permit_params(params_guarantee))
+    guarantees = Guarantee.where(id: posted_guarantees.map { |v| v[:id] })
+    guarantees.each do |target|
+      guarantee = posted_guarantees.find { |v| v[:id] == target.id }
+      target.attributes = guarantee
     end
 
-    render json: {result: "success"}
+    if guarantees.each(&:valid?).all?(&:valid?)
+      Guarantee.transaction do
+        guarantees.each(&:save!)
+      end
+      render json: { message: "Success" }
+    else
+      # TODO: 詳細なエラーを返す
+      render json: { error: "Error" }, status: 422
+    end
   end
 
   private
 
-  def permit_params(p)
-    p.permit(:price, :description)
+  def posted_guarantees
+    permitted_attributes = %i(id price description)
+    @_guarantees ||= json_body[:guarantees].map { |v| v.slice(*permitted_attributes) }
   end
 end
