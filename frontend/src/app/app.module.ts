@@ -30,6 +30,7 @@ import {ModalDirective, ModalModule, PaginationModule} from 'ng2-bootstrap';
 import {HotTable} from './common/handsontable/handsontable';
 import {EditGuaranteeComponent} from './guarantee/edit-guarantee/edit-guarantee.component';
 import {GuaranteeService} from './guarantee/guarantee.service';
+import {GuaranteeSharedService} from './guarantee/guarantee-shared.service';
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -76,7 +77,8 @@ type StoreType = {
     ENV_PROVIDERS,
     APP_PROVIDERS,
     GuaranteeTypeService,
-    GuaranteeService
+    GuaranteeService,
+    GuaranteeSharedService
   ]
 })
 export class AppModule {

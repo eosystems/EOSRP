@@ -1,5 +1,8 @@
 import {Component, Input} from '@angular/core';
 import {Guarantee} from '../../models/guarantee';
+import {GuaranteeSharedService} from '../guarantee-shared.service';
+import {GuaranteeService} from '../guarantee.service';
+import {ToastsManager} from 'ng2-toastr';
 
 @Component({
   selector: 'edit-guarantee',
@@ -7,18 +10,12 @@ import {Guarantee} from '../../models/guarantee';
 })
 
 export class EditGuaranteeComponent {
-  @Input() guarantees: Array<Guarantee>;
-
-  colHeaders:Array<string> = [
-    'Id', 'ShipId', 'ShipType', 'ShipName', 'Price', 'Description'
+  colHeaders: Array<string> = [
+    'Id', 'ShipType', 'ShipName', 'Price', 'Description'
   ];
-  columns:Array<any> = [
+  columns: Array<any> = [
     {
       data: 'id',
-      readOnly: true
-    },
-    {
-      data: 'ship_id',
       readOnly: true
     },
     {
@@ -42,8 +39,29 @@ export class EditGuaranteeComponent {
     stretchH: 'all',
     columnSorting: true
   };
+  dataRows: Array<Guarantee> = new Array<Guarantee>();
 
-  onEditRecord(event: any) {
-    console.log(event);
+  constructor(
+    private guaranteeSharedService: GuaranteeSharedService,
+    private guaranteeService: GuaranteeService,
+    private toastr: ToastsManager
+  ) {
+    this.dataRows = this.guaranteeSharedService.getGuarantees();
+  }
+
+  updateAll() {
+    this.toastr.info("更新を反映しています。", "Waiting");
+    this
+      .guaranteeService
+      .bulkUpdate(this.dataRows)
+      .subscribe(
+        _ => {
+          this.toastr.success("保存しました。", "Success");
+        },
+        _ => {
+          // TODO: エラーをHandsontableに反映する
+          this.toastr.error("保存に失敗しました。", "Error");
+        }
+      );
   }
 }

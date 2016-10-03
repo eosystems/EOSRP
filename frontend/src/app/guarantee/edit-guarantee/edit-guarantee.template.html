@@ -1,11 +1,13 @@
+<h2>補償額設定</h2>
+
 <div class="col-xs-6">
-  <button class="btn btn-sm btn-default">
+  <button class="btn btn-sm btn-default" [routerLink]="['/guarantees']">
     編集モードを解除する
   </button>
 </div>
 
 <div class="col-xs-6 text-right">
-  <button class="btn btn-sm btn-primary">
+  <button class="btn btn-sm btn-primary" (click)="updateAll()">
     保存
   </button>
 </div>
@@ -13,8 +15,7 @@
 <div class="row">
 <div class="col-xs-12 mt-20">
 
-<hot-table [data]="guarantees"
-           (afterChange)="onEditRecord($event)"
+<hot-table [data]="dataRows"
            [colHeaders]="colHeaders"
            [columns]="columns"
            [options]="options">

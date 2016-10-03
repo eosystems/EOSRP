@@ -6,6 +6,8 @@ import {GuaranteeTypeService} from '../guarantee-type/guarantee-type.service';
 import {GuaranteeType} from '../models/guarantee-type';
 import {GuaranteeService} from './guarantee.service';
 import {ToastsManager} from 'ng2-toastr';
+import {ActivatedRoute, Router} from '@angular/router';
+import {GuaranteeSharedService} from './guarantee-shared.service';
 
 @Component({
   selector: 'guarantee',
@@ -19,7 +21,6 @@ export class GuaranteeComponent {
   initialGuaranteeTypeId: number;
   currentGuaranteeTypeId: number;
   searchTableConfig: any;
-  isEditingMode: boolean = false;
 
   headerComponents: any = [
     {
@@ -54,7 +55,7 @@ export class GuaranteeComponent {
       name: 'guarantee_jita_sell_min_price',
       model: { displayName: 'Jita Sell Min' },
       headerComponent: SimpleHeaderComponent
-    }
+    },
     {
       name: 'description',
       model: { displayName: 'Description' },
@@ -75,7 +76,9 @@ export class GuaranteeComponent {
   constructor(
     private guaranteeTypeService: GuaranteeTypeService,
     private guaranteeService: GuaranteeService,
-    private toastr: ToastsManager
+    private toastr: ToastsManager,
+    private router: Router,
+    private guaranteeSharedService: GuaranteeSharedService
   ) {
   }
 
@@ -96,7 +99,6 @@ export class GuaranteeComponent {
           this.toastr.error("保証種別一覧が取得できませんでした。", "Error");
         }
       )
-
   }
 
   changeGuaranteeType(event: any) {
@@ -120,8 +122,9 @@ export class GuaranteeComponent {
     this.searchTable.setCurrentPage(event.page);
   }
 
-  setEditingMode(edit: boolean): void {
-    this.isEditingMode = edit;
+  goToEdit(): void {
+    this.guaranteeSharedService.setGuarantees(this.searchTable.dataRows);
+    this.router.navigate(['guarantees/edit']);
   }
 
   private updateSearchTableConfig() {
