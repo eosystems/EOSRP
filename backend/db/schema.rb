@@ -81,6 +81,22 @@ ActiveRecord::Schema.define(version: 0) do
     t.datetime "updated_at",     null: false
   end
 
+  create_table "srp_requests", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin ROW_FORMAT=COMPACT" do |t|
+    t.string   "zkill_url",                                                          null: false
+    t.decimal  "zkill_valuation",    precision: 20, scale: 4, default: "0.0",        null: false, comment: "ZKillboard 評価額"
+    t.integer  "ship_id",                                                            null: false
+    t.decimal  "price",              precision: 20, scale: 4, default: "0.0",        null: false, comment: "保証額"
+    t.string   "request_comment"
+    t.string   "manager_comment"
+    t.string   "processing_status",                           default: "in_process", null: false, comment: "処理ステータス"
+    t.integer  "srp_destination_id",                                                 null: false
+    t.integer  "guarantee_type_id",                                                  null: false
+    t.integer  "user_id",                                                            null: false
+    t.integer  "process_user_id",                                                                 comment: "処理担当者"
+    t.datetime "created_at",                                                         null: false
+    t.datetime "updated_at",                                                         null: false
+  end
+
   create_table "sta_stations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin ROW_FORMAT=COMPACT" do |t|
     t.bigint  "station_id",      null: false
     t.integer "region_id",       null: false
