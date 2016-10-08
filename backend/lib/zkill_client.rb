@@ -9,6 +9,10 @@ class ZkillClient
     ZkillResponse.parse(get_request_to(path))
   end
 
+  def get_kill_id_from_url(url)
+    url.split(/\//).last
+  end
+
   private
 
   def build_api_connection
