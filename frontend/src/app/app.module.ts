@@ -1,7 +1,7 @@
 import {NgModule, ApplicationRef} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {HttpModule} from '@angular/http';
+import {HttpModule, Http, XHRBackend, RequestOptions} from '@angular/http';
 import {RouterModule} from '@angular/router';
 import {removeNgStyles, createNewHosts} from '@angularclass/hmr';
 
@@ -31,6 +31,9 @@ import {HotTable} from './common/handsontable/handsontable';
 import {EditGuaranteeComponent} from './guarantee/edit-guarantee/edit-guarantee.component';
 import {GuaranteeService} from './guarantee/guarantee.service';
 import {GuaranteeSharedService} from './guarantee/guarantee-shared.service';
+import {Ng2TokenAuthModule, TokenAuthHttp} from './common/ng2-token-auth/ng2-token-auth.module';
+import {SignInComponent} from './signin/signin.component';
+import {SignInFinalizeComponent} from './signin/signin-finalize.component';
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -54,6 +57,8 @@ type StoreType = {
     HotTable,
     NavBar,
     Dashboard,
+    SignInComponent,
+    SignInFinalizeComponent,
     GuaranteeComponent,
     EditGuaranteeComponent,
     GuaranteeTypeComponent,
@@ -67,18 +72,26 @@ type StoreType = {
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
-    RouterModule.forRoot(ROUTES, { useHash: true }),
+    RouterModule.forRoot(ROUTES, { useHash: false }),
     Ng2SearchTableModule.forRoot(),
     ToastModule,
     ModalModule,
-    PaginationModule
+    PaginationModule,
+    Ng2TokenAuthModule
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
     ENV_PROVIDERS,
     APP_PROVIDERS,
     GuaranteeTypeService,
     GuaranteeService,
-    GuaranteeSharedService
+    GuaranteeSharedService,
+    {
+      provide: Http,
+      useFactory: (backend: XHRBackend, defaultOptions: RequestOptions) => {
+        return new TokenAuthHttp(backend, defaultOptions);
+      },
+      deps: [XHRBackend, RequestOptions]
+    }
   ]
 })
 export class AppModule {
