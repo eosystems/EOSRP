@@ -2,6 +2,7 @@ defaults: &defaults
   applications:
     app_id: ""
     app_secret: ""
+    zkill_user_agent: ""
 
 development:
   <<: *defaults
