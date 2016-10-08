@@ -76,7 +76,7 @@ create_table :srp_requests, collate: "utf8_bin" do |t|
   t.varchar :manager_comment, null: true
   t.varchar :processing_status, default: "in_process", comment: "処理ステータス"
   t.int :srp_destination_id
-  t.int :guarantee_type_id
+  t.int :guarantee_type_id, null: true
   t.int :user_id
   t.int :process_user_id, null: true, comment: "処理担当者"
 

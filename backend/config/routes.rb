@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     resources :guarantees, only: [:index]
     put '/guarantees/update_all' => 'guarantees#update_all'
     resources :srp_destinations
+    resources :srp_requests
     resources :zkills, only: [:index]
   end
 end

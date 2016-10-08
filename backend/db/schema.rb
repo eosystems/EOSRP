@@ -90,7 +90,7 @@ ActiveRecord::Schema.define(version: 0) do
     t.string   "manager_comment"
     t.string   "processing_status",                           default: "in_process", null: false, comment: "処理ステータス"
     t.integer  "srp_destination_id",                                                 null: false
-    t.integer  "guarantee_type_id",                                                  null: false
+    t.integer  "guarantee_type_id"
     t.integer  "user_id",                                                            null: false
     t.integer  "process_user_id",                                                                 comment: "処理担当者"
     t.datetime "created_at",                                                         null: false
