@@ -55,9 +55,9 @@ create_table :guarantees, collate: "utf8_bin" do |t|
   t.datetime :updated_at
 end
 
-create_table :srp_destination, collate: "utf8_bin" do |t|
+create_table :srp_destinations, collate: "utf8_bin" do |t|
   t.int :id, primary_key: true, extra: :auto_increment
-  t.int :destination_name
+  t.int :name
   t.varchar :description, null: true
   t.int :corporation_id, null: true
   t.int :alliance_id, null: true
