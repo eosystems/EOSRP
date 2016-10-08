@@ -66,6 +66,23 @@ create_table :srp_destinations, collate: "utf8_bin" do |t|
   t.datetime :updated_at
 end
 
+create_table :srp_requests, collate: "utf8_bin" do |t|
+  t.int :id, primary_key: true, extra: :auto_increment
+  t.varchar :zkill_url
+  t.decimal :zkill_valuation, precision: 20, scale: 4, comment: "ZKillboard 評価額", default: '0.000'
+  t.int :ship_id
+  t.decimal :price, precision: 20, scale: 4, comment: "保証額", default: '0.000'
+  t.varchar :request_comment, null: true
+  t.varchar :manager_comment, null: true
+  t.varchar :processing_status, default: "in_process", comment: "処理ステータス"
+  t.int :srp_destination_id
+  t.int :guarantee_type_id, null: true
+  t.int :user_id
+  t.int :process_user_id, null: true, comment: "処理担当者"
+
+  t.datetime :created_at
+  t.datetime :updated_at
+end
 
 create_table :temp_market_orders, collate: "utf8_bin" do |t|
   t.int :id, primary_key: true, extra: :auto_increment
