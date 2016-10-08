@@ -12,6 +12,12 @@
 
 ActiveRecord::Schema.define(version: 0) do
 
+  create_table "corporations", primary_key: "corporation_id", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin ROW_FORMAT=COMPACT" do |t|
+    t.string   "corporation_name", null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
   create_table "delayed_jobs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT", comment: "Delayed Job" do |t|
     t.integer  "priority",                 default: 0, null: false
     t.integer  "attempts",                 default: 0, null: false
@@ -63,6 +69,16 @@ ActiveRecord::Schema.define(version: 0) do
   create_table "ships", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin ROW_FORMAT=COMPACT" do |t|
     t.string "ship_type", null: false
     t.string "ship_name", null: false
+  end
+
+  create_table "srp_destination", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin ROW_FORMAT=COMPACT" do |t|
+    t.integer  "destination_name", null: false
+    t.string   "description"
+    t.integer  "corporation_id"
+    t.integer  "alliance_id"
+    t.string   "external"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
   end
 
   create_table "sta_stations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin ROW_FORMAT=COMPACT" do |t|
