@@ -1,4 +1,4 @@
-class Api::SrpDestinationsController < ApplicationController
+class Api::SrpDestinationsController < Api::ApiController
   before_action :set_srp_destination, only: [:show, :edit, :update, :destroy]
 
   def index

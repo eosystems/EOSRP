@@ -1,4 +1,4 @@
-class Api::GuaranteeTypesController < ApplicationController
+class Api::GuaranteeTypesController < Api::ApiController
   before_action :set_guarantee_type, only: [:show, :edit, :update, :destroy]
 
   def index
