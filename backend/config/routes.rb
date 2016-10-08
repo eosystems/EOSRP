@@ -6,5 +6,6 @@ Rails.application.routes.draw do
     resources :guarantee_types
     resources :guarantees, only: [:index]
     put '/guarantees/update_all' => 'guarantees#update_all'
+    resources :srp_destinations
   end
 end

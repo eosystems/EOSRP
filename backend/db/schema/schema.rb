@@ -55,6 +55,18 @@ create_table :guarantees, collate: "utf8_bin" do |t|
   t.datetime :updated_at
 end
 
+create_table :srp_destinations, collate: "utf8_bin" do |t|
+  t.int :id, primary_key: true, extra: :auto_increment
+  t.int :name
+  t.varchar :description, null: true
+  t.int :corporation_id, null: true
+  t.int :alliance_id, null: true
+  t.varchar :external, null: true
+  t.datetime :created_at
+  t.datetime :updated_at
+end
+
+
 create_table :temp_market_orders, collate: "utf8_bin" do |t|
   t.int :id, primary_key: true, extra: :auto_increment
   t.bigint :order_id
@@ -113,6 +125,12 @@ create_table :delayed_jobs, comment: 'Delayed Job' do |t|
   t.index [:priority, :run_at], name: 'delayed_jobs_priority'
 end
 
+create_table :corporations, collate: "utf8_bin" do |t|
+  t.int :corporation_id, primary_key: true
+  t.varchar :corporation_name
+  t.datetime :created_at
+  t.datetime :updated_at
+end
 
 ## Master ##
 create_table :ships, collate: "utf8_bin" do |t|
