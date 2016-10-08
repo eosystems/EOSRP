@@ -11,6 +11,7 @@ const NamedModulesPlugin = require('webpack/lib/NamedModulesPlugin');
 /**
  * Webpack Constants
  */
+const CLIENT_URL = process.env.CLIENT_URL = 'http://localhost:3100';
 const API_URL = process.env.API_URL = 'http://localhost:3101';
 const ENV = process.env.ENV = process.env.NODE_ENV = 'development';
 const HOST = process.env.HOST || 'localhost';
@@ -112,6 +113,7 @@ module.exports = webpackMerge(commonConfig, {
         'ENV': JSON.stringify(METADATA.ENV),
         'NODE_ENV': JSON.stringify(METADATA.ENV),
         'HMR': METADATA.HMR,
+        'CLIENT_URL': JSON.stringify(process.env.CLIENT_URL),
         'API_URL': JSON.stringify(process.env.API_URL),
       }
     }),
