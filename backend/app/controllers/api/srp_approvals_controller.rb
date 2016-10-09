@@ -13,8 +13,8 @@ class Api::SrpApprovalsController < ApplicationController
   end
 
   def update
-    if @srp_approval.update_attributes(srp_request_params)
-      render json: {result: "success", srp_approval: @srp_request}
+    if @srp_approval.update_attributes(srp_approval_params)
+      render json: {result: "success", srp_approval: @srp_approval}
     else
       render json: { result: "error", message: @srp_approval.errors.messages }, status: 422
     end
