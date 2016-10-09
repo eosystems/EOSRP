@@ -9,5 +9,10 @@ Rails.application.routes.draw do
     resources :srp_destinations
     resources :srp_requests
     resources :zkills, only: [:index]
+    resources :users, only: [] do
+      collection do
+        get :me
+      end
+    end
   end
 end

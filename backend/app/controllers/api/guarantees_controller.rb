@@ -1,4 +1,4 @@
-class Api::GuaranteesController < ApplicationController
+class Api::GuaranteesController < Api::ApiController
   def index
     @page = params[:page] || 1
     @per = params[:per] || 100
