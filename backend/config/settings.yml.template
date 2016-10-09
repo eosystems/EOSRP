@@ -3,6 +3,7 @@ defaults: &defaults
     app_id: ""
     app_secret: ""
     zkill_user_agent: ""
+    test_mode: true #true/false
 
 development:
   <<: *defaults
