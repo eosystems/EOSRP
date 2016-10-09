@@ -50,7 +50,8 @@ class Api::SrpRequestsController < ApplicationController
 
   def srp_request_params
     json_body[:srp_request]
-      .slice(:zkill_url, :zkill_valuation, :ship_id, :request_comment, :srp_destination_id)
+      .slice(:zkill_url, :zkill_valuation, :ship_id, :request_comment, :srp_destination_id,
+            :processing_status)
   end
 
 end
