@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     put '/guarantees/update_all' => 'guarantees#update_all'
     resources :srp_destinations
     resources :srp_requests
+    resources :srp_approvals
     resources :zkills, only: [:index]
     resources :users, only: [] do
       collection do
