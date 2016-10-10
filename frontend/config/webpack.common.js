@@ -104,6 +104,16 @@ module.exports = {
         },
         include: [helpers.root('src')]
       },
+      /* FIXME: Angular2 バグ回避 あとで消す */
+      {
+          test: /.js$/,
+          loader: 'string-replace-loader',
+          query: {
+              search: 'moduleId: module.id,',
+              replace: '',
+              flags: 'g'
+          }
+      }
 
     ],
 
