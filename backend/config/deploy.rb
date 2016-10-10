@@ -8,7 +8,8 @@ set :application, 'eosrp_backend'
 set :repo_url, 'http://github.com/eosystems/eosrp.git'
 
 # subdirectory release
-set :deploy_subdir, "backend"
+set :git_strategy, Capistrano::Git::MultiSubDirectoryStrategy
+set :deploy_sub_dirs, ["backend"] # backendだけデプロイする
 
 # git clone の際にローカルの秘密鍵を使用する
 # set :ssh_options, { forward_agent: true }
