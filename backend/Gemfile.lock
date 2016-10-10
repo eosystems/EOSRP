@@ -6,6 +6,21 @@ GIT
       capistrano (>= 3.0)
 
 GIT
+  remote: git://github.com/k-yamada/capistrano-rails.git
+  revision: 0256924f794bafc226fbdf5d7ea241c132c72fd6
+  specs:
+    capistrano-rails (1.1.3)
+      capistrano (~> 3.1)
+      capistrano-bundler (~> 1.1)
+
+GIT
+  remote: git://github.com/k-yamada/capistrano3-unicorn.git
+  revision: 62a0439824b546cbe7a49e089e474ed5025ee169
+  specs:
+    capistrano3-unicorn (0.2.1)
+      capistrano (~> 3.1, >= 3.1.0)
+
+GIT
   remote: git://github.com/lynndylanhurley/devise_token_auth.git
   revision: 536911c7d3f178637423b77fe1179388ddf62b9e
   specs:
@@ -83,11 +98,6 @@ GEM
     capistrano-bundler (1.1.4)
       capistrano (~> 3.1)
       sshkit (~> 1.2)
-    capistrano-rails (1.1.7)
-      capistrano (~> 3.1)
-      capistrano-bundler (~> 1.1)
-    capistrano3-unicorn (0.2.1)
-      capistrano (~> 3.1, >= 3.1.0)
     coderay (1.1.1)
     concurrent-ruby (1.0.2)
     convergence (0.1.9)
@@ -326,8 +336,8 @@ DEPENDENCIES
   capistrano (~> 3.4.0)
   capistrano-bundler
   capistrano-maintenance!
-  capistrano-rails
-  capistrano3-unicorn
+  capistrano-rails!
+  capistrano3-unicorn!
   convergence
   daemons
   database_cleaner
