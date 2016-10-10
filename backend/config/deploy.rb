@@ -12,6 +12,7 @@ set :git_strategy, Capistrano::Git::MultiSubDirectoryStrategy
 set :deploy_sub_dirs, ["backend"] # backendだけデプロイする
 set :bundle_gemfile, "backend/Gemfile"
 set :rails_root, 'backend'
+set :unicorn_config_path, "config/unicorn.rb"
 
 # git clone の際にローカルの秘密鍵を使用する
 # set :ssh_options, { forward_agent: true }
@@ -45,7 +46,7 @@ set :rvm_type, :system
 set :rvm1_ruby_version, '2.2.3'
 
 # Unicorn
-set :unicorn_pid, "#{shared_path}/tmp/pids/unicorn_eosrp_backend.pid"
+set :unicorn_pid, "#{shared_path}/backend/tmp/pids/unicorn_eosrp.pid"
 
 # Whenever
 #set :whenever_identifier, ->{ "#{fetch(:application)}_#{fetch(:stage)}" }
