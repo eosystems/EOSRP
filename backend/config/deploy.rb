@@ -6,6 +6,10 @@ lock '3.4.1'
 
 set :application, 'eosrp_backend'
 set :repo_url, 'http://github.com/eosystems/eosrp.git'
+
+# subdirectory release
+set :deploy_subdir, "backend"
+
 # git clone の際にローカルの秘密鍵を使用する
 # set :ssh_options, { forward_agent: true }
 
