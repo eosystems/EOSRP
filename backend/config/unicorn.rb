@@ -1,7 +1,7 @@
 worker_processes 1
 
-listen File.expand_path("backend/tmp/unicorn_eosrp_backend.sock", "/var/www/eosrp_backend/current")
-pid File.expand_path("backend/tmp/unicorn_eosrp_backend.pid", "/var/www/eosrp_backend/current")
+listen File.expand_path("backend/tmp/unicorn_eosrp.sock", "/var/www/eosrp_backend/current")
+pid File.expand_path("backend/tmp/unicorn_eosrp.pid", "/var/www/eosrp_backend/current")
 
 timeout 60
 
