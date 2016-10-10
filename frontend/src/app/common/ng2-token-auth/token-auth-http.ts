@@ -24,11 +24,6 @@ export class TokenAuthHttp extends Http {
     return request;
   }
 
-  get(url: string, options?: RequestOptionsArgs): Observable<Response> {
-    const request = super.get(url, this.appendAuthHeader(options));
-    return request;
-  }
-
   post(url: string, body: any, options?: RequestOptionsArgs): Observable<Response> {
     const request = super.post(url, body, this.appendAuthHeader(options));
     return request;
