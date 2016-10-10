@@ -16,8 +16,8 @@ const WebpackMd5Hash = require('webpack-md5-hash');
 /**
  * Webpack Constants
  */
-const CLIENT_URL = process.env.CLIENT_URL = 'http://localhost:3100';
-const API_URL = process.env.API_URL = 'http://localhost:3101';
+const CLIENT_URL = process.env.CLIENT_URL = 'http://eosrp.eosystems.net';
+const API_URL = process.env.API_URL = 'http://eosrp_backend.eosystems.net';
 const ENV = process.env.NODE_ENV = process.env.ENV = 'production';
 const HOST = process.env.HOST || 'localhost';
 const PORT = process.env.PORT || 8080;
