@@ -4,7 +4,7 @@ require 'rvm1/capistrano3'
 
 lock '3.4.1'
 
-set :application, 'eosrp'
+set :application, 'eosrp_backend'
 set :repo_url, 'http://github.com/eosystems/eosrp.git'
 # git clone の際にローカルの秘密鍵を使用する
 # set :ssh_options, { forward_agent: true }
@@ -13,7 +13,7 @@ set :repo_url, 'http://github.com/eosystems/eosrp.git'
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }.call
 
 # Default deploy_to directory is /var/www/my_app
-set :deploy_to, '/var/www/eosrp'
+set :deploy_to, '/var/www/eosrp_backend'
 
 # Default value for :scm is :git
 set :scm, :git
@@ -36,7 +36,7 @@ set :rvm_type, :system
 set :rvm1_ruby_version, '2.2.3'
 
 # Unicorn
-set :unicorn_pid, "#{shared_path}/tmp/pids/unicorn_eosrp.pid"
+set :unicorn_pid, "#{shared_path}/tmp/pids/unicorn_eosrp_backend.pid"
 
 # Whenever
 #set :whenever_identifier, ->{ "#{fetch(:application)}_#{fetch(:stage)}" }

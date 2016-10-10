@@ -1,14 +1,14 @@
 worker_processes 1
 
-listen File.expand_path("/tmp/unicorn_eosrp.sock", "/var/www/eosrp/current")
-pid File.expand_path("/tmp/unicorn_eosrp.pid", "/var/www/eosrp/current")
+listen File.expand_path("/tmp/unicorn_eosrp_backend.sock", "/var/www/eosrp_backend/current")
+pid File.expand_path("/tmp/unicorn_eosrp_backend.pid", "/var/www/eosrp_backend/current")
 
 timeout 60
 
 preload_app true
 
-stdout_path File.expand_path("log/unicorn.stdout.log", "/var/www/eosrp/current")
-stderr_path File.expand_path("log/unicorn.stderr.log", "/var/www/eosrp/current")
+stdout_path File.expand_path("log/unicorn.stdout.log", "/var/www/eosrp_backend/current")
+stderr_path File.expand_path("log/unicorn.stderr.log", "/var/www/eosrp_backend/current")
 
 GC.respond_to?(:copy_on_write_friendly=) and GC.copy_on_write_friendly = true
 
