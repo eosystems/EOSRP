@@ -4,6 +4,7 @@ import {SrpRequestForm} from '../models/srp-request-form';
 import {Observable} from 'rxjs';
 import {JsonObjectMapper} from '../common/json-property/json-object-mapper';
 import {SrpRequest} from '../models/srp-request';
+import {Zkill} from '../models/zkill';
 
 @Injectable()
 export class SrpRequestService {
@@ -22,11 +23,14 @@ export class SrpRequestService {
       });
   }
 
-  create(srpRequest: SrpRequestForm) : any {
+  create(srpRequest: SrpRequestForm, zkill: Zkill) : any {
     let body = JSON.stringify({
       srp_request: {
-        name: srpRequest.zkillUrl,
-        description: srpRequest.requestComment
+        zkill_url: srpRequest.zkillUrl,
+        request_comment: srpRequest.requestComment,
+        ship_id: zkill.shipTypeID,
+        zkill_valuation: zkill.totalValue,
+        srp_destination_id: 1 /* TODO */
       }
     });
     return this

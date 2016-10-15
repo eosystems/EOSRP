@@ -33,11 +33,11 @@ export class NewSrpRequestComponent {
 
       this
         .srpRequestService
-        .create(this.srpRequestForm)
+        .create(this.srpRequestForm, this.zkill)
         .subscribe(
           r => {
             this.toastr.success("保存に成功しました。", "Success");
-            this.router.navigate(['guarantee-types']);
+            this.router.navigate(['srp-requests']);
           },
           e => {
             this.toastr.error("エラーが発生しました。", "Error");

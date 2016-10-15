@@ -5,13 +5,13 @@ import {SimpleHeaderComponent} from 'ng2-search-table/components/header/simple-h
 import {SearchTableComponent} from 'ng2-search-table/components/search-table.component';
 
 @Component({
-  selector: 'guarantee-type',
-  templateUrl: './guarantee-type.template.html'
+  selector: 'srp-request',
+  templateUrl: './srp-request.template.html'
 })
 
 export class SrpRequestComponent {
   searchTableConfig: any = {
-    url: process.env.API_URL + '/api/guarantee_types',
+    url: process.env.API_URL + '/api/srp_requests',
     defaultPagePer: 20
   };
 
@@ -23,14 +23,25 @@ export class SrpRequestComponent {
       filterComponent: TextFilterComponent
     },
     {
-      name: 'name',
-      model: { displayName: 'Name' },
+      name: 'processing_status',
+      model: { displayName: 'Prosessing Status' },
       headerComponent: SortableHeaderComponent,
       filterComponent: TextFilterComponent
     },
     {
-      name: 'description',
-      model: { displayName: 'Description' },
+      name: 'ship_name',
+      model: { displayName: 'ShipName' },
+      headerComponent: SortableHeaderComponent,
+      filterComponent: TextFilterComponent
+    },
+    {
+      name: 'request_comment',
+      model: { displayName: 'RequestComment' },
+      headerComponent: SimpleHeaderComponent
+    },
+    {
+      name: 'zkill_valuation',
+      model: { displayName: 'Zkill Valuation' },
       headerComponent: SimpleHeaderComponent
     },
     {

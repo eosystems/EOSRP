@@ -1,4 +1,4 @@
-<h2>保証種別設定</h2>
+<h2>申請一覧</h2>
 
 <div class="col-xs-6">
   <a class="btn btn-sm btn-normal" (click)="reloadSearchTable(searchTable)">
@@ -8,17 +8,20 @@
 <div class="col-xs-6 text-right">
   <button [routerLink]="['new']" class="btn btn-sm btn-default">
     <i class="fa fa-plus"></i>
-    新規作成
+    申請
   </button>
 </div>
 
 <div class="col-xs-12 mt-10">
-  <search-table #searchTable [tableClass]="'table table-condensed'"
-                [columns]="headerComponents" [config]="searchTableConfig">
+  <search-table #searchTable [tableClass]="'table table-condensed'" [columns]="headerComponents" [config]="searchTableConfig">
     <tr *ngFor="let row of searchTable.dataRows">
-      <td><a [routerLink]="['/guarantee-types', row.id]">{{row.id}}</a></td>
-      <td><a [routerLink]="['/guarantee-types', row.id]">{{row.name}}</a></td>
-      <td>{{row.description}}</td>
+      <td>
+        <a [routerLink]="['/guarantee-types', row.id]">{{row.id}}</a>
+      </td>
+      <td>{{row.processing_status}}</td>
+      <td>{{row.ship.ship_name}}</td>
+      <td>{{row.request_comment}}</td>
+      <td>{{row.zkill_valuation}}</td>
       <td>{{row.created_at}}</td>
       <td>{{row.updated_at}}</td>
     </tr>

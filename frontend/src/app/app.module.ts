@@ -23,6 +23,7 @@ import {Ng2SearchTableModule} from 'ng2-search-table/ng2-search-table';
 import {NewGuaranteeTypeComponent} from './guarantee-type/new-guarantee-type/new-guarantee-type.component';
 import {GuaranteeTypeService} from './guarantee-type/guarantee-type.service';
 import {NewSrpRequestComponent} from './srp-request/new-srp-request/new-srp-request.component';
+import {SrpRequestComponent} from './srp-request/srp-request.component';
 import {SrpRequestService} from './srp-request/srp-request.service';
 import {ZkillService} from './zkill/zkill.service';
 import {ToastModule} from 'ng2-toastr';
@@ -67,6 +68,7 @@ type StoreType = {
     GuaranteeTypeComponent,
     NewGuaranteeTypeComponent,
     EditGuaranteeTypeComponent,
+    SrpRequestComponent,
     NewSrpRequestComponent,
     SimpleForm,
     SimpleFormInput
