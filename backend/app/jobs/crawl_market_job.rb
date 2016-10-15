@@ -1,3 +1,5 @@
+require 'crest_client.rb'
+
 class CrawlMarketJob < ActiveJob::Base
   queue_as :default
 
