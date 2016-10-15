@@ -1,0 +1,59 @@
+<div class="row mb-15 breadcrumb">
+  <div class="col-xs-12">
+    <a [routerLink]="['/guarantee-types']">
+      <i class="fa fa-angle-double-left"></i>
+      保証種別一覧に戻る
+    </a>
+  </div>
+</div>
+
+<h2>保証種別 編集 / ID: {{formId}}</h2>
+
+<div class="row" *ngIf="guaranteeTypeForm">
+  <simple-form [form]="guaranteeTypeForm" (submit)="formSubmit()" #form>
+    <div class="col-xs-6">
+      <a class="btn btn-normal" (click)="deleteModal.show()">削除</a>
+    </div>
+    <div class="col-xs-6 text-right">
+      <label *ngIf="form.dirty()" class="label label-warning mr-10">Unsaved</label>
+      <button type="submit" class="btn btn-primary"
+              [disabled]="!form.valid() || submitLocked">保存</button>
+    </div>
+
+    <div class="col-xs-12 mt-10">
+      <simple-form-input [name]='"name"' [type]='"text"'
+                         [labelDisplayName]="'Name'"
+                         [placeholder]='"保証種別名を入力してください。"'>
+      </simple-form-input>
+
+      <simple-form-input [name]='"description"' [type]='"text"'
+                         [labelDisplayName]="'Description'">
+      </simple-form-input>
+    </div>
+  </simple-form>
+</div>
+
+<!-- 削除モーダル -->
+<div bsModal #deleteModal="bs-modal" class="modal fade"
+     tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" (click)="deleteModal.hide()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title">削除確認</h4>
+      </div>
+      <div class="modal-body">
+        種別を削除すると、紐づく補償額設定も削除されます。<br>
+        保証種別 ID:{{formId}} を削除してもよろしいですか。
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="deleteModal.hide()">
+          Close
+        </button>
+        <button type="button" class="btn btn-danger" (click)="deleteGuaranteeType(deleteModal)">削除する</button>
+      </div>
+    </div>
+  </div>
+</div>

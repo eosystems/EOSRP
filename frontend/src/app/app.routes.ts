@@ -6,6 +6,8 @@ import {GuaranteeTypeComponent} from './guarantee-type/guarantee-type.component'
 import {NewGuaranteeTypeComponent} from './guarantee-type/new-guarantee-type/new-guarantee-type.component';
 import {EditGuaranteeTypeComponent} from './guarantee-type/edit-guarantee-type/edit-guarantee-type.component';
 import {EditGuaranteeComponent} from './guarantee/edit-guarantee/edit-guarantee.component';
+import {SrpRequestComponent} from './srp-request/srp-request.component';
+import {NewSrpRequestComponent} from './srp-request/new-srp-request/new-srp-request.component';
 import {SignInComponent} from './signin/signin.component';
 import {Ng2TokenAuthService} from './common/ng2-token-auth/ng2-token-auth.service';
 import {SignInFinalizeComponent} from './signin/signin-finalize.component';
@@ -52,6 +54,16 @@ export const ROUTES: Routes = [
   {
     path: 'guarantee-types/:id',
     component: EditGuaranteeTypeComponent,
+    canActivate: [Ng2TokenAuthService]
+  },
+  {
+    path: 'srp-requests',
+    component: SrpRequestComponent,
+    canActivate: [Ng2TokenAuthService]
+  },
+  {
+    path: 'srp-requests/new',
+    component: NewSrpRequestComponent,
     canActivate: [Ng2TokenAuthService]
   },
   {

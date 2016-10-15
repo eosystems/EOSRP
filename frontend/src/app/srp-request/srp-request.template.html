@@ -1,0 +1,40 @@
+<div class="container-fluid">
+  <div class="row">
+
+    <div class="col-md-8">
+      <h2>申請一覧</h2>
+
+      <div class="text-left">
+        <a class="btn btn-sm btn-normal" (click)="reloadSearchTable(searchTable)">
+          Reload
+        </a>
+        <button [routerLink]="['new']" class="btn btn-sm btn-default">
+          <i class="fa fa-plus"></i>
+          申請
+        </button>
+      </div>
+      <section class="content table-responsive">
+        <div class="table table-condensed table-responsive table-hover mt-10">
+          <search-table #searchTable [tableClass]="'table table-condensed'" [columns]="headerComponents" [config]="searchTableConfig">
+            <tr *ngFor="let row of searchTable.dataRows" (click)="selectRow(row.id)" ng-class="{selected: row.selected}">
+              <td>
+                {{row.id}}
+              </td>
+              <td>{{row.processing_status}}</td>
+              <td>{{row.ship.ship_name}}</td>
+              <td>{{row.zkill_valuation}}</td>
+              <td>{{row.created_at}}</td>
+              <td>{{row.updated_at}}</td>
+            </tr>
+          </search-table>
+        </div>
+      </section>
+    </div>
+
+    <div class="col-md-4">
+
+      <h2>申請詳細 (#{{selectedId}})</h2>
+
+    </div>
+  </div>
+</div>
