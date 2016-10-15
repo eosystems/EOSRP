@@ -22,6 +22,8 @@ import {GuaranteeTypeComponent} from './guarantee-type/guarantee-type.component'
 import {Ng2SearchTableModule} from 'ng2-search-table/ng2-search-table';
 import {NewGuaranteeTypeComponent} from './guarantee-type/new-guarantee-type/new-guarantee-type.component';
 import {GuaranteeTypeService} from './guarantee-type/guarantee-type.service';
+import {NewSrpRequestComponent} from './srp-request/new-srp-request/new-srp-request.component';
+import {SrpRequestService} from './srp-request/srp-request.service';
 import {ToastModule} from 'ng2-toastr';
 import {SimpleForm} from './common/simple-form/simple-form.component';
 import {SimpleFormInput} from './common/simple-form/simple-form-input.component';
@@ -64,6 +66,7 @@ type StoreType = {
     GuaranteeTypeComponent,
     NewGuaranteeTypeComponent,
     EditGuaranteeTypeComponent,
+    NewSrpRequestComponent,
     SimpleForm,
     SimpleFormInput
   ],
@@ -85,6 +88,7 @@ type StoreType = {
     GuaranteeTypeService,
     GuaranteeService,
     GuaranteeSharedService,
+    SrpRequestService,
     {
       provide: Http,
       useFactory: (backend: XHRBackend, defaultOptions: RequestOptions) => {
