@@ -3,6 +3,7 @@ import {SrpRequestForm} from '../../models/srp-request-form';
 import {SrpRequestService} from '../srp-request.service';
 import {ToastsManager} from 'ng2-toastr';
 import {Router} from '@angular/router';
+import {ZkillService} from '../../zkill/zkill.service';
 
 @Component({
   selector: 'new-srp-request',
@@ -15,6 +16,7 @@ export class NewSrpRequestComponent {
 
   constructor(
     private srpRequestService: SrpRequestService,
+    private zkillService: ZkillService,
     private toastr: ToastsManager,
     private router: Router
   ) {
@@ -41,4 +43,26 @@ export class NewSrpRequestComponent {
         );
     }
   }
+
+  getZkillInformation() {
+    if (!this.submitLocked) {
+      this.submitLocked = true
+      this.toastr.info("Zkill Boardより情報を取得中です", "Get");
+
+      this.
+        zkillService
+        .get(this.srpRequestForm.zkillUrl)
+        .subscribe(
+          r => {
+            this.toastr.success("情報取得に成功しました", "Success");
+            this.submitLocked = false;
+          },
+          error => {
+            this.toastr.error("情報取得に失敗しました URLを確認してください", "Error");
+            this.submitLocked = false;
+          }
+        );
+    }
+  }
+
 }

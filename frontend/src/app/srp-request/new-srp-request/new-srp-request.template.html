@@ -10,22 +10,20 @@
 <h2>保証種別 新規追加</h2>
 
 <div class="row">
-<simple-form [form]="srpRequestForm" (submit)="formSubmit()" #form>
-  <div class="col-xs-12 text-right">
-    <label *ngIf="form.dirty()" class="label label-warning mr-10">Unsaved</label>
-    <button type="submit" class="btn btn-primary"
-            [disabled]="!form.valid() || submitLocked">保存</button>
-  </div>
+  <simple-form [form]="srpRequestForm" (submit)="formSubmit()" #form>
+    <div class="col-xs-12 text-right">
+      <label *ngIf="form.dirty()" class="label label-warning mr-10">Unsaved</label>
+      <button type="submit" class="btn btn-primary" [disabled]="!form.valid() || submitLocked">保存</button>
+    </div>
 
-  <div class="col-xs-12">
-    <simple-form-input [name]='"zkillUrl"' [type]='"text"'
-                       [labelDisplayName]="'ZKillURL'"
-                       [placeholder]='"zkillボードのURLを入力してください"'>
-    </simple-form-input>
+    <div class="col-xs-12">
+      <simple-form-input [name]='"zkillUrl"' [type]='"text"' [labelDisplayName]="'ZKillURL'" [placeholder]='"zkillボードのURLを入力してください"'>
+        <a class="btn btn btn-normal" (click)="getZkillInformation()">
+          Zkill Board 情報取得
+        </a>
+      </simple-form-input>
 
-    <simple-form-input [name]='"requestComment"' [type]='"text"'
-                       [labelDisplayName]="'申請コメント'">
-    </simple-form-input>
-  </div>
-</simple-form>
+      <simple-form-input [name]='"requestComment"' [type]='"text"' [labelDisplayName]="'申請コメント'"></simple-form-input>
+    </div>
+  </simple-form>
 </div>
