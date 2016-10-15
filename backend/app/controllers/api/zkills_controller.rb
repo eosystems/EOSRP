@@ -1,3 +1,4 @@
+require 'zkill_client.rb'
 class Api::ZkillsController < ApplicationController
 
   def index
