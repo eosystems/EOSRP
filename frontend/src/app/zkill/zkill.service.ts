@@ -15,7 +15,7 @@ export class ZkillService {
       .get(process.env.API_URL + '/api/zkills?zkill_url=' + url)
       .map(r => r.json())
       .map(r => {
-        let form = JsonObjectMapper.deserialize(Zkill, r);
+        let form = JsonObjectMapper.deserialize(Zkill, r.results);
         return form;
       });
   }

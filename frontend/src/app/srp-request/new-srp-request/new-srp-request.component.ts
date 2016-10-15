@@ -4,6 +4,7 @@ import {SrpRequestService} from '../srp-request.service';
 import {ToastsManager} from 'ng2-toastr';
 import {Router} from '@angular/router';
 import {ZkillService} from '../../zkill/zkill.service';
+import {Zkill} from '../../models/zkill';
 
 @Component({
   selector: 'new-srp-request',
@@ -12,6 +13,7 @@ import {ZkillService} from '../../zkill/zkill.service';
 
 export class NewSrpRequestComponent {
   srpRequestForm: SrpRequestForm;
+  zkill: Zkill;
   submitLocked: boolean = false;
 
   constructor(
@@ -21,6 +23,7 @@ export class NewSrpRequestComponent {
     private router: Router
   ) {
     this.srpRequestForm = new SrpRequestForm();
+    this.zkill = new Zkill();
   }
 
   formSubmit() {
@@ -55,6 +58,7 @@ export class NewSrpRequestComponent {
         .subscribe(
           r => {
             this.toastr.success("情報取得に成功しました", "Success");
+            this.zkill = r;
             this.submitLocked = false;
           },
           error => {
