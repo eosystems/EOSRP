@@ -24,7 +24,7 @@ export class SrpRequestComponent {
     },
     {
       name: 'processing_status',
-      model: { displayName: 'Prosessing Status' },
+      model: { displayName: 'Status' },
       headerComponent: SortableHeaderComponent,
       filterComponent: TextFilterComponent
     },
@@ -35,13 +35,8 @@ export class SrpRequestComponent {
       filterComponent: TextFilterComponent
     },
     {
-      name: 'request_comment',
-      model: { displayName: 'RequestComment' },
-      headerComponent: SimpleHeaderComponent
-    },
-    {
       name: 'zkill_valuation',
-      model: { displayName: 'Zkill Valuation' },
+      model: { displayName: '評価額' },
       headerComponent: SimpleHeaderComponent
     },
     {
