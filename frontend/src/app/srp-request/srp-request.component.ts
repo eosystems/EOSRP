@@ -54,4 +54,9 @@ export class SrpRequestComponent {
   reloadSearchTable(searchTable: any): void {
     searchTable.search();
   }
+
+  // Order Grid押下時
+  selectRow(id: any): void{
+    console.log(id);
+  }
 }

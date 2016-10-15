@@ -13,21 +13,22 @@
           申請
         </button>
       </div>
-
-      <div class="col-xs-12 mt-10">
-        <search-table #searchTable [tableClass]="'table table-condensed'" [columns]="headerComponents" [config]="searchTableConfig">
-          <tr *ngFor="let row of searchTable.dataRows">
-            <td>
-              {{row.id}}
-            </td>
-            <td>{{row.processing_status}}</td>
-            <td>{{row.ship.ship_name}}</td>
-            <td>{{row.zkill_valuation}}</td>
-            <td>{{row.created_at}}</td>
-            <td>{{row.updated_at}}</td>
-          </tr>
-        </search-table>
-      </div>
+      <section class="content table-responsive">
+        <div class="table table-condensed table-responsive table-hover mt-10">
+          <search-table #searchTable [tableClass]="'table table-condensed'" [columns]="headerComponents" [config]="searchTableConfig">
+            <tr *ngFor="let row of searchTable.dataRows" (click)="selectRow(row.id)" ng-class="{selected: row.selected}">
+              <td>
+                {{row.id}}
+              </td>
+              <td>{{row.processing_status}}</td>
+              <td>{{row.ship.ship_name}}</td>
+              <td>{{row.zkill_valuation}}</td>
+              <td>{{row.created_at}}</td>
+              <td>{{row.updated_at}}</td>
+            </tr>
+          </search-table>
+        </div>
+      </section>
     </div>
 
     <div class="col-md-4">
