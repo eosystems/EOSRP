@@ -1,5 +1,6 @@
 class Api::GuaranteeTypesController < Api::ApiController
   before_action :set_guarantee_type, only: [:show, :edit, :update, :destroy]
+  before_action :role_check, only: [:create, :update, :destroy]
 
   def index
     @page = params[:page] || 1
@@ -50,5 +51,11 @@ class Api::GuaranteeTypesController < Api::ApiController
   def guarantee_type_params
     json_body[:guarantee_type]
       .slice(:name, :description)
+  end
+
+  def role_check
+    if current_user.has_admin_role? == false
+      render json: { result: "error", message: "権限がありません"}, status: 401
+    end
   end
 end
