@@ -44,6 +44,11 @@ class SrpRequest < ActiveRecord::Base
   # Hooks
 
   # Scopes
+  # 自分の申請のみ参照可能
+  scope :accessible_srp_requests, -> (user_id) do
+    uid = arel_table[:user_id]
+    where(uid.eq(user_id))
+  end
 
   # Methods
 

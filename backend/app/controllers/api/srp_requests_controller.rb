@@ -5,6 +5,7 @@ class Api::SrpRequestsController < Api::ApiController
     @page = params[:page] || 1
     @per = params[:per] || 20
     @srp_requests = SrpRequest
+      .accessible_srp_requests(current_user.uid)
       .search_with(params[:filter], params[:sort] ,@page, @per)
   end
 
@@ -14,8 +15,7 @@ class Api::SrpRequestsController < Api::ApiController
 
   def create
     @srp_request = SrpRequest.new(srp_request_params)
-    # TODO
-    @srp_request.user_id = 1
+    @srp_request.user_id = current_user.uid
     @srp_request.processing_status = ProcessingStatus::IN_PROCESS.id
 
     if @srp_request.save
