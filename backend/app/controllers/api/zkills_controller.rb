@@ -1,5 +1,5 @@
 require 'zkill_client.rb'
-class Api::ZkillsController < ApplicationController
+class Api::ZkillsController < Api::ApiController
 
   def index
     url = params[:zkill_url]

@@ -1,4 +1,4 @@
-class Api::SrpApprovalsController < ApplicationController
+class Api::SrpApprovalsController < Api::ApiController
   before_action :set_srp_approval, only: [:show, :update]
 
   def index

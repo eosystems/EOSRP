@@ -1,4 +1,4 @@
-class Api::SrpRequestsController < ApplicationController
+class Api::SrpRequestsController < Api::ApiController
   before_action :set_srp_request, only: [:show, :edit, :update, :destroy]
 
   def index
