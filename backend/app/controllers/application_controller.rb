@@ -18,4 +18,12 @@ class ApplicationController < ActionController::API
   def json_body
     @_json_body ||= JSON.parse(body).with_indifferent_access
   end
+
+  def get_token(access_token)
+    #create access token
+    client = OAuth2::Client.new(Settings.applications.app_id, Settings.applications.app_secret)
+    OAuth2::AccessToken.new(client, access_token)
+  end
+
+
 end
