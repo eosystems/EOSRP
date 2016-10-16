@@ -9,7 +9,7 @@
 #
 
 class UserDetail < ActiveRecord::Base
-  belongs_to :user
+  belongs_to :user, primary_key: "uid"
   belongs_to :corporation
   belongs_to :alliance
 end

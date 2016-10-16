@@ -36,7 +36,8 @@ class SrpRequest < ActiveRecord::Base
   # Relations
   belongs_to :srp_destination
   belongs_to :guarantee_type
-  belongs_to :user
+  belongs_to :user, primary_key: "uid"
+  belongs_to :user_detail, foreign_key: 'user_id', primary_key: 'user_id'
   belongs_to :process_user, class_name: 'User', foreign_key: :process_user_id
   belongs_to :ship, class_name: 'Ship', foreign_key: :ship_id
   # Validations
