@@ -1,7 +1,6 @@
 create_table :users, collate: "utf8_bin" do |t|
   t.int :id, primary_key: true, extra: :auto_increment
   t.varchar :uid
-  t.varchar :name, null: true
   t.varchar :provider, null: false, default: "eve_online"
   t.varchar :encrypted_password, null: false, default: ""
 
