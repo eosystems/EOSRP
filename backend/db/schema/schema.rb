@@ -1,6 +1,7 @@
 create_table :users, collate: "utf8_bin" do |t|
   t.int :id, primary_key: true, extra: :auto_increment
   t.varchar :uid
+  t.varchar :name, null: true
   t.varchar :provider, null: false, default: "eve_online"
   t.varchar :encrypted_password, null: false, default: ""
 
@@ -35,6 +36,19 @@ create_table :users, collate: "utf8_bin" do |t|
 
   t.datetime :created_at
   t.datetime :updated_at
+end
+
+create_table :user_details, collate: "utf8_bin" do |t|
+  t.int :id, primary_key: true, extra: :auto_increment
+  t.int :user_id
+  t.int :corporation_id, null: true
+  t.int :alliance_id, null: true
+end
+
+create_table :user_roles, collate: "utf8_bin" do |t|
+  t.int :id, primary_key: true, extra: :auto_increment
+  t.int :user_id
+  t.int :role, null: true
 end
 
 create_table :guarantee_types, collate: "utf8_bin" do |t|

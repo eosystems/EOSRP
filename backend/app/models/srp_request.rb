@@ -11,7 +11,7 @@
 #  manager_comment    :string(255)
 #  processing_status  :string(255)      default("in_process"), not null
 #  srp_destination_id :integer          not null
-#  guarantee_type_id  :integer          not null
+#  guarantee_type_id  :integer
 #  user_id            :integer          not null
 #  process_user_id    :integer
 #  created_at         :datetime         not null
