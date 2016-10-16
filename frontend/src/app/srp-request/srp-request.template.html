@@ -37,6 +37,13 @@
 
       <form class="form-horizontal">
 
+        <div class="text-right">
+          <button (click)="deleteSrpRequest(srpRequestForm.id,searchTable)" class="btn btn-sm btn-default" [disabled]="srpRequestForm.id == null" >
+            <i class="fa fa-minus"></i>
+            削除
+          </button>
+        </div>
+
         <div class="form-group">
           <label class="col-sm-3 control-label">Url:</label>
           <div class="col-sm-9">

@@ -93,4 +93,26 @@ export class SrpRequestComponent {
     );
   }
 
+  // 削除ボタン
+  deleteSrpRequest(id, searchTable: any){
+    this.srpRequestService
+    .destroy(id)
+    .subscribe(
+      r => {
+        this.toastr.success("削除しました", "Success");
+        this.srpRequestForm = new SrpRequestForm();
+        searchTable.search();
+      },
+      error => {
+        if (error.status == 409){
+          this.toastr.error("承認済みのため削除できません", "Error");
+        }
+        else{
+          this.toastr.error("エラーが発生しました", "Error");
+        }
+      }
+    )
+
+  }
+
 }

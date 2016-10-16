@@ -34,10 +34,14 @@ class Api::SrpRequestsController < Api::ApiController
   end
 
   def destroy
-    if @srp_request.destroy
-      render json: {result: "success"}
+    if @srp_request.processing_status == ProcessingStatus::DONE.id
+      render json: { result: "error", message: "承認されているので削除できません" }, status: 409
     else
-      render json: { result: "error", message: @srp_request.errors.messages }, status: 422
+      if @srp_request.destroy
+        render json: {result: "success"}
+      else
+        render json: { result: "error", message: @srp_request.errors.messages }, status: 422
+      end
     end
   end
 
