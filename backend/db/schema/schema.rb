@@ -37,10 +37,24 @@ create_table :users, collate: "utf8_bin" do |t|
   t.datetime :updated_at
 end
 
+create_table :user_details, collate: "utf8_bin" do |t|
+  t.int :id, primary_key: true, extra: :auto_increment
+  t.int :user_id
+  t.int :corporation_id, null: true
+  t.int :alliance_id, null: true
+end
+
+create_table :user_roles, collate: "utf8_bin" do |t|
+  t.int :id, primary_key: true, extra: :auto_increment
+  t.int :user_id
+  t.int :role, null: true
+end
+
 create_table :guarantee_types, collate: "utf8_bin" do |t|
   t.int :id, primary_key: true, extra: :auto_increment
   t.varchar :name
   t.varchar :description, null: true
+  t.int :corporation_id
   t.datetime :created_at
   t.datetime :updated_at
 end
@@ -145,9 +159,18 @@ end
 create_table :corporations, collate: "utf8_bin" do |t|
   t.int :corporation_id, primary_key: true
   t.varchar :corporation_name
+  t.int :alliance_id, null: true
   t.datetime :created_at
   t.datetime :updated_at
 end
+
+create_table :alliances, collate: "utf8_bin" do |t|
+  t.int :alliance_id, primary_key: true
+  t.varchar :alliance_name
+  t.datetime :created_at
+  t.datetime :updated_at
+end
+
 
 ## Master ##
 create_table :ships, collate: "utf8_bin" do |t|

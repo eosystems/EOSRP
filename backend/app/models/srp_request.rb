@@ -11,7 +11,7 @@
 #  manager_comment    :string(255)
 #  processing_status  :string(255)      default("in_process"), not null
 #  srp_destination_id :integer          not null
-#  guarantee_type_id  :integer          not null
+#  guarantee_type_id  :integer
 #  user_id            :integer          not null
 #  process_user_id    :integer
 #  created_at         :datetime         not null
@@ -36,7 +36,8 @@ class SrpRequest < ActiveRecord::Base
   # Relations
   belongs_to :srp_destination
   belongs_to :guarantee_type
-  belongs_to :user
+  belongs_to :user, primary_key: "uid"
+  belongs_to :user_detail, foreign_key: 'user_id', primary_key: 'user_id'
   belongs_to :process_user, class_name: 'User', foreign_key: :process_user_id
   belongs_to :ship, class_name: 'Ship', foreign_key: :ship_id
   # Validations
@@ -44,6 +45,17 @@ class SrpRequest < ActiveRecord::Base
   # Hooks
 
   # Scopes
+  # 自分の申請のみ参照可能
+  scope :accessible_srp_requests, -> (user_id) do
+    uid = arel_table[:user_id]
+    where(uid.eq(user_id))
+  end
+
+  # 指定したCorpに属している場合参照可能
+  scope :accessible_srp_approvals, -> (corporation_id) do
+    cid = arel_table[:corporation_id]
+    where(cid.eq(corporation_id))
+  end
 
   # Methods
 

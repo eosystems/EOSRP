@@ -2,15 +2,18 @@
 #
 # Table name: guarantee_types
 #
-#  id          :integer          not null, primary key
-#  name        :string(255)      not null
-#  description :string(255)
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
+#  id             :integer          not null, primary key
+#  name           :string(255)      not null
+#  description    :string(255)
+#  corporation_id :integer          not null
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
 #
 
 class GuaranteeType < ApplicationRecord
   include Ng2SearchTableSearchable
+
+  belongs_to :corporation
 
   # Constants
   RANSACK_FILTER_ATTRIBUTES = {
@@ -36,6 +39,13 @@ class GuaranteeType < ApplicationRecord
   # Hooks
 
   # Scopes
+
+  # 指定したCorpに属している場合参照可能
+  scope :accessible_guarantee_types, -> (corporation_id) do
+    cid = arel_table[:corporation_id]
+    where(cid.eq(corporation_id))
+  end
+
 
   # Methods
 end

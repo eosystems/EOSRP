@@ -35,7 +35,12 @@ export class NewGuaranteeTypeComponent {
             this.router.navigate(['guarantee-types']);
           },
           e => {
-            this.toastr.error("エラーが発生しました。", "Error");
+            if (e.status == 401){
+              this.toastr.error("権限がありません", "Error");
+            }
+            else{
+              this.toastr.error("エラーが発生しました", "Error");
+            }
             this.submitLocked = false;
           }
         );

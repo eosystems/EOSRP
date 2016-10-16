@@ -1,10 +1,11 @@
-class Api::SrpRequestsController < ApplicationController
+class Api::SrpRequestsController < Api::ApiController
   before_action :set_srp_request, only: [:show, :edit, :update, :destroy]
 
   def index
     @page = params[:page] || 1
     @per = params[:per] || 20
     @srp_requests = SrpRequest
+      .accessible_srp_requests(current_user.uid)
       .search_with(params[:filter], params[:sort] ,@page, @per)
   end
 
@@ -14,8 +15,7 @@ class Api::SrpRequestsController < ApplicationController
 
   def create
     @srp_request = SrpRequest.new(srp_request_params)
-    # TODO
-    @srp_request.user_id = 1
+    @srp_request.user_id = current_user.uid
     @srp_request.processing_status = ProcessingStatus::IN_PROCESS.id
 
     if @srp_request.save
@@ -34,10 +34,14 @@ class Api::SrpRequestsController < ApplicationController
   end
 
   def destroy
-    if @srp_request.destroy
-      render json: {result: "success"}
+    if @srp_request.processing_status == ProcessingStatus::DONE.id
+      render json: { result: "error", message: "承認されているので削除できません" }, status: 409
     else
-      render json: { result: "error", message: @srp_request.errors.messages }, status: 422
+      if @srp_request.destroy
+        render json: {result: "success"}
+      else
+        render json: { result: "error", message: @srp_request.errors.messages }, status: 422
+      end
     end
   end
 

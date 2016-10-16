@@ -6,16 +6,32 @@ export class SrpRequestForm extends ValidatableForm {
   @JsonProperty()
   id: number;
 
-  @JsonProperty()
+  @JsonProperty('zkill_url')
   @FormVariable
   @FormValidation(Validators.required)
   @FormValidation(Validators.maxLength(255))
   zkillUrl: string;
 
-  @JsonProperty()
+  @JsonProperty('request_comment')
   @FormVariable
   @FormValidation(Validators.maxLength(255))
   requestComment: string;
+
+  @JsonProperty('zkill_valuation')
+  @FormVariable
+  @FormValidation(Validators.maxLength(255))
+  zkillValuation: string;
+
+  @JsonProperty()
+  @FormVariable
+  @FormValidation(Validators.maxLength(255))
+  price: number;
+
+  @JsonProperty('manager_comment')
+  @FormVariable
+  @FormValidation(Validators.maxLength(255))
+  managerComment: string;
+
 
   constructor(obj?: any) {
     super();
@@ -23,5 +39,9 @@ export class SrpRequestForm extends ValidatableForm {
     this.id = obj && obj.id;
     this.zkillUrl = obj && obj.zkillUrl;
     this.requestComment = obj && obj.requestComment;
+    this.zkillValuation = obj && obj.zkillValuation;
+    this.price = obj && obj.price;
+    this.managerComment = obj && obj.managerComment;
+
   }
 }

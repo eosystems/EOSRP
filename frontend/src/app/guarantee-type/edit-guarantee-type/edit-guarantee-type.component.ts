@@ -58,8 +58,13 @@ export class EditGuaranteeTypeComponent {
             this.form.markAsPristine();
           },
           _ => {
-            this.toastr.error("エラーが発生しました。", "Error");
-            this.submitLocked = false;
+              if (_.status == 401) {
+                this.toastr.error("権限がありません", "Error");
+              }
+              else {
+                this.toastr.error("エラーが発生しました", "Error");
+              }
+              this.submitLocked = false;
           },
           _ => {
             this.submitLocked = false;
@@ -80,7 +85,13 @@ export class EditGuaranteeTypeComponent {
           this.router.navigate(['guarantee-types']);
         },
         _ => {
-          this.toastr.error("削除に失敗しました。", "Error");
+            if (_.status == 401) {
+              this.toastr.error("権限がありません", "Error");
+            }
+            else {
+              this.toastr.error("エラーが発生しました", "Error");
+            }
+            this.submitLocked = false;
         }
       );
   }

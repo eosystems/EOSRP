@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <div class="row">
 
-    <div class="col-md-8">
+    <div class="col-md-7">
       <h2>申請一覧</h2>
 
       <div class="text-left">
@@ -16,7 +16,7 @@
       <section class="content table-responsive">
         <div class="table table-condensed table-responsive table-hover mt-10">
           <search-table #searchTable [tableClass]="'table table-condensed'" [columns]="headerComponents" [config]="searchTableConfig">
-            <tr *ngFor="let row of searchTable.dataRows" (click)="selectRow(row.id)" ng-class="{selected: row.selected}">
+            <tr *ngFor="let row of searchTable.dataRows" (click)="selectRow(row.id, searchTable)" [ngClass]="{selected: row.selected}">
               <td>
                 {{row.id}}
               </td>
@@ -31,10 +31,63 @@
       </section>
     </div>
 
-    <div class="col-md-4">
+    <div class="col-md-5">
 
-      <h2>申請詳細 (#{{selectedId}})</h2>
+      <h2>申請詳細 (#{{srpRequestForm.id}})</h2>
+
+      <form class="form-horizontal">
+
+        <div class="text-right">
+          <button (click)="deleteSrpRequest(srpRequestForm.id,searchTable)" class="btn btn-sm btn-default" [disabled]="srpRequestForm.id == null" >
+            <i class="fa fa-minus"></i>
+            削除
+          </button>
+        </div>
+
+        <div class="form-group">
+          <label class="col-sm-3 control-label">Url:</label>
+          <div class="col-sm-9">
+            <p class="form-control-static">
+              <a href="{{srpRequestForm.zkillUrl}}" target="_blank"> {{ srpRequestForm.zkillUrl }} </a>
+            </p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label">評価額:</label>
+          <div class="col-sm-9">
+            <p class="form-control-static">
+              {{ srpRequestForm.zkillValuation }}
+            </p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label">申請コメント:</label>
+          <div class="col-sm-9">
+            <p class="form-control-static">
+              {{ srpRequestForm.requestComment }}
+            </p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label">承認額:</label>
+          <div class="col-sm-9">
+            <p class="form-control-static">
+              {{ srpRequestForm.price }}
+            </p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label">承認コメント:</label>
+          <div class="col-sm-9">
+            <p class="form-control-static">
+              {{ srpRequestForm.managerComment }}
+            </p>
+          </div>
+        </div>
+
+      </form>
 
     </div>
+
   </div>
 </div>

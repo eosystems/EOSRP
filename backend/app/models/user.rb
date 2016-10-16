@@ -33,4 +33,14 @@ class User < ActiveRecord::Base
           :recoverable, :rememberable, :trackable, :validatable,
           :confirmable, :omniauthable
   include DeviseTokenAuth::Concerns::User
+  has_one :user_detail, foreign_key: "user_id", primary_key: "uid"
+
+  # admin 権限を持っているか?
+  def has_admin_role?
+    UserRole.exists?(user_id: self.uid, role: OperationRole::ADMIN.id)
+  end
+
+  def has_manager_role?
+    UserRole.exists?(user_id: self.uid, role: OperationRole::MANAGER.id)
+  end
 end

@@ -12,8 +12,15 @@
 
 ActiveRecord::Schema.define(version: 0) do
 
+  create_table "alliances", primary_key: "alliance_id", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin ROW_FORMAT=COMPACT" do |t|
+    t.string   "alliance_name", null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
   create_table "corporations", primary_key: "corporation_id", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin ROW_FORMAT=COMPACT" do |t|
     t.string   "corporation_name", null: false
+    t.integer  "alliance_id"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
   end
@@ -34,10 +41,11 @@ ActiveRecord::Schema.define(version: 0) do
   end
 
   create_table "guarantee_types", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin ROW_FORMAT=COMPACT" do |t|
-    t.string   "name",        null: false
+    t.string   "name",           null: false
     t.string   "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.integer  "corporation_id", null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
 
   create_table "guarantees", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin ROW_FORMAT=COMPACT" do |t|
@@ -121,6 +129,17 @@ ActiveRecord::Schema.define(version: 0) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.index ["type_id", "buy", "station_id"], name: "index_type_id_and_buy_and_station_id", using: :btree
+  end
+
+  create_table "user_details", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin ROW_FORMAT=COMPACT" do |t|
+    t.integer "user_id",        null: false
+    t.integer "corporation_id"
+    t.integer "alliance_id"
+  end
+
+  create_table "user_roles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin ROW_FORMAT=COMPACT" do |t|
+    t.integer "user_id", null: false
+    t.integer "role"
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin ROW_FORMAT=COMPACT" do |t|
