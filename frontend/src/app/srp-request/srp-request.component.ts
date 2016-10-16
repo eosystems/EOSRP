@@ -3,6 +3,9 @@ import {TextFilterComponent} from 'ng2-search-table/components/table-filter/text
 import {SortableHeaderComponent} from 'ng2-search-table/components/header/sortable-header.component';
 import {SimpleHeaderComponent} from 'ng2-search-table/components/header/simple-header.component';
 import {SearchTableComponent} from 'ng2-search-table/components/search-table.component';
+import {SrpRequestForm} from '../models/srp-request-form';
+import {SrpRequestService} from './srp-request.service';
+import {ToastsManager} from 'ng2-toastr';
 
 @Component({
   selector: 'srp-request',
@@ -10,6 +13,15 @@ import {SearchTableComponent} from 'ng2-search-table/components/search-table.com
 })
 
 export class SrpRequestComponent {
+  srpRequestForm: SrpRequestForm;
+
+  constructor(
+    private srpRequestService: SrpRequestService,
+    private toastr: ToastsManager
+  ) {
+    this.srpRequestForm = new SrpRequestForm();
+  }
+
   searchTableConfig: any = {
     url: process.env.API_URL + '/api/srp_requests',
     defaultPagePer: 20
@@ -64,6 +76,21 @@ export class SrpRequestComponent {
         v.selected = !v.selected;
       }
     };
-    console.log(id);
+    this.loadDetail(id);
   }
+
+  // 詳細選択時
+  loadDetail(id){
+    this.srpRequestService
+    .get(id)
+    .subscribe(
+      r => {
+        this.srpRequestForm = r;
+      },
+      error => {
+        this.toastr.error("情報取得に失敗しました", "Error");
+      }
+    );
+  }
+
 }
