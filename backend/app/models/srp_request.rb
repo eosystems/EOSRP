@@ -50,6 +50,12 @@ class SrpRequest < ActiveRecord::Base
     where(uid.eq(user_id))
   end
 
+  # 指定したCorpに属している場合参照可能
+  scope :accessible_srp_approvals, -> (corporation_id) do
+    cid = arel_table[:corporation_id]
+    where(cid.eq(corporation_id))
+  end
+
   # Methods
 
 
