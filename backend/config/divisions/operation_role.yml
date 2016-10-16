@@ -1,0 +1,6 @@
+- id: 0
+  type: admin
+  name: Administrator Role
+- id: 2
+  type: manager
+  name: Manager
