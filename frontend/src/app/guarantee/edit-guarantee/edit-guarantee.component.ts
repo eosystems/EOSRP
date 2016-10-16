@@ -60,7 +60,12 @@ export class EditGuaranteeComponent {
         },
         _ => {
           // TODO: エラーをHandsontableに反映する
-          this.toastr.error("保存に失敗しました。", "Error");
+          if (_.status == 401){
+            this.toastr.error("権限がありません", "Error");
+          }
+          else{
+            this.toastr.error("エラーが発生しました", "Error");
+          }
         }
       );
   }

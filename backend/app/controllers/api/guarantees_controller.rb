@@ -1,4 +1,6 @@
 class Api::GuaranteesController < Api::ApiController
+  before_action :role_check, only: [:update_all]
+
   def index
     @page = params[:page] || 1
     @per = params[:per] || 100
@@ -32,4 +34,11 @@ class Api::GuaranteesController < Api::ApiController
     permitted_attributes = %i(id price description)
     @_guarantees ||= json_body[:guarantees].map { |v| v.slice(*permitted_attributes) }
   end
+
+  def role_check
+    if current_user.has_admin_role? == false
+      render json: { result: "error", message: "権限がありません"}, status: 401
+    end
+  end
+
 end
