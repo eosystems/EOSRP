@@ -16,7 +16,7 @@
       <section class="content table-responsive">
         <div class="table table-condensed table-responsive table-hover mt-10">
           <search-table #searchTable [tableClass]="'table table-condensed'" [columns]="headerComponents" [config]="searchTableConfig">
-            <tr *ngFor="let row of searchTable.dataRows" (click)="selectRow(row.id)" ng-class="{selected: row.selected}">
+            <tr *ngFor="let row of searchTable.dataRows" (click)="selectRow(row.id, searchTable)" [ngClass]="{selected: row.selected}">
               <td>
                 {{row.id}}
               </td>

@@ -56,7 +56,14 @@ export class SrpRequestComponent {
   }
 
   // Order Grid押下時
-  selectRow(id: any): void{
+  selectRow(id: any, searchTable: any): void{
+    var results = searchTable;
+    for (let v of results.dataRows){
+      v.selected = false;
+      if (v.id == id){
+        v.selected = !v.selected;
+      }
+    };
     console.log(id);
   }
 }
