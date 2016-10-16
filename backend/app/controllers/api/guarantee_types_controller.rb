@@ -6,6 +6,7 @@ class Api::GuaranteeTypesController < Api::ApiController
     @page = params[:page] || 1
     @per = params[:per] || 100
     @guarantee_types = GuaranteeType
+      .accessible_guarantee_types(current_user.user_detail.corporation.corporation_id)
       .search_with(params[:filter], params[:sort], @page, @per)
     ng2_search_table_response(@guarantee_types)
   end
@@ -16,6 +17,7 @@ class Api::GuaranteeTypesController < Api::ApiController
 
   def create
     @guarantee_type = GuaranteeType.new(guarantee_type_params)
+    @guarantee_type.corporation_id = current_user.user_detail.corporation.corporation_id
 
     if @guarantee_type.save
       # 保証タイプ作成時に船保証リストを作成する

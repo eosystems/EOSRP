@@ -54,6 +54,7 @@ create_table :guarantee_types, collate: "utf8_bin" do |t|
   t.int :id, primary_key: true, extra: :auto_increment
   t.varchar :name
   t.varchar :description, null: true
+  t.int :corporation_id
   t.datetime :created_at
   t.datetime :updated_at
 end
