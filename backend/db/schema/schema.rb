@@ -158,9 +158,18 @@ end
 create_table :corporations, collate: "utf8_bin" do |t|
   t.int :corporation_id, primary_key: true
   t.varchar :corporation_name
+  t.int :alliance_id, null: true
   t.datetime :created_at
   t.datetime :updated_at
 end
+
+create_table :alliances, collate: "utf8_bin" do |t|
+  t.int :alliance_id, primary_key: true
+  t.varchar :alliance_name
+  t.datetime :created_at
+  t.datetime :updated_at
+end
+
 
 ## Master ##
 create_table :ships, collate: "utf8_bin" do |t|

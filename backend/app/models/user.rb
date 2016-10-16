@@ -33,4 +33,5 @@ class User < ActiveRecord::Base
           :recoverable, :rememberable, :trackable, :validatable,
           :confirmable, :omniauthable
   include DeviseTokenAuth::Concerns::User
+  has_one :user_detail, foreign_key: "user_id", primary_key: "uid"
 end

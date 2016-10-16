@@ -10,4 +10,6 @@
 
 class UserDetail < ActiveRecord::Base
   belongs_to :user
+  belongs_to :corporation
+  belongs_to :alliance
 end

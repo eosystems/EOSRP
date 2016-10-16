@@ -12,8 +12,15 @@
 
 ActiveRecord::Schema.define(version: 0) do
 
+  create_table "alliances", primary_key: "alliance_id", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin ROW_FORMAT=COMPACT" do |t|
+    t.string   "alliance_name", null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
   create_table "corporations", primary_key: "corporation_id", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin ROW_FORMAT=COMPACT" do |t|
     t.string   "corporation_name", null: false
+    t.integer  "alliance_id"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
   end
@@ -136,7 +143,6 @@ ActiveRecord::Schema.define(version: 0) do
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin ROW_FORMAT=COMPACT" do |t|
     t.string   "uid",                                                         null: false
-    t.string   "name"
     t.string   "provider",                             default: "eve_online", null: false
     t.string   "encrypted_password",                   default: "",           null: false
     t.string   "reset_password_token",                 default: ""
@@ -151,6 +157,7 @@ ActiveRecord::Schema.define(version: 0) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
+    t.string   "name"
     t.string   "nickname"
     t.string   "image"
     t.string   "email"
