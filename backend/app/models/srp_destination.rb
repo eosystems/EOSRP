@@ -3,7 +3,7 @@
 # Table name: srp_destinations
 #
 #  id             :integer          not null, primary key
-#  name           :integer          not null
+#  name           :string(255)      not null
 #  description    :string(255)
 #  corporation_id :integer
 #  alliance_id    :integer
