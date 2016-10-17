@@ -23,9 +23,9 @@
               <td>{{row.processing_status}}</td>
               <td>{{row.srp_destination?.name}}</td>
               <td>{{row.ship.ship_name}}</td>
-              <td>{{row.zkill_valuation}}</td>
-              <td>{{row.created_at}}</td>
-              <td>{{row.updated_at}}</td>
+              <td>{{row.zkill_valuation | number: '1.0-0'}}</td>
+              <td>{{row.created_at | date: 'yyyy/MM/dd hh:mm'}}</td>
+              <td>{{row.updated_at | date: 'yyyy/MM/dd hh:mm'}}</td>
             </tr>
           </search-table>
         </div>
@@ -57,7 +57,7 @@
           <label class="col-sm-3 control-label">評価額:</label>
           <div class="col-sm-9">
             <p class="form-control-static">
-              {{ srpRequestForm.zkillValuation }}
+              {{ srpRequestForm.zkillValuation | number: '1.0-0'}} ISK
             </p>
           </div>
         </div>
@@ -73,7 +73,7 @@
           <label class="col-sm-3 control-label">承認額:</label>
           <div class="col-sm-9">
             <p class="form-control-static">
-              {{ srpRequestForm.price }}
+              {{ srpRequestForm.price | number: '1.0-0'}} ISK
             </p>
           </div>
         </div>
