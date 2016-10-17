@@ -20,7 +20,11 @@
               <td>
                 {{row.id}}
               </td>
-              <td>{{row.processing_status}}</td>
+              <td>
+                <label *ngIf="row.processing_status == 'in_process'" class="label label-primary">In Process</label>
+                <label *ngIf="row.processing_status == 'done'" class="label label-success">Done</label>
+                <label *ngIf="row.processing_status == 'reject'" class="label label-danger">Reject</label>
+              </td>
               <td>{{row.srp_destination?.name}}</td>
               <td>{{row.ship.ship_name}}</td>
               <td>{{row.zkill_valuation | number: '1.0-0'}}</td>

@@ -1,6 +1,7 @@
 import {Component, ViewChild} from '@angular/core';
 import {TextFilterComponent} from 'ng2-search-table/components/table-filter/text-filter.component';
 import {SortableHeaderComponent} from 'ng2-search-table/components/header/sortable-header.component';
+import {SelectFilterComponent} from "ng2-search-table/ng2-search-table";
 import {SimpleHeaderComponent} from 'ng2-search-table/components/header/simple-header.component';
 import {SearchTableComponent} from 'ng2-search-table/components/search-table.component';
 import {SrpRequestForm} from '../models/srp-request-form';
@@ -36,9 +37,17 @@ export class SrpRequestComponent {
     },
     {
       name: 'processing_status',
-      model: { displayName: 'Status' },
+      model: {
+        displayName: "Status",
+        selectValues: [
+          { },
+          { id: "in_process", name: "in_process" },
+          { id: "done", name: "done" },
+          { id: "reject", name: "reject" }
+        ]
+      },
       headerComponent: SortableHeaderComponent,
-      filterComponent: TextFilterComponent
+      filterComponent: SelectFilterComponent
     },
     {
       name: 'srp_destination',
