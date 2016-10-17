@@ -34,7 +34,7 @@ export class SrpRequestForm extends ValidatableForm {
 
   @JsonProperty('srp_destination_id')
   @FormVariable
-  srpDestinationId: string;
+  srpDestinationId: number;
 
   constructor(obj?: any) {
     super();

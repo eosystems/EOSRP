@@ -13,6 +13,7 @@
           申請
         </button>
       </div>
+
       <section class="content table-responsive">
         <div class="table table-condensed table-responsive table-hover mt-10">
           <search-table #searchTable [tableClass]="'table table-condensed'" [columns]="headerComponents" [config]="searchTableConfig">
@@ -32,8 +33,18 @@
               <td>{{row.updated_at | date: 'yyyy/MM/dd hh:mm'}}</td>
             </tr>
           </search-table>
+
+          <pagination [totalItems]="searchTable.getTotalCount()"
+                      [ngModel]="searchTable.getCurrentPage()"
+                      (pageChanged)="setCurrentPage($event)"
+                      [itemsPerPage]="searchTableConfig.defaultPagePer"
+                      [maxSize]="5"
+                      class="pagination-sm"
+                      [boundaryLinks]="true">
+          </pagination>
         </div>
       </section>
+
     </div>
 
     <div class="col-md-5">

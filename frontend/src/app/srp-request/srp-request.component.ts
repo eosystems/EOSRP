@@ -14,6 +14,7 @@ import {ToastsManager} from 'ng2-toastr';
 })
 
 export class SrpRequestComponent {
+  @ViewChild('searchTable') searchTable: any
   srpRequestForm: SrpRequestForm;
 
   constructor(
@@ -77,8 +78,17 @@ export class SrpRequestComponent {
     }
   ]
 
-  reloadSearchTable(searchTable: any): void {
-    searchTable.search();
+  reloadSearchTable() {
+    if (this.searchTable) {
+      // configの伝搬に時間がかかり別URLがリロードされるため、configを明示的に指定し直す
+      // ng2-search-table 側にURLを変更するメソッドを取り入れたら、以下は削除する
+      this.searchTable.config = this.searchTableConfig;
+      this.searchTable.search();
+    }
+  }
+
+  setCurrentPage(event: any): void {
+    this.searchTable.setCurrentPage(event.page);
   }
 
   // Order Grid押下時
