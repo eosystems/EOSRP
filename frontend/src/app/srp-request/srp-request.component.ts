@@ -30,7 +30,7 @@ export class SrpRequestComponent {
   headerComponents: any = [
     {
       name: 'id',
-      model: { displayName: 'Id' },
+      model: { displayName: '#' },
       headerComponent: SortableHeaderComponent,
       filterComponent: TextFilterComponent
     },
@@ -39,6 +39,11 @@ export class SrpRequestComponent {
       model: { displayName: 'Status' },
       headerComponent: SortableHeaderComponent,
       filterComponent: TextFilterComponent
+    },
+    {
+      name: 'srp_destination',
+      model: { displayName: '申請先' },
+      headerComponent: SimpleHeaderComponent
     },
     {
       name: 'ship_name',
