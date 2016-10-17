@@ -26,6 +26,21 @@
 
       <simple-form-input [name]='"requestComment"' [type]='"text"' [labelDisplayName]="'申請コメント'"></simple-form-input>
     </div>
+
+    <!-- #TODO 他の方法がある？？？ -->
+    <div class="col-xs-12">
+        <label>申請先</label>
+        <select class="form-control"
+                [ngModel]="this.srpRequestForm.srpDestinationId"
+                (change)="changeSrpDestination($event)">
+          <option *ngFor="let dest of srpDestinations" [value]="dest.id">
+            {{dest.name}}
+          </option>
+        </select>
+        <p>
+          申請先情報: {{srpDestinationDescription}}
+        </p>
+    </div>
   </simple-form>
 </div>
 

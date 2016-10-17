@@ -32,6 +32,9 @@ export class SrpRequestForm extends ValidatableForm {
   @FormValidation(Validators.maxLength(255))
   managerComment: string;
 
+  @JsonProperty('srp_destination_id')
+  @FormVariable
+  srpDestinationId: string;
 
   constructor(obj?: any) {
     super();
@@ -42,6 +45,7 @@ export class SrpRequestForm extends ValidatableForm {
     this.zkillValuation = obj && obj.zkillValuation;
     this.price = obj && obj.price;
     this.managerComment = obj && obj.managerComment;
+    this.srpDestinationId = obj && obj.srpDestinationId;
 
   }
 }

@@ -30,7 +30,7 @@ export class SrpRequestService {
         request_comment: srpRequest.requestComment,
         ship_id: zkill.shipTypeID,
         zkill_valuation: zkill.totalValue,
-        srp_destination_id: 1 /* TODO */
+        srp_destination_id: srpRequest.srpDestinationId /* TODO */
       }
     });
     return this
