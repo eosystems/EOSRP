@@ -26,38 +26,57 @@
 
       <simple-form-input [name]='"requestComment"' [type]='"text"' [labelDisplayName]="'申請コメント'"></simple-form-input>
     </div>
+
+    <!-- #TODO 他の方法がある？？？ -->
+    <div class="col-xs-12">
+        <label>申請先</label>
+        <select class="form-control"
+                [ngModel]="this.srpRequestForm.srpDestinationId"
+                (change)="changeSrpDestination($event)">
+          <option *ngFor="let dest of srpDestinations" [value]="dest.id">
+            {{dest.name}}
+          </option>
+        </select>
+        <p>
+          申請先情報: {{srpDestinationDescription}}
+        </p>
+    </div>
   </simple-form>
 </div>
 
 <h2>ZKill Board 情報</h2>
-<div class="row">
-  <div class="form-group">
-    <label class="col-sm-2 control-label">キャラクター名: </label>
-    <div class="col-sm-10">
-      <p class="form-control-static">
-        {{zkill.characterName}}
-      </p>
+
+<form class="form-horizontal">
+  <div class="row">
+    <div class="form-group">
+      <label class="col-sm-2 control-label">キャラクター名:
+      </label>
+      <div class="col-sm-10">
+        <p class="form-control-static">
+          {{zkill.characterName}}
+        </p>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="col-sm-2 control-label">Ship:
+      </label>
+      <div class="col-sm-10">
+        <p class="form-control-static">
+          {{zkill.shipName}}
+        </p>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="col-sm-2 control-label">評価額:
+      </label>
+      <div class="col-sm-10">
+        <p class="form-control-static">
+          {{zkill.totalValue | number: '1.0-0'}}
+          ISK
+        </p>
+      </div>
     </div>
   </div>
-
-  <div class="form-group">
-    <label class="col-sm-2 control-label">Ship: </label>
-    <div class="col-sm-10">
-      <p class="form-control-static">
-        {{zkill.shipName}}
-      </p>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <label class="col-sm-2 control-label">評価額: </label>
-    <div class="col-sm-10">
-      <p class="form-control-static">
-        {{zkill.totalValue}}
-      </p>
-    </div>
-  </div>
-
-
-
-</div>
+</form>

@@ -1,6 +1,7 @@
 import {Component, ViewChild} from '@angular/core';
 import {TextFilterComponent} from 'ng2-search-table/components/table-filter/text-filter.component';
 import {SortableHeaderComponent} from 'ng2-search-table/components/header/sortable-header.component';
+import {SelectFilterComponent} from "ng2-search-table/ng2-search-table";
 import {SimpleHeaderComponent} from 'ng2-search-table/components/header/simple-header.component';
 import {SearchTableComponent} from 'ng2-search-table/components/search-table.component';
 import {SrpRequestForm} from '../models/srp-request-form';
@@ -13,6 +14,7 @@ import {ToastsManager} from 'ng2-toastr';
 })
 
 export class SrpRequestComponent {
+  @ViewChild('searchTable') searchTable: any
   srpRequestForm: SrpRequestForm;
 
   constructor(
@@ -30,15 +32,28 @@ export class SrpRequestComponent {
   headerComponents: any = [
     {
       name: 'id',
-      model: { displayName: 'Id' },
+      model: { displayName: '#' },
       headerComponent: SortableHeaderComponent,
       filterComponent: TextFilterComponent
     },
     {
       name: 'processing_status',
-      model: { displayName: 'Status' },
+      model: {
+        displayName: "Status",
+        selectValues: [
+          { },
+          { id: "in_process", name: "in_process" },
+          { id: "done", name: "done" },
+          { id: "reject", name: "reject" }
+        ]
+      },
       headerComponent: SortableHeaderComponent,
-      filterComponent: TextFilterComponent
+      filterComponent: SelectFilterComponent
+    },
+    {
+      name: 'srp_destination',
+      model: { displayName: '申請先' },
+      headerComponent: SimpleHeaderComponent
     },
     {
       name: 'ship_name',
@@ -63,8 +78,17 @@ export class SrpRequestComponent {
     }
   ]
 
-  reloadSearchTable(searchTable: any): void {
-    searchTable.search();
+  reloadSearchTable() {
+    if (this.searchTable) {
+      // configの伝搬に時間がかかり別URLがリロードされるため、configを明示的に指定し直す
+      // ng2-search-table 側にURLを変更するメソッドを取り入れたら、以下は削除する
+      this.searchTable.config = this.searchTableConfig;
+      this.searchTable.search();
+    }
+  }
+
+  setCurrentPage(event: any): void {
+    this.searchTable.setCurrentPage(event.page);
   }
 
   // Order Grid押下時

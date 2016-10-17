@@ -41,11 +41,11 @@
       <td><img src="https://image.eveonline.com/Type/{{row.ship_id}}_32.png"></td>
       <td>{{row.guarantee_ship_type}}</td>
       <td>{{row.guarantee_ship_name}}</td>
-      <td>{{row.price}}</td>
-      <td>{{row.guarantee_jita_sell_min_price}}</td>
+      <td>{{row.price  | number: '1.0-0'}}</td>
+      <td>{{row.guarantee_jita_sell_min_price | number: '1.0-0'}}</td>
       <td>{{row.description}}</td>
-      <td>{{row.created_at}}</td>
-      <td>{{row.updated_at}}</td>
+      <td>{{row.created_at | date: 'yyyy/MM/dd hh:mm'}}</td>
+      <td>{{row.updated_at | date: 'yyyy/MM/dd hh:mm'}}</td>
     </tr>
   </search-table>
 </div>

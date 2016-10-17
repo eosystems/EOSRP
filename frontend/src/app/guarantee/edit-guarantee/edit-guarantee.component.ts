@@ -11,7 +11,7 @@ import {ToastsManager} from 'ng2-toastr';
 
 export class EditGuaranteeComponent {
   colHeaders: Array<string> = [
-    'Id', 'ShipType', 'ShipName', 'Price', 'Description'
+    'Id', 'ShipType', 'ShipName', 'Price', 'Jita Sell Min', 'Description'
   ];
   columns: Array<any> = [
     {
@@ -29,7 +29,13 @@ export class EditGuaranteeComponent {
     {
       data: 'price',
       type: 'numeric',
-      format: '0,0.00'
+      format: '0,0'
+    },
+    {
+      data: 'guarantee_jita_sell_min_price',
+      type: 'numeric',
+      format: '0,0',
+      readOnly: true
     },
     {
       data: 'description'

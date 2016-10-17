@@ -80,7 +80,7 @@ ActiveRecord::Schema.define(version: 0) do
   end
 
   create_table "srp_destinations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin ROW_FORMAT=COMPACT" do |t|
-    t.integer  "name",           null: false
+    t.string   "name",           null: false
     t.string   "description"
     t.integer  "corporation_id"
     t.integer  "alliance_id"
