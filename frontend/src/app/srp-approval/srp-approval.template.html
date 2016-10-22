@@ -79,6 +79,19 @@
               標準額設定
             </a>
           </simple-form-input>
+          <div class="form-group">
+              <label>保証種別</label>
+              <select class="form-control"
+                      [ngModel]="this.srpApprovalForm.guaranteeTypeId"
+                      (change)="changeGuaranteeType($event)">
+                <option *ngFor="let type of guaranteeTypes" [value]="type.id">
+                  {{type.name}}
+                </option>
+              </select>
+              <p>
+                保証種別説明:{{guaranteeTypeDescription}}
+              </p>
+          </div>
           <simple-form-input [name]='"managerComment"' [type]='"text"' [labelDisplayName]="'承認コメント'"></simple-form-input>
         </div>
 

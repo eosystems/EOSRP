@@ -6,6 +6,8 @@ import {SimpleHeaderComponent} from 'ng2-search-table/components/header/simple-h
 import {SearchTableComponent} from 'ng2-search-table/components/search-table.component';
 import {SrpApprovalForm} from '../models/srp-approval-form';
 import {SrpApprovalService} from './srp-approval.service';
+import {GuaranteeType} from '../models/guarantee-type';
+import {GuaranteeTypeService} from '../guarantee-type/guarantee-type.service';
 import {ToastsManager} from 'ng2-toastr';
 
 @Component({
@@ -16,12 +18,16 @@ import {ToastsManager} from 'ng2-toastr';
 export class SrpApprovalComponent {
   @ViewChild('searchTable') searchTable: any
   srpApprovalForm: SrpApprovalForm;
+  guaranteeTypes: Array<GuaranteeType>;
+  guaranteeTypeDescription: string;
 
   constructor(
     private srpApprovalService: SrpApprovalService,
+    private guaranteeTypeService: GuaranteeTypeService,
     private toastr: ToastsManager
   ) {
     this.srpApprovalForm = new SrpApprovalForm();
+    this.guaranteeTypeDescription = "";
   }
 
   searchTableConfig: any = {
@@ -103,6 +109,28 @@ export class SrpApprovalComponent {
     this.loadDetail(id);
   }
 
+  ngOnInit() {
+    this
+      .guaranteeTypeService
+      .all()
+      .subscribe(
+        r => {
+          if (r) {
+            this.guaranteeTypes = r;
+          }
+        },
+        _ => {
+          this.toastr.error("保証タイプを取得できませんでした。", "Error")
+        }
+      )
+  }
+
+  changeGuaranteeType(event: any){
+      this.srpApprovalForm.guaranteeTypeId = event.target.value;
+      this.guaranteeTypeDescription = this.guaranteeTypes.filter(v => v.id == this.srpApprovalForm.guaranteeTypeId)[0].description;
+  }
+
+
   // 詳細選択時
   loadDetail(id){
     this.srpApprovalService
@@ -110,6 +138,12 @@ export class SrpApprovalComponent {
     .subscribe(
       r => {
         this.srpApprovalForm = r;
+        // 保証種別説明
+        if(this.srpApprovalForm.guaranteeTypeId != null){
+          this.guaranteeTypeDescription = this.guaranteeTypes.filter(v => v.id == this.srpApprovalForm.guaranteeTypeId)[0].description;
+        }else{
+          this.guaranteeTypeDescription = "";
+        }
       },
       error => {
         this.toastr.error("情報取得に失敗しました", "Error");
@@ -123,7 +157,7 @@ export class SrpApprovalComponent {
     this.srpApprovalService
       .update(this.srpApprovalForm)
       .subscribe(
-        r => {  
+        r => {
           this.toastr.success("保存に成功しました。", "Success");
         },
         e => {

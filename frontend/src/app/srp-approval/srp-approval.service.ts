@@ -37,6 +37,7 @@ export class SrpApprovalService {
     let body = JSON.stringify({
       srp_approval: {
         price: srpApproval.price,
+        guarantee_type_id: srpApproval.guaranteeTypeId,
         manager_comment: srpApproval.managerComment
       }
     });

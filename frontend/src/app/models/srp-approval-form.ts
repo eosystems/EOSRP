@@ -44,6 +44,11 @@ export class SrpApprovalForm extends ValidatableForm {
   @FormVariable
   srpDestinationId: number;
 
+  @JsonProperty('guarantee_type_id')
+  @FormVariable
+  guaranteeTypeId: number;
+
+
   constructor(obj?: any) {
     super();
 
@@ -56,6 +61,7 @@ export class SrpApprovalForm extends ValidatableForm {
     this.price = obj && obj.price;
     this.managerComment = obj && obj.managerComment;
     this.srpDestinationId = obj && obj.srpDestinationId;
+    this.guaranteeTypeId = obj && obj.guaranteeTypeId;
 
   }
 }
