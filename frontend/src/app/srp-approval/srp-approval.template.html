@@ -40,9 +40,15 @@
       <h2>承認詳細 (#{{srpApprovalForm.id}})</h2>
       <simple-form [form]="srpApprovalForm" class = "form-horizontal" #form>
         <div class="col-xs-12 text-right">
-          <a class="btn btn-sm btn-normal" (click)="clickApprove()">
+          <button class="btn btn-normal btn-normal" [disabled]="srpApprovalForm.id == null"  (click)="clickBack()">
+            戻す
+          </button>
+          <button class="btn btn-normal btn-normal" [disabled]="srpApprovalForm.id == null" (click)="clickReject()">
+            却下
+          </button>
+          <button class="btn btn-normal btn-primary" [disabled]="srpApprovalForm.id == null" (click)="clickApprove()">
             承認
-          </a>
+          </button>
         </div>
 
         <div class="form-group">
@@ -75,17 +81,18 @@
 
         <div class="col-xs-12">
           <simple-form-input [name]='"price"' [type]='"text"' [labelDisplayName]="'承認額'">
-            <a class="btn btn-sm btn-normal" (click)="loadDefaultPrice()">
+            <button class="btn btn-sm btn-normal" [disabled]="srpApprovalForm.id == null" (click)="loadDefaultPrice()">
               標準額設定
-            </a>
-            <a class="btn btn-sm btn-normal" (click)="loadDefault()">
+            </button>
+            <button class="btn btn-sm btn-normal" [disabled]="srpApprovalForm.id == null" (click)="loadDefault()">
               申請先標準設定
-            </a>
+            </button>
           </simple-form-input>
           <div class="form-group">
               <label>保証種別</label>
               <select class="form-control"
                       [ngModel]="this.srpApprovalForm.guaranteeTypeId"
+                      [disabled]="srpApprovalForm.id == null" 
                       (change)="changeGuaranteeType($event)">
                 <option *ngFor="let type of guaranteeTypes" [value]="type.id">
                   {{type.name}}
