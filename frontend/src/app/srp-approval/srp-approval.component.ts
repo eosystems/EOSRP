@@ -180,10 +180,10 @@ export class SrpApprovalComponent {
         this.srpApprovalForm.price = r.price;
         this.srpApprovalForm.guaranteeTypeId = r.guaranteeTypeId;
         this.guaranteeTypeDescription = this.guaranteeTypes.filter(v => v.id == this.srpApprovalForm.guaranteeTypeId)[0].description;
-        this.toastr.success("標準額を設定しました", "Success");
+        this.toastr.success("申請先標準設定をしました", "Success");
       },
       error => {
-        this.toastr.error("標準額設定に失敗しました", "Error");
+        this.toastr.error("申請先標準設定に失敗しました", "Error");
       }
     );
   }
