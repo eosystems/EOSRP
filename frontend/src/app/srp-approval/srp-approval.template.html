@@ -1,0 +1,98 @@
+<div class="container-fluid">
+  <div class="row">
+
+    <div class="col-md-7">
+      <h2>承認一覧</h2>
+
+      <div class="text-left">
+        <a class="btn btn-sm btn-normal" (click)="reloadSearchTable(searchTable)">
+          Reload
+        </a>
+      </div>
+
+      <section class="content table-responsive">
+        <div class="table table-condensed table-responsive table-hover mt-10">
+          <search-table #searchTable [tableClass]="'table table-condensed'" [columns]="headerComponents" [config]="searchTableConfig">
+            <tr *ngFor="let row of searchTable.dataRows" (click)="selectRow(row.id, searchTable)" [ngClass]="{selected: row.selected}">
+              <td>
+                {{row.id}}
+              </td>
+              <td>
+                <label *ngIf="row.processing_status == 'in_process'" class="label label-primary">In Process</label>
+                <label *ngIf="row.processing_status == 'done'" class="label label-success">Done</label>
+                <label *ngIf="row.processing_status == 'reject'" class="label label-danger">Reject</label>
+              </td>
+              <td>{{row.srp_destination?.name}}</td>
+              <td>{{row.ship.ship_name}}</td>
+              <td>{{row.zkill_valuation | number: '1.0-0'}}</td>
+              <td>{{row.created_at | date: 'yyyy/MM/dd hh:mm'}}</td>
+              <td>{{row.updated_at | date: 'yyyy/MM/dd hh:mm'}}</td>
+            </tr>
+          </search-table>
+
+          <pagination [totalItems]="searchTable.getTotalCount()"
+                      [ngModel]="searchTable.getCurrentPage()"
+                      (pageChanged)="setCurrentPage($event)"
+                      [itemsPerPage]="searchTableConfig.defaultPagePer"
+                      [maxSize]="5"
+                      class="pagination-sm"
+                      [boundaryLinks]="true">
+          </pagination>
+        </div>
+      </section>
+
+    </div>
+
+    <div class="col-md-5">
+
+      <h2>承認詳細 (#{{srpApprovalForm.id}})</h2>
+
+      <form class="form-horizontal">
+
+        <div class="form-group">
+          <label class="col-sm-3 control-label">Url:</label>
+          <div class="col-sm-9">
+            <p class="form-control-static">
+              <a href="{{srpApprovalForm.zkillUrl}}" target="_blank"> {{ srpApprovalForm.zkillUrl }} </a>
+            </p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label">評価額:</label>
+          <div class="col-sm-9">
+            <p class="form-control-static">
+              {{ srpApprovalForm.zkillValuation | number: '1.0-0'}} ISK
+            </p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label">申請コメント:</label>
+          <div class="col-sm-9">
+            <p class="form-control-static">
+              {{ srpApprovalForm.requestComment }}
+            </p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label">承認額:</label>
+          <div class="col-sm-9">
+            <p class="form-control-static">
+              {{ srpApprovalForm.price | number: '1.0-0'}} ISK
+            </p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label">承認コメント:</label>
+          <div class="col-sm-9">
+            <p class="form-control-static">
+              {{ srpApprovalForm.managerComment }}
+            </p>
+          </div>
+        </div>
+
+      </form>
+
+    </div>
+
+  </div>
+</div>
