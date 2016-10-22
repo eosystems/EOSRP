@@ -9,6 +9,7 @@ class Api::SrpApprovalsController < Api::ApiController
     @srp_approvals = SrpRequest
       .accessible_srp_approvals(current_user.user_detail.corporation.corporation_id)
       .search_with(params[:filter], params[:sort] ,@page, @per)
+      .order(id: :desc)
   end
 
   def show
