@@ -12,7 +12,7 @@ class Api::SrpApprovalsController < Api::ApiController
   end
 
   def show
-    render json: @srp_approval
+    @srp_approval
   end
 
   def update

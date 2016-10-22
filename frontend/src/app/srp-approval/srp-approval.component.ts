@@ -8,6 +8,8 @@ import {SrpApprovalForm} from '../models/srp-approval-form';
 import {SrpApprovalService} from './srp-approval.service';
 import {GuaranteeType} from '../models/guarantee-type';
 import {GuaranteeTypeService} from '../guarantee-type/guarantee-type.service';
+import {Guarantee} from '../models/guarantee';
+import {GuaranteeService} from '../guarantee/guarantee.service';
 import {ToastsManager} from 'ng2-toastr';
 
 @Component({
@@ -18,15 +20,18 @@ import {ToastsManager} from 'ng2-toastr';
 export class SrpApprovalComponent {
   @ViewChild('searchTable') searchTable: any
   srpApprovalForm: SrpApprovalForm;
+  guarantee: Guarantee;
   guaranteeTypes: Array<GuaranteeType>;
   guaranteeTypeDescription: string;
 
   constructor(
     private srpApprovalService: SrpApprovalService,
     private guaranteeTypeService: GuaranteeTypeService,
+    private guaranteeService: GuaranteeService,
     private toastr: ToastsManager
   ) {
     this.srpApprovalForm = new SrpApprovalForm();
+    this.guarantee = new Guarantee();
     this.guaranteeTypeDescription = "";
   }
 
@@ -150,6 +155,39 @@ export class SrpApprovalComponent {
       }
     );
   }
+
+  // 標準額設定
+  loadDefaultPrice(){
+    this.guaranteeService
+    .get_default_price(this.srpApprovalForm.ship.id, this.srpApprovalForm.guaranteeTypeId)
+    .subscribe(
+      r => {
+        this.srpApprovalForm.price = r.price;
+        this.toastr.success("標準額を設定しました", "Success");
+      },
+      error => {
+        this.toastr.error("標準額設定に失敗しました", "Error");
+      }
+    );
+  }
+
+  // 申請先標準設定
+  loadDefault(){
+    this.guaranteeService
+    .get_default_setting(this.srpApprovalForm.ship.id, this.srpApprovalForm.srpDestinationId)
+    .subscribe(
+      r => {
+        this.srpApprovalForm.price = r.price;
+        this.srpApprovalForm.guaranteeTypeId = r.guaranteeTypeId;
+        this.guaranteeTypeDescription = this.guaranteeTypes.filter(v => v.id == this.srpApprovalForm.guaranteeTypeId)[0].description;
+        this.toastr.success("標準額を設定しました", "Success");
+      },
+      error => {
+        this.toastr.error("標準額設定に失敗しました", "Error");
+      }
+    );
+  }
+
 
   clickApprove() {
     this.toastr.info("保存しています。", "Post");

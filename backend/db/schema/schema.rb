@@ -76,6 +76,7 @@ create_table :srp_destinations, collate: "utf8_bin" do |t|
   t.int :corporation_id, null: true
   t.int :alliance_id, null: true
   t.varchar :external, null: true
+  t.int :default_guarantee_type_id, null: true
   t.datetime :created_at
   t.datetime :updated_at
 end

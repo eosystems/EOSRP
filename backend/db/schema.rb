@@ -80,13 +80,14 @@ ActiveRecord::Schema.define(version: 0) do
   end
 
   create_table "srp_destinations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin ROW_FORMAT=COMPACT" do |t|
-    t.string   "name",           null: false
+    t.string   "name",                      null: false
     t.string   "description"
     t.integer  "corporation_id"
     t.integer  "alliance_id"
     t.string   "external"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.integer  "default_guarantee_type_id"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
   create_table "srp_requests", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin ROW_FORMAT=COMPACT" do |t|

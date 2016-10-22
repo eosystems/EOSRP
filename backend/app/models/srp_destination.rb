@@ -2,14 +2,15 @@
 #
 # Table name: srp_destinations
 #
-#  id             :integer          not null, primary key
-#  name           :string(255)      not null
-#  description    :string(255)
-#  corporation_id :integer
-#  alliance_id    :integer
-#  external       :string(255)
-#  created_at     :datetime         not null
-#  updated_at     :datetime         not null
+#  id                        :integer          not null, primary key
+#  name                      :string(255)      not null
+#  description               :string(255)
+#  corporation_id            :integer
+#  alliance_id               :integer
+#  external                  :string(255)
+#  default_guarantee_type_id :integer
+#  created_at                :datetime         not null
+#  updated_at                :datetime         not null
 #
 
 class SrpDestination < ActiveRecord::Base

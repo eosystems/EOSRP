@@ -1,0 +1,1 @@
+json.(@guarantee, :id, :price)

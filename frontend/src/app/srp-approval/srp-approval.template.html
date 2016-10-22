@@ -75,8 +75,11 @@
 
         <div class="col-xs-12">
           <simple-form-input [name]='"price"' [type]='"text"' [labelDisplayName]="'承認額'">
-            <a class="btn btn-sm btn-normal" (click)="clickApprove()">
+            <a class="btn btn-sm btn-normal" (click)="loadDefaultPrice()">
               標準額設定
+            </a>
+            <a class="btn btn-sm btn-normal" (click)="loadDefault()">
+              申請先標準設定
             </a>
           </simple-form-input>
           <div class="form-group">
