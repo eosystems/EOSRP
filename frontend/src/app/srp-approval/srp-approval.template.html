@@ -30,68 +30,59 @@
             </tr>
           </search-table>
 
-          <pagination [totalItems]="searchTable.getTotalCount()"
-                      [ngModel]="searchTable.getCurrentPage()"
-                      (pageChanged)="setCurrentPage($event)"
-                      [itemsPerPage]="searchTableConfig.defaultPagePer"
-                      [maxSize]="5"
-                      class="pagination-sm"
-                      [boundaryLinks]="true">
-          </pagination>
+          <pagination [totalItems]="searchTable.getTotalCount()" [ngModel]="searchTable.getCurrentPage()" (pageChanged)="setCurrentPage($event)" [itemsPerPage]="searchTableConfig.defaultPagePer" [maxSize]="5" class="pagination-sm" [boundaryLinks]="true"></pagination>
         </div>
       </section>
 
     </div>
 
-    <div class="col-md-5">
-
+    <div class="col-md-5 row">
       <h2>承認詳細 (#{{srpApprovalForm.id}})</h2>
-
-      <form class="form-horizontal">
+      <simple-form [form]="srpApprovalForm" class = "form-horizontal" #form>
+        <div class="col-xs-12 text-right">
+          <a class="btn btn-sm btn-normal" (click)="clickApprove()">
+            承認
+          </a>
+        </div>
 
         <div class="form-group">
-          <label class="col-sm-3 control-label">Url:</label>
+          <label class="col-sm-3 control-label" style="text-align:left">Url:</label>
           <div class="col-sm-9">
             <p class="form-control-static">
-              <a href="{{srpApprovalForm.zkillUrl}}" target="_blank"> {{ srpApprovalForm.zkillUrl }} </a>
+              <a href="{{srpApprovalForm.zkillUrl}}" target="_blank">
+                {{ srpApprovalForm.zkillUrl }}
+              </a>
             </p>
           </div>
         </div>
         <div class="form-group">
-          <label class="col-sm-3 control-label">評価額:</label>
+          <label class="col-sm-3 control-label" style="text-align:left">評価額:</label>
           <div class="col-sm-9">
             <p class="form-control-static">
-              {{ srpApprovalForm.zkillValuation | number: '1.0-0'}} ISK
+              {{ srpApprovalForm.zkillValuation | number: '1.0-0'}}
+              ISK
             </p>
           </div>
         </div>
         <div class="form-group">
-          <label class="col-sm-3 control-label">申請コメント:</label>
+          <label class="col-sm-3 control-label" style="text-align:left">申請コメント:</label>
           <div class="col-sm-9">
             <p class="form-control-static">
               {{ srpApprovalForm.requestComment }}
             </p>
           </div>
         </div>
-        <div class="form-group">
-          <label class="col-sm-3 control-label">承認額:</label>
-          <div class="col-sm-9">
-            <p class="form-control-static">
-              {{ srpApprovalForm.price | number: '1.0-0'}} ISK
-            </p>
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="col-sm-3 control-label">承認コメント:</label>
-          <div class="col-sm-9">
-            <p class="form-control-static">
-              {{ srpApprovalForm.managerComment }}
-            </p>
-          </div>
+
+        <div class="col-xs-12">
+          <simple-form-input [name]='"price"' [type]='"text"' [labelDisplayName]="'承認額'">
+            <a class="btn btn-sm btn-normal" (click)="clickApprove()">
+              標準額設定
+            </a>
+          </simple-form-input>
+          <simple-form-input [name]='"managerComment"' [type]='"text"' [labelDisplayName]="'承認コメント'"></simple-form-input>
         </div>
 
-      </form>
-
+      </simple-form>
     </div>
 
   </div>

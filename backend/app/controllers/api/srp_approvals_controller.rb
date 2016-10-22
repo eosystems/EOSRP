@@ -31,11 +31,11 @@ class Api::SrpApprovalsController < Api::ApiController
 
   def srp_approval_params
     json_body[:srp_approval]
-      .slice(:manager_comment, :processing_status, :guarantee_type_id)
+      .slice(:manager_comment, :processing_status, :guarantee_type_id, :price)
   end
 
   def role_check
-    if !current_user.has_manager_role && !current_user.has_admin_role?
+    if !current_user.has_manager_role? && !current_user.has_admin_role?
       render json: { result: "error", message: "権限がありません"}, status: 401
     end
   end

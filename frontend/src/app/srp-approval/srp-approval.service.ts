@@ -33,16 +33,16 @@ export class SrpApprovalService {
       });
   }
 
-  update(id: string, srpApproval: SrpApprovalForm): any {
+  update(srpApproval: SrpApprovalForm): any {
     let body = JSON.stringify({
       srp_approval: {
-        name: srpApproval.zkillUrl,
-        description: srpApproval.requestComment
+        price: srpApproval.price,
+        manager_comment: srpApproval.managerComment
       }
     });
     return this
       ._http
-      .put(process.env.API_URL + "/api/srp_approvals/" + id, body);
+      .put(process.env.API_URL + "/api/srp_approvals/" + srpApproval.id, body);
   }
 
 }

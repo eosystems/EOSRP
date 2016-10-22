@@ -117,4 +117,19 @@ export class SrpApprovalComponent {
     );
   }
 
+  clickApprove() {
+    this.toastr.info("保存しています。", "Post");
+
+    this.srpApprovalService
+      .update(this.srpApprovalForm)
+      .subscribe(
+        r => {  
+          this.toastr.success("保存に成功しました。", "Success");
+        },
+        e => {
+          this.toastr.error("エラーが発生しました。", "Error");
+        }
+      );
+  }
+
 }
