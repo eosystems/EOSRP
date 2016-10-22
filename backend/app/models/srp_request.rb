@@ -53,8 +53,13 @@ class SrpRequest < ActiveRecord::Base
 
   # 指定したCorpに属している場合参照可能
   scope :accessible_srp_approvals, -> (corporation_id) do
-    cid = arel_table[:corporation_id]
-    where(cid.eq(corporation_id))
+    dest = SrpDestination.arel_table
+    approvals = self.arel_table
+    join_condition = approvals
+      .join(dest)
+      .on(dest[:id].eq(approvals[:srp_destination_id]))
+      .join_sources
+    joins(join_condition).where(dest[:corporation_id].eq(corporation_id))
   end
 
   # Methods
