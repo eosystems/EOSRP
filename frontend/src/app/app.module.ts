@@ -24,8 +24,10 @@ import {NewGuaranteeTypeComponent} from './guarantee-type/new-guarantee-type/new
 import {GuaranteeTypeService} from './guarantee-type/guarantee-type.service';
 import {NewSrpRequestComponent} from './srp-request/new-srp-request/new-srp-request.component';
 import {SrpRequestComponent} from './srp-request/srp-request.component';
+import {SrpApprovalComponent} from './srp-approval/srp-approval.component';
 import {ZkillService} from './zkill/zkill.service';
 import {SrpRequestService} from './srp-request/srp-request.service';
+import {SrpApprovalService} from './srp-approval/srp-approval.service';
 import {SrpDestinationService} from './srp-destination/srp-destination.service';
 import {ToastModule} from 'ng2-toastr';
 import {SimpleForm} from './common/simple-form/simple-form.component';
@@ -71,6 +73,7 @@ type StoreType = {
     EditGuaranteeTypeComponent,
     SrpRequestComponent,
     NewSrpRequestComponent,
+    SrpApprovalComponent,
     SimpleForm,
     SimpleFormInput
   ],
@@ -95,6 +98,7 @@ type StoreType = {
     SrpRequestService,
     ZkillService,
     SrpDestinationService,
+    SrpApprovalService,
     {
       provide: Http,
       useFactory: (backend: XHRBackend, defaultOptions: RequestOptions) => {

@@ -10,6 +10,25 @@ class Api::GuaranteesController < Api::ApiController
       .search_with(params[:filter], params[:sort] ,@page, @per)
   end
 
+  def guarantee_price_by_ship_and_guarantee_type
+    ship_id = params[:ship_id]
+    guarantee_type_id = params[:guarantee_type_id]
+
+    @guarantee = Guarantee.where(ship_id: ship_id, guarantee_type_id: guarantee_type_id).first
+  end
+
+  def default_srp
+    ship_id = params[:ship_id]
+    srp_destination_id = params[:srp_destination_id]
+
+    dest = SrpDestination.find(srp_destination_id)
+    if !dest.nil?
+      guarantee_type_id = dest.default_guarantee_type_id
+    end
+
+    @guarantee = Guarantee.where(ship_id: ship_id, guarantee_type_id: guarantee_type_id).first
+  end
+
   def update_all
     guarantees = Guarantee.where(id: posted_guarantees.map { |v| v[:id] })
     guarantees.each do |target|

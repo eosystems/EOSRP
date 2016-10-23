@@ -56,7 +56,7 @@ export class SrpRequestComponent {
       headerComponent: SimpleHeaderComponent
     },
     {
-      name: 'ship_name',
+      name: 'ship_ship_name',
       model: { displayName: 'ShipName' },
       headerComponent: SortableHeaderComponent,
       filterComponent: TextFilterComponent

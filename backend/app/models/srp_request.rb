@@ -24,7 +24,9 @@ class SrpRequest < ActiveRecord::Base
   # Constants
   RANSACK_FILTER_ATTRIBUTES = {
     id: :id_eq,
-    processing_status: :processing_status_eq
+    processing_status: :processing_status_eq,
+    user_name: :user_name_cont_any,
+    ship_ship_name: :ship_ship_name_cont_any,
   }.with_indifferent_access.freeze
 
   RANSACK_SORT_ATTRIBUTES = {
@@ -40,6 +42,10 @@ class SrpRequest < ActiveRecord::Base
   belongs_to :user_detail, foreign_key: 'user_id', primary_key: 'user_id'
   belongs_to :process_user, class_name: 'User', foreign_key: :process_user_id
   belongs_to :ship, class_name: 'Ship', foreign_key: :ship_id
+
+  # Delegate
+  delegate :name, to: :user, allow_nil: true, prefix: :user
+  delegate :ship_name, to: :ship, allow_nil: true, prefix: :ship
   # Validations
 
   # Hooks
@@ -53,8 +59,13 @@ class SrpRequest < ActiveRecord::Base
 
   # 指定したCorpに属している場合参照可能
   scope :accessible_srp_approvals, -> (corporation_id) do
-    cid = arel_table[:corporation_id]
-    where(cid.eq(corporation_id))
+    dest = SrpDestination.arel_table
+    approvals = self.arel_table
+    join_condition = approvals
+      .join(dest)
+      .on(dest[:id].eq(approvals[:srp_destination_id]))
+      .join_sources
+    joins(join_condition).where(dest[:corporation_id].eq(corporation_id))
   end
 
   # Methods

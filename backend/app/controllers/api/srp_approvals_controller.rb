@@ -9,10 +9,11 @@ class Api::SrpApprovalsController < Api::ApiController
     @srp_approvals = SrpRequest
       .accessible_srp_approvals(current_user.user_detail.corporation.corporation_id)
       .search_with(params[:filter], params[:sort] ,@page, @per)
+      .order(id: :desc)
   end
 
   def show
-    render json: @srp_approval
+    @srp_approval
   end
 
   def update
@@ -31,11 +32,11 @@ class Api::SrpApprovalsController < Api::ApiController
 
   def srp_approval_params
     json_body[:srp_approval]
-      .slice(:manager_comment, :processing_status, :guarantee_type_id)
+      .slice(:manager_comment, :processing_status, :guarantee_type_id, :price)
   end
 
   def role_check
-    if !current_user.has_manager_role && !current_user.has_admin_role?
+    if !current_user.has_manager_role? && !current_user.has_admin_role?
       render json: { result: "error", message: "権限がありません"}, status: 401
     end
   end

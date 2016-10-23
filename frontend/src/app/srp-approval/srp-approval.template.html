@@ -1,0 +1,121 @@
+<div class="container-fluid">
+  <div class="row">
+
+    <div class="col-md-7">
+      <h2>承認一覧</h2>
+
+      <div class="text-left">
+        <a class="btn btn-sm btn-normal" (click)="reloadSearchTable(searchTable)">
+          Reload
+        </a>
+      </div>
+
+      <section class="content table-responsive">
+        <div class="table table-condensed table-responsive table-hover mt-10">
+          <search-table #searchTable [tableClass]="'table table-condensed'" [columns]="headerComponents" [config]="searchTableConfig">
+            <tr *ngFor="let row of searchTable.dataRows" (click)="selectRow(row.id, searchTable)" [ngClass]="{selected: row.selected}">
+              <td>
+                {{row.id}}
+              </td>
+              <td>
+                <label *ngIf="row.processing_status == 'in_process'" class="label label-primary">In Process</label>
+                <label *ngIf="row.processing_status == 'done'" class="label label-success">Done</label>
+                <label *ngIf="row.processing_status == 'reject'" class="label label-danger">Reject</label>
+              </td>
+              <td>{{row.srp_destination?.name}}</td>
+              <td>{{row.user?.name}}</td>
+              <td>{{row.ship.ship_name}}</td>
+              <td>{{row.price | number: '1.0-0'}}</td>
+              <td>{{row.created_at | date: 'yyyy/MM/dd hh:mm'}}</td>
+            </tr>
+          </search-table>
+
+          <pagination [totalItems]="searchTable.getTotalCount()" [ngModel]="searchTable.getCurrentPage()" (pageChanged)="setCurrentPage($event)" [itemsPerPage]="searchTableConfig.defaultPagePer" [maxSize]="5" class="pagination-sm" [boundaryLinks]="true"></pagination>
+        </div>
+      </section>
+
+    </div>
+
+    <div class="col-md-5 row">
+      <h2>承認詳細 (#{{srpApprovalForm.id}})</h2>
+      <simple-form [form]="srpApprovalForm" class = "form-horizontal" #form>
+        <div class="col-xs-12 text-right">
+          <button class="btn btn-normal btn-normal" [disabled]="srpApprovalForm.id == null || !srpApprovalForm.hasOperationRole"  (click)="clickBack()">
+            戻す
+          </button>
+          <button class="btn btn-normal btn-normal" [disabled]="srpApprovalForm.id == null || !srpApprovalForm.hasOperationRole" (click)="clickReject()">
+            却下
+          </button>
+          <button class="btn btn-normal btn-primary" [disabled]="srpApprovalForm.id == null || !srpApprovalForm.hasOperationRole" (click)="clickApprove()">
+            承認
+          </button>
+        </div>
+
+        <div class="form-group">
+          <label class="col-sm-3 control-label" style="text-align:left">Url:</label>
+          <div class="col-sm-9">
+            <p class="form-control-static">
+              <a href="{{srpApprovalForm.zkillUrl}}" target="_blank">
+                {{ srpApprovalForm.zkillUrl }}
+              </a>
+            </p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label" style="text-align:left">評価額:</label>
+          <div class="col-sm-9">
+            <p class="form-control-static">
+              {{ srpApprovalForm.zkillValuation | number: '1.0-0'}}
+              ISK
+            </p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label" style="text-align:left">申請コメント:</label>
+          <div class="col-sm-9">
+            <p class="form-control-static">
+              {{ srpApprovalForm.requestComment }}
+            </p>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-sm-3 control-label" style="text-align:left">申請者:</label>
+          <div class="col-sm-9">
+            <p class="form-control-static">
+              {{ srpApprovalForm.user?.name }}
+            </p>
+          </div>
+        </div>
+
+        <div class="col-xs-12">
+          <simple-form-input [name]='"price"' [type]='"number"' [labelDisplayName]="'承認額'">
+            <button class="btn btn-sm btn-normal" [disabled]="srpApprovalForm.id == null || !srpApprovalForm.hasOperationRole" (click)="loadDefaultPrice()">
+              標準額設定
+            </button>
+            <button class="btn btn-sm btn-normal" [disabled]="srpApprovalForm.id == null || !srpApprovalForm.hasOperationRole" (click)="loadDefault()">
+              申請先標準設定
+            </button>
+          </simple-form-input>
+          <div class="form-group">
+              <label>保証種別</label>
+              <select class="form-control"
+                      [ngModel]="this.srpApprovalForm.guaranteeTypeId"
+                      [disabled]="srpApprovalForm.id == null"
+                      (change)="changeGuaranteeType($event)">
+                <option *ngFor="let type of guaranteeTypes" [value]="type.id">
+                  {{type.name}}
+                </option>
+              </select>
+              <p>
+                保証種別説明:{{guaranteeTypeDescription}}
+              </p>
+          </div>
+          <simple-form-input [name]='"managerComment"' [type]='"text"' [labelDisplayName]="'承認コメント'"></simple-form-input>
+        </div>
+
+      </simple-form>
+    </div>
+
+  </div>
+</div>

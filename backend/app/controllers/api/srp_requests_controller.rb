@@ -7,6 +7,7 @@ class Api::SrpRequestsController < Api::ApiController
     @srp_requests = SrpRequest
       .accessible_srp_requests(current_user.uid)
       .search_with(params[:filter], params[:sort] ,@page, @per)
+      .order(id: :desc)
   end
 
   def show
