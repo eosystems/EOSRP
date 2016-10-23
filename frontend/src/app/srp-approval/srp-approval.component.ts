@@ -199,6 +199,7 @@ export class SrpApprovalComponent {
       .subscribe(
         r => {
           this.toastr.success("承認しました。", "Success");
+          this.reloadSearchTable();
         },
         e => {
           this.toastr.error("エラーが発生しました。", "Error");
@@ -215,6 +216,7 @@ export class SrpApprovalComponent {
       .subscribe(
         r => {
           this.toastr.success("ステータスを戻しました。", "Success");
+          this.reloadSearchTable();
         },
         e => {
           this.toastr.error("エラーが発生しました。", "Error");
@@ -231,6 +233,7 @@ export class SrpApprovalComponent {
       .subscribe(
         r => {
           this.toastr.success("却下しました。", "Success");
+          this.reloadSearchTable();
         },
         e => {
           this.toastr.error("エラーが発生しました。", "Error");
