@@ -89,7 +89,7 @@
         </div>
 
         <div class="col-xs-12">
-          <simple-form-input [name]='"price"' [type]='"text"' [labelDisplayName]="'承認額'">
+          <simple-form-input [name]='"price"' [type]='"number"' [labelDisplayName]="'承認額'">
             <button class="btn btn-sm btn-normal" [disabled]="srpApprovalForm.id == null || !srpApprovalForm.hasOperationRole" (click)="loadDefaultPrice()">
               標準額設定
             </button>
