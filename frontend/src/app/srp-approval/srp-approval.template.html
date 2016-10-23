@@ -40,13 +40,13 @@
       <h2>承認詳細 (#{{srpApprovalForm.id}})</h2>
       <simple-form [form]="srpApprovalForm" class = "form-horizontal" #form>
         <div class="col-xs-12 text-right">
-          <button class="btn btn-normal btn-normal" [disabled]="srpApprovalForm.id == null"  (click)="clickBack()">
+          <button class="btn btn-normal btn-normal" [disabled]="srpApprovalForm.id == null || !srpApprovalForm.hasOperationRole"  (click)="clickBack()">
             戻す
           </button>
-          <button class="btn btn-normal btn-normal" [disabled]="srpApprovalForm.id == null" (click)="clickReject()">
+          <button class="btn btn-normal btn-normal" [disabled]="srpApprovalForm.id == null || !srpApprovalForm.hasOperationRole" (click)="clickReject()">
             却下
           </button>
-          <button class="btn btn-normal btn-primary" [disabled]="srpApprovalForm.id == null" (click)="clickApprove()">
+          <button class="btn btn-normal btn-primary" [disabled]="srpApprovalForm.id == null || !srpApprovalForm.hasOperationRole" (click)="clickApprove()">
             承認
           </button>
         </div>
@@ -81,10 +81,10 @@
 
         <div class="col-xs-12">
           <simple-form-input [name]='"price"' [type]='"text"' [labelDisplayName]="'承認額'">
-            <button class="btn btn-sm btn-normal" [disabled]="srpApprovalForm.id == null" (click)="loadDefaultPrice()">
+            <button class="btn btn-sm btn-normal" [disabled]="srpApprovalForm.id == null || !srpApprovalForm.hasOperationRole" (click)="loadDefaultPrice()">
               標準額設定
             </button>
-            <button class="btn btn-sm btn-normal" [disabled]="srpApprovalForm.id == null" (click)="loadDefault()">
+            <button class="btn btn-sm btn-normal" [disabled]="srpApprovalForm.id == null || !srpApprovalForm.hasOperationRole" (click)="loadDefault()">
               申請先標準設定
             </button>
           </simple-form-input>
@@ -92,7 +92,7 @@
               <label>保証種別</label>
               <select class="form-control"
                       [ngModel]="this.srpApprovalForm.guaranteeTypeId"
-                      [disabled]="srpApprovalForm.id == null" 
+                      [disabled]="srpApprovalForm.id == null"
                       (change)="changeGuaranteeType($event)">
                 <option *ngFor="let type of guaranteeTypes" [value]="type.id">
                   {{type.name}}
