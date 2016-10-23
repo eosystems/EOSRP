@@ -190,13 +190,46 @@ export class SrpApprovalComponent {
 
 
   clickApprove() {
-    this.toastr.info("保存しています。", "Post");
+    this.toastr.info("承認しています。", "Post");
+    this.srpApprovalForm.processingStatus = "done";
 
     this.srpApprovalService
       .update(this.srpApprovalForm)
       .subscribe(
         r => {
-          this.toastr.success("保存に成功しました。", "Success");
+          this.toastr.success("承認しました。", "Success");
+        },
+        e => {
+          this.toastr.error("エラーが発生しました。", "Error");
+        }
+      );
+  }
+
+  clickBack() {
+    this.toastr.info("ステータスを戻しています。", "Post");
+    this.srpApprovalForm.processingStatus = "in_process";
+
+    this.srpApprovalService
+      .update(this.srpApprovalForm)
+      .subscribe(
+        r => {
+          this.toastr.success("ステータスを戻しました。", "Success");
+        },
+        e => {
+          this.toastr.error("エラーが発生しました。", "Error");
+        }
+      );
+  }
+
+  clickReject() {
+    this.toastr.info("却下しています。", "Post");
+    this.srpApprovalForm.processingStatus = "reject";
+
+    this.srpApprovalService
+      .update(this.srpApprovalForm)
+      .subscribe(
+        r => {
+          this.toastr.success("却下しました。", "Success");
         },
         e => {
           this.toastr.error("エラーが発生しました。", "Error");

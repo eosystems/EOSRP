@@ -32,13 +32,14 @@ export class SrpApprovalService {
         return form;
       });
   }
-  
+
   update(srpApproval: SrpApprovalForm): any {
     let body = JSON.stringify({
       srp_approval: {
         price: srpApproval.price,
         guarantee_type_id: srpApproval.guaranteeTypeId,
-        manager_comment: srpApproval.managerComment
+        manager_comment: srpApproval.managerComment,
+        processing_status: srpApproval.processingStatus
       }
     });
     return this
