@@ -25,9 +25,8 @@
               <td>{{row.srp_destination?.name}}</td>
               <td>{{row.user?.name}}</td>
               <td>{{row.ship.ship_name}}</td>
-              <td>{{row.zkill_valuation | number: '1.0-0'}}</td>
+              <td>{{row.price | number: '1.0-0'}}</td>
               <td>{{row.created_at | date: 'yyyy/MM/dd hh:mm'}}</td>
-              <td>{{row.updated_at | date: 'yyyy/MM/dd hh:mm'}}</td>
             </tr>
           </search-table>
 
@@ -76,6 +75,15 @@
           <div class="col-sm-9">
             <p class="form-control-static">
               {{ srpApprovalForm.requestComment }}
+            </p>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-sm-3 control-label" style="text-align:left">申請者:</label>
+          <div class="col-sm-9">
+            <p class="form-control-static">
+              {{ srpApprovalForm.user?.name }}
             </p>
           </div>
         </div>

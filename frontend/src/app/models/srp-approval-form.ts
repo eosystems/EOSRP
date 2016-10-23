@@ -26,6 +26,10 @@ export class SrpApprovalForm extends ValidatableForm {
   @FormVariable
   ship: any;
 
+  @JsonProperty('user')
+  @FormVariable
+  user: any;
+
   @JsonProperty('guarantee_type')
   @FormVariable
   guaranteeType: any;
@@ -64,6 +68,7 @@ export class SrpApprovalForm extends ValidatableForm {
     this.requestComment = obj && obj.requestComment;
     this.zkillValuation = obj && obj.zkillValuation;
     this.ship = obj && obj.ship;
+    this.user = obj && obj.user;
     this.guaranteeType = obj && obj.guaranteeType;
     this.price = obj && obj.price;
     this.managerComment = obj && obj.managerComment;

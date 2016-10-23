@@ -79,18 +79,13 @@ export class SrpApprovalComponent {
       filterComponent: TextFilterComponent
     },
     {
-      name: 'zkill_valuation',
-      model: { displayName: '評価額' },
+      name: 'price',
+      model: { displayName: '承認額' },
       headerComponent: SimpleHeaderComponent
     },
     {
       name: 'created_at',
-      model: { displayName: 'CreatedAt' },
-      headerComponent: SortableHeaderComponent
-    },
-    {
-      name: 'updated_at',
-      model: { displayName: 'UpdatedAt' },
+      model: { displayName: '申請日' },
       headerComponent: SortableHeaderComponent
     }
   ]
