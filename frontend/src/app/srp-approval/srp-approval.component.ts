@@ -67,7 +67,13 @@ export class SrpApprovalComponent {
       headerComponent: SimpleHeaderComponent
     },
     {
-      name: 'ship_name',
+      name: 'user_name',
+      model: { displayName: 'User' },
+      headerComponent: SortableHeaderComponent,
+      filterComponent: TextFilterComponent
+    },
+    {
+      name: 'ship_ship_name',
       model: { displayName: 'ShipName' },
       headerComponent: SortableHeaderComponent,
       filterComponent: TextFilterComponent

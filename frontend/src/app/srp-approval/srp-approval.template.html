@@ -23,6 +23,7 @@
                 <label *ngIf="row.processing_status == 'reject'" class="label label-danger">Reject</label>
               </td>
               <td>{{row.srp_destination?.name}}</td>
+              <td>{{row.user?.name}}</td>
               <td>{{row.ship.ship_name}}</td>
               <td>{{row.zkill_valuation | number: '1.0-0'}}</td>
               <td>{{row.created_at | date: 'yyyy/MM/dd hh:mm'}}</td>
