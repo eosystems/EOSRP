@@ -48,7 +48,13 @@ export class Ng2TokenAuthService implements CanActivate {
   }
 
   isSignedIn(): boolean {
-    return this._userData !== null;
+    if (this._userData == null){
+      return false;
+    }
+    if (this._userData.id == null){
+      return false;
+    }
+    return true;
   }
 
   getUserData(): any {
