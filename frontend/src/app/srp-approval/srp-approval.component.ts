@@ -189,6 +189,15 @@ export class SrpApprovalComponent {
     );
   }
 
+  // 評価額の60%を承認額に設定
+  setPrice60(){
+    this.srpApprovalForm.price = parseInt(this.srpApprovalForm.zkillValuation) * 0.6;
+  }
+
+  // 評価額の100%を承認額に設定
+  setPrice100(){
+    this.srpApprovalForm.price = parseInt(this.srpApprovalForm.zkillValuation);
+  }
 
   clickApprove() {
     this.toastr.info("承認しています。", "Post");

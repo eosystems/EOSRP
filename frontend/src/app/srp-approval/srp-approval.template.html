@@ -71,6 +71,14 @@
           </div>
         </div>
         <div class="form-group">
+          <label class="col-sm-3 control-label" style="text-align:left">評価額支払割合:</label>
+          <div class="col-sm-9">
+            <p class="form-control-static">
+              {{ (srpApprovalForm.price / srpApprovalForm.zkillValuation) | percent: '1.0-0'}}
+            </p>
+          </div>
+        </div>
+        <div class="form-group">
           <label class="col-sm-3 control-label" style="text-align:left">申請コメント:</label>
           <div class="col-sm-9">
             <p class="form-control-static">
@@ -95,6 +103,12 @@
             </button>
             <button class="btn btn-sm btn-normal" [disabled]="srpApprovalForm.id == null || !srpApprovalForm.hasOperationRole" (click)="loadDefault()">
               申請先標準設定
+            </button>
+            <button class="btn btn-sm btn-normal" [disabled]="srpApprovalForm.id == null || !srpApprovalForm.hasOperationRole" (click)="setPrice60()">
+              評価額60%設定
+            </button>
+            <button class="btn btn-sm btn-normal" [disabled]="srpApprovalForm.id == null || !srpApprovalForm.hasOperationRole" (click)="setPrice100()">
+              評価額100%設定
             </button>
           </simple-form-input>
           <div class="form-group">
