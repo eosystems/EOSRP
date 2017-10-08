@@ -1,6 +1,6 @@
 class ZkillClient
   ZKILL_API_BASE_URL = 'https://zkillboard.com/api'.freeze
-  KILL_URL = '/killID/'
+  KILL_URL = '/kills/killID/'
 
   def fetch_loss(kill_id)
     path = kill_mail_url(kill_id)

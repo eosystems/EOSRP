@@ -14,7 +14,7 @@ class ZkillResponse
       if body != ""
         r.victim = HashObject.new(body[0]['victim'])
         r.attackers = body[0]['attackers'].map { |v| HashObject.new(v) }
-        r.items = body[0]['items'].map { |v| HashObject.new(v) }
+        #r.items = body[0]['items'].map { |v| HashObject.new(v) }
         r.killID = body[0]['killID']
         r.killTime = body[0]['killTime']
         r.zkb = HashObject.new(body[0]['zkb'])
