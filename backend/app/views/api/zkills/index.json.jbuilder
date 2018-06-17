@@ -8,5 +8,4 @@ json.results do
   json.shipTypeID @zkill.victim.ship_type_id
   json.(@zkill.zkb, :totalValue)
   json.shipName Ship.find(@zkill.victim.ship_type_id).ship_name
-  json.killTime ''
 end
