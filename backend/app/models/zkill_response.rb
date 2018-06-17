@@ -3,7 +3,7 @@ class ZkillResponse
   include ActiveModel::Validations::Callbacks
 
   attr_accessor *%i(
-    is_success victim attackers killID killTime zkb items
+    is_success victim attackers killID killTime zkb items killmail_time
   )
 
   def self.parse(response, current_page: 1)
