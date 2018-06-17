@@ -6,9 +6,9 @@
 set :branch, 'master'
 set :rails_env, 'production'
 
-role :app, %w{miner@library-miner-web-api}
+role :app, %w{miner@library-miner-web}
 #role :web, %w{miner@library-miner-web-api}
-role :db,  %w{miner@library-miner-web-api}
+role :db,  %w{miner@library-miner-web}
 
 set :ssh_options, {
   keys: [File.expand_path('~/.ssh/miner/id_rsa')],
